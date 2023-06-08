@@ -12,4 +12,9 @@ class MyColors {
   Color greyIconColor = Color(0XFFB1B1B1);
   Color greyBgColor = Color(0XFFF5F7FB);
   Color whiteColor = Colors.white;
+  Color shadowColor1 = Color(0x19000000);
+  Color shadowColor2 = Color(0x16000000);
+  Color shadowColor3 = Color(0x0c000000);
+  Color shadowColor4 = Color(0x02000000);
+  Color shadowColor5 = Color(0x00000000);
 }
