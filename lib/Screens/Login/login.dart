@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Menu/sideBarx.dart';
 import 'package:atre_windows/Screens/Login/login_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -106,7 +107,12 @@ class _LoginState extends State<Login> {
                                   borderRadius: BorderRadius.circular(12)),
                               backgroundColor: Colors.green,
                               textStyle: TextStyle(fontSize: 18)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return SideBar();
+                            }));
+                          },
                           child: Text('Login'),
                         ),
                       ],
