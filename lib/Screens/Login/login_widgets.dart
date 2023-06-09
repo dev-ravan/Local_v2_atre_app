@@ -43,15 +43,13 @@ class LoginWidgets {
     );
   }
 
-  Widget loginTextfield(
-      {required TextEditingController controller,
-      required String label,
-      required String hintText,
-      Function? onTap,
-      IconData? icon,
-      Color? color}) {
+  Widget loginTextfield({
+    required TextEditingController controller,
+    required String label,
+    required String hintText,
+  }) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(30, 35, 30, 15),
+      padding: EdgeInsets.symmetric(horizontal: 25),
       child: TextField(
         controller: controller,
         decoration: InputDecoration(
@@ -67,17 +65,86 @@ class LoginWidgets {
                 color: myColors.greenColor,
               ),
             ),
-            suffixIcon: GestureDetector(
-              // onTap: onTap as void Function(),
+            labelText: label,
+            hintText: hintText,
+            labelStyle: TextStyle(color: myColors.greenColor)),
+      ),
+    );
+  }
+
+  Widget passwordTextfield(
+      {required TextEditingController controller,
+      required String label,
+      required Function onTap,
+      IconData? icon,
+      Color? color,
+      required bool obscureText,
+      TextInputType? type}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 25),
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        keyboardType: type,
+        decoration: InputDecoration(
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            suffixIcon: InkWell(
+              onTap: onTap as void Function(),
               child: Icon(
                 icon,
                 color: color,
               ),
             ),
             labelText: label,
-            hintText: hintText,
             labelStyle: TextStyle(color: myColors.greenColor)),
       ),
     );
+  }
+
+  Widget customButton({
+    required BuildContext context,
+    required double height,
+    required String title,
+    required Function onTap,
+  }) {
+    return InkWell(
+      onTap: onTap as void Function(),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 25),
+        child: Container(
+          //  height: MediaQuery.of(context).size.height / height,
+          height: 50,
+          width: double.infinity,
+          child: Center(
+              child: Text(
+            title,
+            style: TextStyle(
+                color: myColors.whiteColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 15),
+          )),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: myColors.greenColor),
+        ),
+      ),
+    );
+  }
+
+  Widget loginText({required String title}) {
+    return Text(title,
+        style: TextStyle(
+            fontSize: 20.0, fontWeight: FontWeight.w700, color: Colors.black));
   }
 }
