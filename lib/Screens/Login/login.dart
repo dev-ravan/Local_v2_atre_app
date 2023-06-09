@@ -15,13 +15,16 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool isHidden = true;
+  bool isHidden = false;
+
   final _formKey = GlobalKey<FormState>();
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final _height = MediaQuery.of(context).size.height;
+    final _width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Center(
             child: Container(
@@ -41,15 +44,10 @@ class _LoginState extends State<Login> {
               children: [
                 Expanded(
                     flex: 2,
-                    child: Stack(
-                      alignment: Alignment.centerRight,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 40),
-                          child:
-                              Lottie.asset('assets/Doctor1.json', width: 500),
-                        ),
-                      ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: Lottie.asset('assets/Doctor1.json',
+                          width: _width / 3.5),
                     ))
               ],
             ),
@@ -58,6 +56,8 @@ class _LoginState extends State<Login> {
               child: Container(
             child: Center(
                 child: Container(
+              // height: _height / 3,
+              // width: _width / 4.5,
               height: 400,
               width: 400,
               decoration: loginWidgets.ContainerDecoration(),
@@ -69,16 +69,12 @@ class _LoginState extends State<Login> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              top: 10, right: 30, left: 5),
-                          child: Text(
-                            'Login',
-                            style: TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.black),
-                          ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        loginWidgets.loginText(title: "Login"),
+                        SizedBox(
+                          height: 30,
                         ),
                         Form(
                           child: loginWidgets.loginTextfield(
@@ -87,34 +83,30 @@ class _LoginState extends State<Login> {
                             hintText: '',
                           ),
                         ),
-                        loginWidgets.loginTextfield(
+                        SizedBox(
+                          height: 20,
+                        ),
+                        loginWidgets.passwordTextfield(
+                            obscureText: !isHidden,
+                            onTap: togglePasswordView,
                             controller: _passwordTextController,
                             label: 'password',
-                            hintText: '',
-                            onTap: () {},
                             icon: isHidden
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: myColors.greenColor),
-                        const SizedBox(height: 20.0),
-                        TextButton(
-                          style: TextButton.styleFrom(
-                              fixedSize: Size(340, 50),
-                              primary: Colors.white,
-                              padding:
-                                  const EdgeInsets.fromLTRB(30, 15, 30, 15),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12)),
-                              backgroundColor: Colors.green,
-                              textStyle: TextStyle(fontSize: 18)),
-                          onPressed: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) {
-                              return SideBar();
-                            }));
-                          },
-                          child: Text('Login'),
-                        ),
+                        const SizedBox(height: 40.0),
+                        //******************** LoginButton******************/
+                        loginWidgets.customButton(
+                            context: context,
+                            height: 22,
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return SideBar();
+                              }));
+                            },
+                            title: 'Login'),
                       ],
                     ),
                   )),
@@ -127,7 +119,7 @@ class _LoginState extends State<Login> {
     )));
   }
 
-  void _togglePasswordView() {
+  void togglePasswordView() {
     setState(() {
       isHidden = !isHidden;
     });
