@@ -12,12 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Atre Health Tech',
-      theme: ThemeData(
-          textSelectionTheme:
-              TextSelectionThemeData(cursorColor: myColors.greenColor)),
-      home: const Login(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Atre Health Tech',
+        theme: ThemeData(
+            textSelectionTheme:
+                TextSelectionThemeData(cursorColor: myColors.greenColor)),
+        home: Login());
   }
 }
