@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
@@ -47,21 +48,15 @@ class _SideBarState extends State<SideBar> {
                         case 0:
                           _key.currentState?.closeDrawer();
                           return const Text('Home');
-
                         case 1:
                           _key.currentState?.closeDrawer();
                           return const Text('UI');
-
                         case 2:
                           _key.currentState?.closeDrawer();
                           return const Text('UI');
                         case 3:
                           _key.currentState?.closeDrawer();
-                          return const Text(
-                            'UI changed',
-                            style: TextStyle(
-                                fontSize: 50.0, fontWeight: FontWeight.bold),
-                          );
+                          return const Text('UI changed');
                         default:
                           return Center(
                             child: Text(
@@ -70,6 +65,7 @@ class _SideBarState extends State<SideBar> {
                                   color: myColors.greyIconColor, fontSize: 40),
                             ),
                           );
+                        //Switch tabs------------
                       }
                     },
                   ),
@@ -92,21 +88,12 @@ class SideBarXExample extends StatelessWidget {
       controller: _controller,
       theme: SidebarXTheme(
           decoration: BoxDecoration(
-            boxShadow: const [
+            boxShadow: [
               BoxShadow(
-                color: Color(0x3f000000),
+                spreadRadius: 4,
+                color: myColors.shadowColor1,
                 blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
-              BoxShadow(
-                color: Color(0x3f000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
-              BoxShadow(
-                color: Color(0x3f000000),
-                blurRadius: 4,
-                offset: Offset(0, 4),
+                offset: const Offset(0, 4),
               ),
             ],
             color: myColors.whiteColor,
@@ -122,16 +109,38 @@ class SideBarXExample extends StatelessWidget {
           itemMargin: const EdgeInsets.all(15),
           selectedTextStyle:
               TextStyle(color: myColors.greenColor, fontSize: 20),
-          selectedItemTextPadding: const EdgeInsets.only(left: 30)),
+          selectedItemTextPadding: const EdgeInsets.only(left: 10)),
       extendedTheme: const SidebarXTheme(width: 268),
       footerDivider:
           Divider(color: myColors.greenColor.withOpacity(0.8), height: 3.5),
       headerBuilder: (context, extended) {
         return SizedBox(
-          height: 160,
-          child: Icon(Icons.person_2_outlined,
-              size: 60, color: myColors.greenColor),
-        );
+            height: 150,
+            child: Column(
+              children: [
+                SizedBox(height: 10),
+                CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/avatar.jpg'),
+                ),
+                SizedBox(height: 5),
+                Text('Admin-003'),
+                Padding(
+                  padding: EdgeInsets.only(left: 5),
+                  child: IconButton(
+                    onPressed: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return Login();
+                      }));
+                    },
+                    icon: Icon(
+                      Icons.logout_outlined,
+                      color: myColors.greyIconColor,
+                    ),
+                  ),
+                ),
+              ],
+            ));
       },
       items: const [
         SidebarXItem(icon: Icons.calendar_view_day, label: 'Appointment'),
