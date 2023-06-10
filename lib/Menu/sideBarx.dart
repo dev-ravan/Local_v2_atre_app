@@ -3,6 +3,8 @@ import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import '../Screens/Patients/patients.dart';
+
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
 
@@ -53,7 +55,7 @@ class _SideBarState extends State<SideBar> {
                           return const Text('UI');
                         case 2:
                           _key.currentState?.closeDrawer();
-                          return const Text('UI');
+                          return const patient();
                         case 3:
                           _key.currentState?.closeDrawer();
                           return const Text('UI changed');

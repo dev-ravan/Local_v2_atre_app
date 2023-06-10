@@ -46,6 +46,7 @@ class _LoginState extends State<Login> {
                     flex: 2,
                     child: Padding(
                       padding: const EdgeInsets.only(bottom: 40),
+                      //********************Lottie Image******************//
                       child: Lottie.asset('assets/Doctor1.json',
                           width: _width / 3.5),
                     ))
@@ -76,6 +77,7 @@ class _LoginState extends State<Login> {
                         SizedBox(
                           height: 30,
                         ),
+                        //********************Textfield******************//
                         Form(
                           child: loginWidgets.loginTextfield(
                             controller: _emailTextController,
@@ -96,7 +98,7 @@ class _LoginState extends State<Login> {
                                 : Icons.visibility_off,
                             color: myColors.greenColor),
                         const SizedBox(height: 40.0),
-                        //******************** LoginButton******************/
+                        //******************** LoginButton******************//
                         loginWidgets.customButton(
                             context: context,
                             height: 22,
