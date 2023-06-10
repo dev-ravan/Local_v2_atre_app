@@ -1,5 +1,6 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Appointment/appointment.dart';
+import 'package:atre_windows/Screens/Doctors/doctors.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -51,7 +52,7 @@ class _SideBarState extends State<SideBar> {
                           return const Appointment();
                         case 1:
                           _key.currentState?.closeDrawer();
-                          return const Text('UI');
+                          return const DoctorTab();
                         case 2:
                           _key.currentState?.closeDrawer();
                           return const Text('UI');
