@@ -69,6 +69,7 @@ class LoginWidgets {
             hintText: hintText,
             labelStyle: TextStyle(color: myColors.greenColor)),
       ),
+      
     );
   }
 

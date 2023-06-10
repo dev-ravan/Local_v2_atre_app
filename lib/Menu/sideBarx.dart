@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Screens/Appointment/appointment.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
@@ -47,7 +48,7 @@ class _SideBarState extends State<SideBar> {
                         //Switch tabs------------
                         case 0:
                           _key.currentState?.closeDrawer();
-                          return const Text('Home');
+                          return const Appointment();
                         case 1:
                           _key.currentState?.closeDrawer();
                           return const Text('UI');
@@ -118,8 +119,8 @@ class SideBarXExample extends StatelessWidget {
             height: 150,
             child: Column(
               children: [
-                SizedBox(height: 10),
-                CircleAvatar(
+                const SizedBox(height: 10),
+                const CircleAvatar(
                   backgroundImage: AssetImage('assets/images/avatar.jpg'),
                 ),
                 SizedBox(height: 5),
