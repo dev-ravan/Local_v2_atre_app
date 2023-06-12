@@ -1,3 +1,5 @@
+import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Screens/Patients/patient_form.dart';
 import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -21,42 +23,20 @@ class _PatientPageState extends State<PatientPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 100),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 120),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: Align(
-                    alignment: Alignment.topLeft,
-                    child: patientWidget.PatientText(title: 'Patients')),
-              ),
-
-              // SizedBox(width: 500),
-              // ElevatedButton.icon(
-              //     style: ElevatedButton.styleFrom(
-              //       primary: Color.fromARGB(255, 76, 175, 80), // background
-              //     ),
-              //     onPressed: () {
-              //       Navigator.push(context, MaterialPageRoute(
-              //         builder: (context) {
-              //           return MyFrame();
-              //         },
-              //       ));
-              //     },
-              //     icon: Icon(Icons.video_call),
-              //     label: Text('Join call'))
-            ],
-          ),
+          Align(
+              alignment: Alignment.topLeft,
+              child: patientWidget.PatientText(title: 'Patients')),
           Container(
-              height: 400,
-              width: 400,
-              color: Colors.blueAccent,
+              height: 600,
+              width: 1000,
               child: DefaultTabController(
                   length: 4,
                   child: Scaffold(
-                    backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+                    backgroundColor: myColors.whiteColor,
                     appBar: TabBar(
                       indicatorColor: Color.fromRGBO(76, 175, 80, 1),
                       labelColor: Colors.black,
@@ -67,7 +47,7 @@ class _PatientPageState extends State<PatientPage> {
                         Tab(text: 'Patient List'),
                       ],
                     ),
-                    body: TabBarView(children: [Text('data')]),
+                    body: TabBarView(children: [PatientForm(), Text("data1")]),
                   ))),
         ],
       ),
