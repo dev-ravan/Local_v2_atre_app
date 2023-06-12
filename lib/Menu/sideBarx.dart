@@ -3,6 +3,7 @@ import 'package:atre_windows/Screens/Appointment/appointment.dart';
 import 'package:atre_windows/Screens/Doctors/doctors.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 class SideBar extends StatefulWidget {
@@ -146,9 +147,9 @@ class SideBarXExample extends StatelessWidget {
       },
       items: const [
         SidebarXItem(icon: Icons.calendar_view_day, label: 'Appointment'),
-        SidebarXItem(icon: Icons.add_box_outlined, label: 'Doctor'),
-        SidebarXItem(icon: Icons.add, label: 'Patient'),
-        SidebarXItem(icon: Icons.smart_toy_rounded, label: 'Robots'),
+        SidebarXItem(icon: FontAwesomeIcons.squarePlus, label: 'Doctor'),
+        SidebarXItem(icon: FontAwesomeIcons.file, label: 'Patient'),
+        SidebarXItem(icon: FontAwesomeIcons.robot, label: 'Robots'),
         SidebarXItem(icon: Icons.file_copy, label: 'Reports'),
       ],
     );
