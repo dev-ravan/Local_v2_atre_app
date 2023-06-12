@@ -34,12 +34,12 @@ class _PatientPageState extends State<PatientPage> {
               height: 600,
               width: 1000,
               child: DefaultTabController(
-                  length: 4,
+                  length: 2,
                   child: Scaffold(
-                    backgroundColor: myColors.whiteColor,
+                    // backgroundColor: myColors.whiteColor,
                     appBar: TabBar(
-                      indicatorColor: Color.fromRGBO(76, 175, 80, 1),
-                      labelColor: Colors.black,
+                      indicatorColor: myColors.greenColor,
+                      labelColor: myColors.blackColor,
                       tabs: [
                         Tab(
                           text: 'Add New Patient',
