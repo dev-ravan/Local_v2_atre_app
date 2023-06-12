@@ -55,7 +55,7 @@ class _SideBarState extends State<SideBar> {
                           return const Text('UI');
                         case 2:
                           _key.currentState?.closeDrawer();
-                          return const patient();
+                          return const Text('UI');
                         case 3:
                           _key.currentState?.closeDrawer();
                           return const Text('UI changed');
