@@ -26,6 +26,7 @@ class _PatientFormState extends State<PatientForm> {
         children: <Widget>[
           Expanded(
             child: Center(
+              //********************Patient Form******************//
               child: Container(
                 height: 500,
                 width: 700,

@@ -47,7 +47,8 @@ class _PatientPageState extends State<PatientPage> {
                         Tab(text: 'Patient List'),
                       ],
                     ),
-                    body: TabBarView(children: [PatientForm(), Text("data1")]),
+                    body: TabBarView(
+                        children: [PatientForm(), Text('Patient List')]),
                   ))),
         ],
       ),

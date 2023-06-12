@@ -32,21 +32,6 @@ class PatientWidget {
           blurRadius: 10,
           offset: Offset(0, 18),
         ),
-        // BoxShadow(
-        //   color: Color(0x07000000),
-        //   blurRadius: 10,
-        //   offset: Offset(0, 40),
-        // ),
-        // BoxShadow(
-        //   color: Color(0x02000000),
-        //   blurRadius: 10,
-        //   offset: Offset(0, 70),
-        // ),
-        // BoxShadow(
-        //   color: Color(0x00000000),
-        //   blurRadius: 10,
-        //   offset: Offset(0, 110),
-        // ),
       ],
     );
   }

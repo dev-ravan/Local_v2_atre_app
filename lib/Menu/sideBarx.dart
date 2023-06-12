@@ -3,8 +3,6 @@ import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-import '../Screens/Patients/patients.dart';
-
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
 
