@@ -53,9 +53,8 @@ class _DoctorTabState extends State<DoctorTab> {
           alignment: Alignment.topLeft,
           child: Container(
               child: DefaultTabController(
-                  length: 4,
+                  length: 2,
                   child: Scaffold(
-                   
                     appBar: TabBar(
                       indicatorColor: myColors.greenColor,
                       labelColor: myColors.textColor,
