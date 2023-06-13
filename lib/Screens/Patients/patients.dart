@@ -1,7 +1,9 @@
 import 'package:atre_windows/Constants/myColors.dart';
-import 'package:atre_windows/Screens/Patients/patient_form.dart';
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
+import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
+import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
 import 'package:flutter/material.dart';
+
+import '../../Constants/myWidgets.dart';
 
 class patient extends StatelessWidget {
   const patient({super.key});
@@ -23,32 +25,29 @@ class _PatientPageState extends State<PatientPage> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 120),
+      padding: const EdgeInsets.only(left: 40, right: 40, top: 120),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Align(
               alignment: Alignment.topLeft,
-              child: patientWidget.PatientText(title: 'Patients')),
+              child: myWidgets.titleText(title: "Patient")),
           Container(
-              height: 600,
-              width: 1000,
               child: DefaultTabController(
                   length: 2,
                   child: Scaffold(
-                    // backgroundColor: myColors.whiteColor,
                     appBar: TabBar(
                       indicatorColor: myColors.greenColor,
                       labelColor: myColors.blackColor,
-                      tabs: [
+                      tabs: const [
                         Tab(
                           text: 'Add New Patient',
                         ),
                         Tab(text: 'Patient List'),
                       ],
                     ),
-                    body: TabBarView(
-                        children: [PatientForm(), Text('Patient List')]),
+                    body: const TabBarView(
+                        children: [PatientForm(), PatientList()]),
                   ))),
         ],
       ),

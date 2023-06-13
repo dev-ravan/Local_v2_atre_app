@@ -1,7 +1,7 @@
 import 'package:atre_windows/Constants/myColors.dart';
-import 'package:atre_windows/Screens/Doctors/all_doctors.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:flutter/material.dart';
+import 'all_doctors_Tab.dart';
 
 class Doctor extends StatelessWidget {
   const Doctor({super.key});
