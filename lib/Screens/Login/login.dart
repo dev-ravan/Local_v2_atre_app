@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Menu/sideBarx.dart';
 import 'package:atre_windows/Screens/Login/login_widgets.dart';
@@ -28,7 +30,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
         body: Center(
             child: Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           image: DecorationImage(
               image: Svg(
                 'assets/images/bg.svg',

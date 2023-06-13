@@ -28,7 +28,12 @@ dependencies:
   shared_preferences: ^2.1.1
   syncfusion_flutter_datagrid: ^21.2.9
   font_awesome_flutter: ^10.4.0
-
+  
+  # using restrict the windows size
+  window_size:
+    git:
+      url: https://github.com/google/flutter-desktop-embedding
+      path: plugins/window_size
 
 dev_dependencies:
   flutter_test:
