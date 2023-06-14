@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
@@ -28,18 +29,13 @@ class _AllDoctorsTabState extends State<AllDoctorsTab> {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          TextField(
-            //==========1
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: myColors.greyBgColor))),
-          ),
+          myWidgets.searchField(),
           const SizedBox(height: 10),
           SizedBox(
             height: height / 2,
             child: SfDataGrid(
                 gridLinesVisibility: GridLinesVisibility.none,
-                headerGridLinesVisibility: GridLinesVisibility.both,
+                headerGridLinesVisibility: GridLinesVisibility.none,
                 source: doctorDataSource!,
                 columnWidthMode: ColumnWidthMode.fill,
                 columns: <GridColumn>[
@@ -75,6 +71,15 @@ class _AllDoctorsTabState extends State<AllDoctorsTab> {
                           child: const Text(
                             'Contact',
                           ))),
+                  GridColumn(
+                      columnName: 'button',
+                      label: Container(
+                          color: myColors.whiteColor,
+                          padding: const EdgeInsets.all(16.0),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            '',
+                          ))),
                 ]),
           )
         ],
@@ -99,47 +104,47 @@ List<DoctorDetails> getEmployeeData() {
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
     DoctorDetails(
       'AM-1031',
       "Kamini R",
-      "Dr.Siva",
+      "91 9018276354",
     ),
   ];
 }
@@ -151,6 +156,7 @@ class DoctorDataSource extends DataGridSource {
               DataGridCell<String>(columnName: 'patientID', value: e.doctorID),
               DataGridCell<String>(columnName: 'name', value: e.name),
               DataGridCell<String>(columnName: 'Contact', value: e.contact),
+              DataGridCell<String>(columnName: 'button', value: e.contact),
             ]))
         .toList();
   }
@@ -162,38 +168,44 @@ class DoctorDataSource extends DataGridSource {
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
+    Color getBackgroundColor() {
+      int index = effectiveRows.indexOf(row);
+      if (index % 2 == 0) {
+        return myColors.greyBgColor;
+      } else {
+        return myColors.greyBg2Color;
+      }
+    }
+
     return DataGridRowAdapter(
+        color: getBackgroundColor(),
         cells: row.getCells().map<Widget>((e) {
-      return Container(
-          color: Colors.white,
-          alignment: Alignment.center,
-          padding: EdgeInsets.all(8.0),
-          child: e.columnName == 'button'
-              ? LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                  return ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                content: SizedBox(
-                                    height: 100,
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            'Patient  ID: ${row.getCells()[0].value.toString()}'),
-                                        Text(
-                                            'Name: ${row.getCells()[1].value.toString()}'),
-                                        Text(
-                                            'contact: ${row.getCells()[2].value.toString()}'),
-                                      ],
-                                    ))));
-                      },
-                      child: const Text('Details'));
-                })
-              : Text(e.value.toString()));
-    }).toList());
+          return Container(
+              alignment: Alignment.center,
+              padding: EdgeInsets.all(8.0),
+              child: e.columnName == 'button'
+                  ? LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                      return Expanded(
+                        child: Row(
+                          children: [
+                            IconButton(
+                                onPressed: () {},
+                                icon: const Icon(
+                                  Icons.edit_document,
+                                  color: Colors.lightBlue,
+                                )),
+                            IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.delete,
+                                  color: myColors.redColor,
+                                ))
+                          ],
+                        ),
+                      );
+                    })
+                  : Text(e.value.toString()));
+        }).toList());
   }
 }
