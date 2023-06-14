@@ -4,6 +4,7 @@ import 'package:atre_windows/Screens/Doctors/doctors_active_log_Tab.dart';
 
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:flutter/material.dart';
+import 'all_doctors_Tab.dart';
 
 import 'all_doctors_Tab.dart';
 
