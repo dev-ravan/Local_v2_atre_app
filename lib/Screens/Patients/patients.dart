@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../Constants/myWidgets.dart';
 
-class patient extends StatelessWidget {
-  const patient({super.key});
+class Patient extends StatelessWidget {
+  const Patient({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,23 +32,27 @@ class _PatientPageState extends State<PatientPage> {
           Align(
               alignment: Alignment.topLeft,
               child: myWidgets.titleText(title: "Patient")),
-          Container(
-              child: DefaultTabController(
-                  length: 2,
-                  child: Scaffold(
-                    appBar: TabBar(
-                      indicatorColor: myColors.greenColor,
-                      labelColor: myColors.blackColor,
-                      tabs: const [
-                        Tab(
-                          text: 'Add New Patient',
-                        ),
-                        Tab(text: 'Patient List'),
-                      ],
-                    ),
-                    body: const TabBarView(
-                        children: [PatientForm(), PatientList()]),
-                  ))),
+          Expanded(
+            child: Container(
+                height: 600,
+                width: 1000,
+                child: DefaultTabController(
+                    length: 2,
+                    child: Scaffold(
+                      appBar: TabBar(
+                        indicatorColor: myColors.greenColor,
+                        labelColor: myColors.blackColor,
+                        tabs: const [
+                          Tab(
+                            text: 'Add New Patient',
+                          ),
+                          Tab(text: 'Patient List'),
+                        ],
+                      ),
+                      body: const TabBarView(
+                          children: [PatientForm(), PatientList()]),
+                    ))),
+          ),
         ],
       ),
     );
