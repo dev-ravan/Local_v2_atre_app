@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Atre Health Tech',
         theme: ThemeData(
+            primarySwatch: Colors.green,
             textSelectionTheme:
                 TextSelectionThemeData(cursorColor: myColors.greenColor)),
         home: Login());

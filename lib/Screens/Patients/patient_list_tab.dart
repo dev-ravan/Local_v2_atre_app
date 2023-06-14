@@ -39,7 +39,7 @@ class _PatientListState extends State<PatientList> {
             height: height / 2,
             child: SfDataGrid(
                 gridLinesVisibility: GridLinesVisibility.none,
-                headerGridLinesVisibility: GridLinesVisibility.both,
+                headerGridLinesVisibility: GridLinesVisibility.none,
                 source: patientDataSource!,
                 columnWidthMode: ColumnWidthMode.fill,
                 columns: <GridColumn>[
