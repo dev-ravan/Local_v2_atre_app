@@ -24,9 +24,10 @@ class _PatientFormState extends State<PatientForm> {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Expanded(
-            child: Center(
-              //********************Patient Form******************//
+          Center(
+            //********************Patient Form******************//
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
               child: Container(
                 height: 500,
                 width: 700,
@@ -152,8 +153,8 @@ class _PatientFormState extends State<PatientForm> {
                     ],
                   ),
                 ),
-              ), //
-            ),
+              ),
+            ), //
           ),
         ]);
   }
