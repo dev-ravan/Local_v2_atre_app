@@ -2,11 +2,10 @@ import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Appointment/appointment.dart';
 import 'package:atre_windows/Screens/Doctors/doctors.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
+import 'package:atre_windows/Screens/Patients/patients.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
-
-import '../Screens/Patients/patients.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});

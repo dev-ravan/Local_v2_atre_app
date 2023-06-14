@@ -1,12 +1,9 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
+import 'package:atre_windows/Screens/Doctors/all_doctors_Tab.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_active_log_Tab.dart';
-
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:flutter/material.dart';
-import 'all_doctors_Tab.dart';
-
-import 'all_doctors_Tab.dart';
 
 class Doctor extends StatelessWidget {
   const Doctor({super.key});
@@ -35,7 +32,7 @@ class _DoctorTabState extends State<DoctorTab> {
         const SizedBox(height: 25),
         Row(
           children: [
-           myWidgets.titleText(title: 'Doctor'),
+            myWidgets.titleText(title: 'Doctor'),
             Expanded(
               child: Align(
                 alignment: Alignment.topRight,
@@ -44,7 +41,8 @@ class _DoctorTabState extends State<DoctorTab> {
                   child: Container(
                       height: 40,
                       color: myColors.greenColor,
-                      child: doctorWidgets.addDoctorButton(label: 'Add Doctor')),
+                      child:
+                          doctorWidgets.addDoctorButton(label: 'Add Doctor')),
                 ),
               ),
             ),

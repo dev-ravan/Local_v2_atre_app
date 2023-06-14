@@ -250,7 +250,6 @@ class AppointmentWidgets {
     required String appointmentID,
     required String scanType,
     required String otherDetails,
-    required Function onTap,
     required Function onTapConnect,
   }) {
     return Container(

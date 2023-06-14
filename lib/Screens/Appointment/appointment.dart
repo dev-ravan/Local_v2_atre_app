@@ -3,9 +3,12 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:atre_windows/Screens/Appointment/appointment_widgets.dart';
+import 'package:desktop_webview_window/desktop_webview_window.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:path/path.dart' as p;
 
 class Appointment extends StatefulWidget {
   const Appointment({super.key});
@@ -269,10 +272,19 @@ class _AppointmentState extends State<Appointment> {
                         Expanded(
                             child:
                                 appointmentWidgets.appointmentDetailsContainer(
-                                    onTapConnect: () {},
+                                    onTapConnect: () async {
+                                      final webview = await WebviewWindow.create(
+                                          configuration: CreateConfiguration(
+                                              userDataFolderWindows:
+                                                  await _getWebViewPath(),
+                                              titleBarHeight: 0));
+                                      webview
+                                        ..launch(
+                                            "https://meet.jit.si/FashionablePaymentsComePrimarily")
+                                        ..setBrightness(Brightness.dark);
+                                    },
                                     context: context,
                                     appointmentID: "AM-1013",
-                                    onTap: () {},
                                     otherDetails: "Brief description",
                                     scanType: "Abdomen"))
                       ],
@@ -402,4 +414,14 @@ class AppointmentDataSource extends DataGridSource {
           );
         }).toList());
   }
+}
+
+// ************************ Web View Components ******************************
+
+Future<String> _getWebViewPath() async {
+  final document = await getApplicationDocumentsDirectory();
+  return p.join(
+    document.path,
+    'desktop_webview_window',
+  );
 }
