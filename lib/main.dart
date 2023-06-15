@@ -9,7 +9,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
     setWindowTitle('Atre');
-    setWindowMinSize(const Size(1536, 864));
+    setWindowMinSize(const Size(1720, 864));
     setWindowMaxSize(Size.infinite);
   }
   runApp(const MyApp());

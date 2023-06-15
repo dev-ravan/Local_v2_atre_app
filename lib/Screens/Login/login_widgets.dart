@@ -43,17 +43,30 @@ class LoginWidgets {
     );
   }
 
-  Widget loginTextfield({
-    required TextEditingController controller,
-    required String label,
-    required String hintText,
-  }) {
+  Widget loginTextfield(
+      {required TextEditingController controller,
+      required String label,
+      required String hintText,
+      required String? Function(String?) validator}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: TextField(
+      child: TextFormField(
+        validator: validator,
         controller: controller,
         decoration: InputDecoration(
             fillColor: Colors.white,
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
@@ -79,15 +92,29 @@ class LoginWidgets {
       IconData? icon,
       Color? color,
       required bool obscureText,
-      TextInputType? type}) {
+      TextInputType? type,
+      required String? Function(String?) validator}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
-      child: TextField(
+      child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        validator: validator,
         keyboardType: type,
         decoration: InputDecoration(
             fillColor: myColors.whiteColor,
+            errorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
