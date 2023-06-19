@@ -1,11 +1,16 @@
-// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers, use_build_context_synchronously
 
+import 'dart:convert';
+
+import 'package:atre_windows/API%20Services/login_Service.dart';
+import 'package:atre_windows/Constants/localStorage.dart';
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Menu/sideBarx.dart';
 import 'package:atre_windows/Screens/Login/login_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   Login({
@@ -18,10 +23,21 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   bool isHidden = false;
+  bool isPassword = false;
+  bool isOtp = false;
 
   final _formKey = GlobalKey<FormState>();
   final _emailTextController = TextEditingController();
   final _passwordTextController = TextEditingController();
+
+  @override
+  void initState() {
+    _emailTextController.text = "acmalavika@gmail.com";
+    _passwordTextController.text = "Acmalavika";
+    final _loginApi = Provider.of<LoginApi>(context, listen: false);
+
+    super.initState();
+  }
 
   //=================== validation =======================
 
@@ -50,8 +66,9 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    //final _height = MediaQuery.of(context).size.height;
+    final _loginApi = Provider.of<LoginApi>(context);
     final _width = MediaQuery.of(context).size.width;
+    final _height = MediaQuery.of(context).size.height;
     return Scaffold(
         body: Center(
             child: Container(
@@ -84,10 +101,10 @@ class _LoginState extends State<Login> {
               child: Container(
             child: Center(
                 child: Container(
-              // height: _height / 3,
-              // width: _width / 4.5,
-              height: 400,
-              width: 400,
+              height: _height / 3,
+              width: _width / 4.5,
+              // height: 400,
+              // width: 400,
               decoration: loginWidgets.ContainerDecoration(),
               child: Column(
                 children: [
@@ -116,17 +133,35 @@ class _LoginState extends State<Login> {
                             const SizedBox(
                               height: 20,
                             ),
-                            loginWidgets.passwordTextfield(
-                                obscureText: !isHidden,
-                                validator: validatePassword,
-                                onTap: togglePasswordView,
-                                controller: _passwordTextController,
-                                label: 'password',
-                                icon: isHidden
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: myColors.greenColor),
-                            const SizedBox(height: 40.0),
+                            Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  loginWidgets.passwordTextfield(
+                                      obscureText: !isHidden,
+                                      validator: validatePassword,
+                                      onTap: togglePasswordView,
+                                      controller: _passwordTextController,
+                                      label: 'password',
+                                      icon: isHidden
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: myColors.greenColor),
+                                  const SizedBox(height: 10),
+                                  InkWell(
+                                    onTap: () {},
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 30),
+                                      child: Text(
+                                        "Forget Password?",
+                                        style: TextStyle(
+                                            color: myColors.greenColor,
+                                            letterSpacing: 0.5,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                    ),
+                                  )
+                                ]),
+                            const SizedBox(height: 20.0),
                           ],
                         ),
                       ),
@@ -137,10 +172,29 @@ class _LoginState extends State<Login> {
                           height: 22,
                           onTap: () {
                             if (_formKey.currentState!.validate()) {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) {
-                                return SideBar();
-                              }));
+                              _loginApi
+                                  .loginPost(_emailTextController.text,
+                                      _passwordTextController.text)
+                                  .then((value) async {
+                                if (value!.status == true) {
+                                  //================== Local Storage ===========
+                                  await CommonLocalStorage()
+                                      .saveLocalStorageToken(
+                                          json.encode(value.jwt));
+                                  await CommonLocalStorage()
+                                      .saveLocalStorageUserID(
+                                          json.encode(value.userId));
+                                  // ==============================================
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return const SideBar();
+                                  }));
+                                  print("Access Token: $globalAccessToken");
+                                  print("User ID: $globalUserID");
+                                } else {
+                                  print("Not A valid User");
+                                }
+                              });
                             } else {
                               print("Not A Valid User");
                             }

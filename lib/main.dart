@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:atre_windows/API%20Services/login_Service.dart';
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
 void main() {
@@ -20,13 +22,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Atre Health Tech',
-        theme: ThemeData(
-            primarySwatch: Colors.green,
-            textSelectionTheme:
-                TextSelectionThemeData(cursorColor: myColors.greenColor)),
-        home: Login());
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<LoginApi>(create: (context) => LoginApi()),
+      ],
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Atre Health Tech',
+          theme: ThemeData(
+              primarySwatch: Colors.green,
+              textSelectionTheme:
+                  TextSelectionThemeData(cursorColor: myColors.greenColor)),
+          home: Login()),
+    );
   }
 }

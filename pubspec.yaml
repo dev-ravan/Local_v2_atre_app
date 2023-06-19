@@ -18,17 +18,16 @@ dependencies:
   lottie: ^2.3.1
   flutter_svg_provider: ^1.0.3
   sidebarx: ^0.15.0
-  hexcolor: ^3.0.1
   table_calendar: ^3.0.9
   tabbed_view: ^1.16.0+1
   path_provider: ^2.0.14
   desktop_webview_window: ^0.2.0
   http: ^0.13.6
   provider: ^6.0.5
-  shared_preferences: ^2.1.1
   syncfusion_flutter_datagrid: ^21.2.9
   font_awesome_flutter: ^10.4.0
   url_launcher: ^6.1.11
+  localstorage: ^4.0.1+2
   
   # using restrict the windows size
   window_size:
