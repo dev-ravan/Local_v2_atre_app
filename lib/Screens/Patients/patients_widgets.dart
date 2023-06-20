@@ -4,24 +4,23 @@ import 'package:flutter/material.dart';
 final patientWidget = PatientWidget();
 
 class PatientWidget {
- 
-  ContainerDecoration() {
+  containerDecoration() {
     return BoxDecoration(
       borderRadius: BorderRadius.circular(20),
-      color: Color.fromARGB(255, 255, 255, 255),
-      boxShadow: const [
+      color: myColors.whiteColor,
+      boxShadow: [
         BoxShadow(
-          color: Color(0x0c000000),
+          color: myColors.shadowColor3,
           blurRadius: 0,
           offset: Offset(0, 0),
         ),
         BoxShadow(
-          color: Color(0x0c000000),
+          color: myColors.shadowColor3,
           blurRadius: 5,
           offset: Offset(0, 4),
         ),
         BoxShadow(
-          color: Color(0x0a000000),
+          color: myColors.shadowColor6,
           blurRadius: 10,
           offset: Offset(0, 18),
         ),
@@ -29,7 +28,7 @@ class PatientWidget {
     );
   }
 
-  Widget ButtonIcon(
+  Widget buttonIcon(
       {required Function onPressed,
       required IconData icon,
       required String labelText,
@@ -44,7 +43,7 @@ class PatientWidget {
         ));
   }
 
-  Widget FormField(
+  Widget formField(
       {required String labelText,
       required String hintText,
       required TextEditingController controller,
@@ -57,16 +56,16 @@ class PatientWidget {
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
-                  color: Colors.green,
+                  color: myColors.greenColor,
                 )),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(12),
               borderSide: BorderSide(
-                color: Colors.green,
+                color: myColors.greenColor,
               ),
             ),
             labelText: labelText,
             hintText: hintText,
-            labelStyle: TextStyle(color: Colors.green)));
+            labelStyle: TextStyle(color: myColors.greenColor)));
   }
 }

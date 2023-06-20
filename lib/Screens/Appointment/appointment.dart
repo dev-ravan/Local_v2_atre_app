@@ -1,5 +1,3 @@
-// ignore_for_file: unused_local_variable
-
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:atre_windows/Screens/Appointment/appointment_widgets.dart';
@@ -9,6 +7,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:path/path.dart' as p;
+import 'appointment_form.dart';
 
 class Appointment extends StatefulWidget {
   const Appointment({super.key});
@@ -300,7 +299,7 @@ class _AppointmentState extends State<Appointment> {
                     ),
                   ),
                 )
-          : Container(),
+          : AppointmentForm(),
     );
   }
 }

@@ -1,3 +1,4 @@
+//appointment_widget
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
@@ -436,5 +437,57 @@ class AppointmentWidgets {
       ),
       child: tableCalendar,
     );
+  }
+
+  containerBoxDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: myColors.whiteColor,
+      boxShadow: [
+        BoxShadow(
+          color: myColors.shadowColor3,
+          blurRadius: 0,
+          offset: Offset(0, 0),
+        ),
+        BoxShadow(
+          color: myColors.shadowColor3,
+          blurRadius: 10,
+          offset: Offset(0, 4),
+        ),
+        BoxShadow(
+          color: myColors.shadowColor7,
+          blurRadius: 24,
+          offset: Offset(0, 40),
+        ),
+      ],
+    );
+  }
+
+  Widget formField(
+      {required String labelText,
+      required String hintText,
+      required TextEditingController controller,
+      TextInputType? type, //keyboard type
+      int? maxLines}) {
+    return TextFormField(
+        controller: controller,
+        keyboardType: type,
+        maxLines: maxLines,
+        decoration: InputDecoration(
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            labelText: labelText,
+            hintText: hintText,
+            labelStyle: TextStyle(color: myColors.greenColor)));
   }
 }
