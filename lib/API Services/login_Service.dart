@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:atre_windows/Constants/localStorage.dart';
 import 'package:atre_windows/Model/loginModel/login_Model.dart';
+import 'package:atre_windows/Model/loginModel/otp_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,6 +33,26 @@ class LoginApi extends ChangeNotifier {
       return loginModelFromJson(response.body);
     } else {
       return loginModelFromJson(response.body);
+    }
+  }
+
+  Future<OtpModel?> otpGet(String email) async {
+    final http.Response response =
+        await http.post(Uri.parse("${baseUrl}admin/request-otp"),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(<String, String>{"user_email": email}));
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+
+      print(data);
+
+      notifyListeners();
+      return otpModelFromJson(response.body);
+    } else {
+      return otpModelFromJson(response.body);
     }
   }
 }

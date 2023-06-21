@@ -91,4 +91,14 @@ class MyWidgets {
       ),
     );
   }
+
+  Widget greenText({required String title}) {
+    return Text(
+      title,
+      style: TextStyle(
+          color: myColors.greenColor,
+          letterSpacing: 0.5,
+          fontWeight: FontWeight.w500),
+    );
+  }
 }

@@ -1,5 +1,6 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:flutter/material.dart';
+import 'package:pin_code_fields/pin_code_fields.dart';
 
 final loginWidgets = LoginWidgets();
 
@@ -47,12 +48,14 @@ class LoginWidgets {
       {required TextEditingController controller,
       required String label,
       required String hintText,
-      required String? Function(String?) validator}) {
+      required String? Function(String?) validator,
+      Key? key}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
         validator: validator,
         controller: controller,
+        key: key,
         decoration: InputDecoration(
             fillColor: Colors.white,
             errorBorder: OutlineInputBorder(
@@ -136,6 +139,32 @@ class LoginWidgets {
             labelText: label,
             labelStyle: TextStyle(color: myColors.greenColor)),
       ),
+    );
+  }
+
+  Widget otpTextfield(
+      {required BuildContext context,
+      required String? Function(String?) validator}) {
+    return PinCodeTextField(
+      validator: validator,
+      autoFocus: true,
+      appContext: context,
+      keyboardType: TextInputType.number,
+
+      length: 6,
+      showCursor: true,
+      animationType: AnimationType.fade,
+      pinTheme: PinTheme(
+          shape: PinCodeFieldShape.box,
+          borderRadius: BorderRadius.circular(10),
+          fieldHeight: 50,
+          fieldWidth: 40,
+          inactiveColor: myColors.greyIconColor,
+          activeColor: myColors.greenColor,
+          selectedColor: myColors.greenColor),
+      // animationDuration: Duration(milliseconds: 100),
+      backgroundColor: Colors.transparent,
+      onChanged: (value) {},
     );
   }
 
