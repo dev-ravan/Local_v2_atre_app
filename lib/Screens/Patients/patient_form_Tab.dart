@@ -31,7 +31,7 @@ class _PatientFormState extends State<PatientForm> {
               child: Container(
                 height: 500,
                 width: 700,
-                decoration: patientWidget.ContainerDecoration(),
+                decoration: patientWidget.containerDecoration(),
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
                   child: Column(
@@ -43,7 +43,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 50),
-                                  child: patientWidget.FormField(
+                                  child: patientWidget.formField(
                                       labelText: 'Name',
                                       hintText: '',
                                       controller: nameTextController))),
@@ -52,7 +52,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 50),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Date of Birth',
                                 hintText: '',
                                 controller: dateOfBirthController),
@@ -67,7 +67,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 50),
-                                  child: patientWidget.FormField(
+                                  child: patientWidget.formField(
                                       labelText: 'Address',
                                       hintText: '',
                                       controller: addressTextController))),
@@ -76,7 +76,7 @@ class _PatientFormState extends State<PatientForm> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 20, left: 10, right: 50),
-                              child: patientWidget.FormField(
+                              child: patientWidget.formField(
                                   labelText: 'Pin Code',
                                   hintText: '',
                                   controller: emergencyPhoneTextController),
@@ -92,7 +92,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 50),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Phone',
                                 hintText: '',
                                 controller: phoneTextController),
@@ -102,7 +102,7 @@ class _PatientFormState extends State<PatientForm> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 20, left: 10, right: 50),
-                              child: patientWidget.FormField(
+                              child: patientWidget.formField(
                                   labelText: 'EmergencyPhone',
                                   hintText: '',
                                   controller: emergencyPhoneTextController),
@@ -118,7 +118,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 400),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Marital Status',
                                 hintText: '',
                                 controller: maritalStatusTextController),
@@ -132,7 +132,7 @@ class _PatientFormState extends State<PatientForm> {
                           children: [
                             Container(
                                 color: Colors.grey.shade200,
-                                child: patientWidget.ButtonIcon(
+                                child: patientWidget.buttonIcon(
                                     onPressed: () {},
                                     icon: (Icons.group_add_outlined),
                                     iconColor: myColors.blackColor,
@@ -141,7 +141,7 @@ class _PatientFormState extends State<PatientForm> {
                             const SizedBox(width: 30),
                             Container(
                                 color: myColors.greenColor,
-                                child: patientWidget.ButtonIcon(
+                                child: patientWidget.buttonIcon(
                                     onPressed: () {},
                                     icon: (Icons.group_add_outlined),
                                     iconColor: myColors.whiteColor,
