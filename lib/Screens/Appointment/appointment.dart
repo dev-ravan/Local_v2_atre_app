@@ -61,7 +61,7 @@ class _AppointmentState extends State<Appointment> {
                                 height: 15,
                               ),
                               SizedBox(
-                                height: _height / 2,
+                                height: _height / 1.6,
                                 child: SfDataGrid(
                                   gridLinesVisibility: GridLinesVisibility.none,
                                   headerGridLinesVisibility:
