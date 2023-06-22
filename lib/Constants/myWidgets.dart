@@ -1,9 +1,28 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 final myWidgets = MyWidgets();
 
 class MyWidgets {
+  toastMsg({required BuildContext context, required String msg}) {
+    return CherryToast.warning(
+      title: const Text("Warning"),
+      enableIconAnimation: false,
+      displayTitle: false,
+      description: Text(
+        msg,
+        style: TextStyle(fontWeight: FontWeight.w400),
+      ),
+      animationType: AnimationType.fromTop,
+      borderRadius: 10,
+      animationDuration: const Duration(milliseconds: 600),
+      autoDismiss: true,
+      animationCurve: Curves.easeInCirc,
+    ).show(context);
+  }
+
   titleText({required String title}) {
     return Text(
       title,

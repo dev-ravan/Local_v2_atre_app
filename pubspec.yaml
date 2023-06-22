@@ -16,7 +16,7 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   lottie: ^2.3.1
-  flutter_svg_provider: ^1.0.3
+  flutter_svg: ^2.0.7
   sidebarx: ^0.15.0
   table_calendar: ^3.0.9
   tabbed_view: ^1.16.0+1
@@ -29,6 +29,9 @@ dependencies:
   url_launcher: ^6.1.11
   localstorage: ^4.0.1+2
   pin_code_fields: ^7.4.0
+  cherry_toast: ^1.2.1
+  flutter_spinkit: ^5.2.0
+
 
   
   # using restrict the windows size
