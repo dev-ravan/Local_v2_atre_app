@@ -40,6 +40,8 @@ dependencies:
       url: https://github.com/google/flutter-desktop-embedding
       path: plugins/window_size
 
+  dropdown_search: ^5.0.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

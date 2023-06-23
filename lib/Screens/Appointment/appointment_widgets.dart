@@ -3,6 +3,7 @@ import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 final appointmentWidgets = AppointmentWidgets();
 
@@ -495,5 +496,34 @@ class AppointmentWidgets {
             labelText: labelText,
             hintText: hintText,
             labelStyle: TextStyle(color: myColors.greenColor)));
+  }
+
+  Widget dropdownButton({required String labelText, required List items}) {
+    return DropdownSearch<int>(
+      items: List.generate(50, (i) => i),
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        dropdownSearchDecoration: InputDecoration(
+            labelText: labelText,
+            filled: true,
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            labelStyle: TextStyle(color: myColors.greenColor)),
+      ),
+      popupProps: PopupProps.menu(
+        showSearchBox: true,
+        fit: FlexFit.loose,
+        constraints: BoxConstraints(maxHeight: 300),
+      ),
+    );
   }
 }
