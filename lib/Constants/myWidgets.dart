@@ -13,7 +13,7 @@ class MyWidgets {
       displayTitle: false,
       description: Text(
         msg,
-        style: TextStyle(fontWeight: FontWeight.w400),
+        style: const TextStyle(fontWeight: FontWeight.w400),
       ),
       animationType: AnimationType.fromTop,
       borderRadius: 10,

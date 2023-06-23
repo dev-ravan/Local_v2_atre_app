@@ -48,8 +48,8 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    _emailTextController.text = "acmalavika@gmail.com";
-    _passwordTextController.text = "Malavika2002@";
+    _emailTextController.text = "velmurugan1211r@gmail.com";
+    _passwordTextController.text = "Johnwick007";
     final _loginApi = Provider.of<LoginApi>(context, listen: false);
 
     super.initState();
@@ -117,9 +117,10 @@ class _LoginState extends State<Login> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 250),
+                margin: const EdgeInsets.symmetric(horizontal: 180),
                 padding: const EdgeInsets.symmetric(vertical: 40),
                 decoration: loginWidgets.ContainerDecoration(),
+                width: 420,
                 child: isPassword
                     ?
                     // *********************************** LOGIN PAGE *********************************************
@@ -449,6 +450,10 @@ class _LoginState extends State<Login> {
                                                       } else {
                                                         print(
                                                             "Password not same");
+                                                        myWidgets.toastMsg(
+                                                            context: context,
+                                                            msg:
+                                                                "Both password should be same!");
                                                       }
                                                     }
                                                   }),
