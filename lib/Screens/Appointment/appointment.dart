@@ -61,7 +61,7 @@ class _AppointmentState extends State<Appointment> {
                                 height: 15,
                               ),
                               SizedBox(
-                                height: _height / 2,
+                                height: _height / 1.6,
                                 child: SfDataGrid(
                                   gridLinesVisibility: GridLinesVisibility.none,
                                   headerGridLinesVisibility:
@@ -166,7 +166,7 @@ class _AppointmentState extends State<Appointment> {
                         appointmentWidgets.appointmentContainer(
                             context: context),
                         const SizedBox(
-                          height: 20,
+                          height: 30,
                         ),
                         appointmentWidgets.calenderContainer(
                           context: context,
@@ -202,7 +202,7 @@ class _AppointmentState extends State<Appointment> {
                           ),
                         ),
                         const SizedBox(
-                          height: 20,
+                          height: 25,
                         ),
                         myWidgets.iconButton(
                             title: "New Appointment",

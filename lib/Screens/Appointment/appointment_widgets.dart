@@ -384,7 +384,7 @@ class AppointmentWidgets {
           ),
         ],
       ),
-      child: const Column(children: [
+      child: Column(children: [
         Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -393,23 +393,29 @@ class AppointmentWidgets {
               Row(
                 children: [
                   Expanded(
-                    child: Text("Appointments on  ",
-                        style: TextStyle(fontWeight: FontWeight.w400)),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "November 12",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
+                    child: RichText(
+                        text: TextSpan(
+                            text: "Appointments on  ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: myColors.blackColor,
+                                fontSize: 15),
+                            children: const [
+                          TextSpan(
+                            text: "November 12",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 18),
+                          ),
+                        ])),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
-              Text(
+              const Text(
                 "11",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29),
               )
             ],
           ),

@@ -1,5 +1,6 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 final loginWidgets = LoginWidgets();
@@ -98,8 +99,9 @@ class LoginWidgets {
       TextInputType? type,
       required String? Function(String?) validator}) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 25),
+      padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextFormField(
+        enableInteractiveSelection: false,
         controller: controller,
         obscureText: obscureText,
         validator: validator,
@@ -144,9 +146,11 @@ class LoginWidgets {
 
   Widget otpTextfield(
       {required BuildContext context,
+      required TextEditingController controller,
       required String? Function(String?) validator}) {
     return PinCodeTextField(
       validator: validator,
+      controller: controller,
       autoFocus: true,
       appContext: context,
       keyboardType: TextInputType.number,
@@ -198,9 +202,44 @@ class LoginWidgets {
     );
   }
 
+  Widget loadingButton(
+      {required BuildContext context,
+      required double height,
+      required String title,
+      required Function onTap,
+      required bool isLoading}) {
+    return InkWell(
+      onTap: onTap as void Function(),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 25),
+        child: Container(
+          //  height: MediaQuery.of(context).size.height / height,
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              color: myColors.greenColor),
+          child: Center(
+              child: isLoading != true
+                  ? SpinKitThreeBounce(
+                      color: myColors.whiteColor,
+                      size: 25,
+                    )
+                  : Text(
+                      title,
+                      style: TextStyle(
+                          color: myColors.whiteColor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 15),
+                    )),
+        ),
+      ),
+    );
+  }
+
   Widget loginText({required String title}) {
     return Text(title,
-        style: TextStyle(
+        style: const TextStyle(
             fontSize: 20.0, fontWeight: FontWeight.w700, color: Colors.black));
   }
 }
