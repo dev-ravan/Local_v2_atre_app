@@ -190,7 +190,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                           const SizedBox(height: 15),
                           TextButton(
                             onPressed: () {},
-                            child: Text("Add New Patient"),
+                            child: const Text("Add New Patient"),
                           )
                         ],
                       ),
