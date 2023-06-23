@@ -48,8 +48,8 @@ class _LoginState extends State<Login> {
 
   @override
   void initState() {
-    _emailTextController.text = "velmurugan1211r@gmail.com";
-    _passwordTextController.text = "Johnwick007";
+    _emailTextController.text = "acmlavika@gmail.com";
+    _passwordTextController.text = "Acmalavika";
     final _loginApi = Provider.of<LoginApi>(context, listen: false);
 
     super.initState();
