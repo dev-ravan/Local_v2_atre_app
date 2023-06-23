@@ -25,15 +25,13 @@ class _DoctorFormState extends State<DoctorForm> {
                 left: 40,
                 right: 40,
               ),
-              child: Padding(
-                padding: const EdgeInsets.only(right: 0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Container(
-                    height: 500,
-                    width: 700,
-                    decoration: doctorWidgets.containerDecoration(),
-                  ),
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: Container(
+                  height: 500,
+                  width: 700,
+                  decoration: doctorWidgets.containerDecoration(),
+                  child: Center(child: Text('Under Development')),
                 ),
               ),
             ),

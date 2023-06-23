@@ -41,7 +41,7 @@ class _DoctorTabState extends State<DoctorTab> {
                         child: Align(
                           alignment: Alignment.topRight,
                           child: Padding(
-                            padding: const EdgeInsets.only(right: 40),
+                            padding: const EdgeInsets.only(right: 400),
                             child: Container(
                                 height: 40,
                                 color: myColors.greenColor,
