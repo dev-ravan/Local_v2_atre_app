@@ -31,6 +31,7 @@ dependencies:
   pin_code_fields: ^7.4.0
   cherry_toast: ^1.2.1
   flutter_spinkit: ^5.2.0
+  dropdown_search: ^5.0.6
 
 
   
@@ -40,7 +41,7 @@ dependencies:
       url: https://github.com/google/flutter-desktop-embedding
       path: plugins/window_size
 
-  dropdown_search: ^5.0.6
+ 
 
 dev_dependencies:
   flutter_test:
