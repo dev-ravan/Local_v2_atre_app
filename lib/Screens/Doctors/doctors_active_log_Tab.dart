@@ -150,21 +150,19 @@ class DoctorDataSource extends DataGridSource {
               child: e.columnName == 'button'
                   ? LayoutBuilder(builder:
                       (BuildContext context, BoxConstraints constraints) {
-                      return Expanded(
-                        child: Row(
-                          children: [
-                           ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: myColors.greenColor
-                            ),
-                            onPressed: (){}, child: Text('View details',
-                            style: TextStyle(
-                              color: myColors.whiteColor
-                            ),))
-                            
-                           
-                          ],
-                        ),
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: ElevatedButton(
+                             style: ElevatedButton.styleFrom(
+                               backgroundColor: myColors.greenColor
+                             ),
+                             onPressed: (){}, child: Text('View details',
+                             style: TextStyle(
+                               color: myColors.whiteColor
+                             ),)),
+                          ),
+                        ],
                       );
                     })
                   : Text(e.value.toString()));

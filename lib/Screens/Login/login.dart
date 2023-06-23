@@ -191,29 +191,33 @@ class _LoginState extends State<Login> {
                               height: 22,
                               onTap: () {
                                 if (_formKey.currentState!.validate()) {
-                                  _loginApi
-                                      .loginPost(_emailTextController.text,
-                                          _passwordTextController.text)
-                                      .then((value) async {
-                                    if (value!.status == true) {
-                                      //================== Local Storage ===========
-                                      await CommonLocalStorage()
-                                          .saveLocalStorageToken(
-                                              json.encode(value.jwt));
-                                      await CommonLocalStorage()
-                                          .saveLocalStorageUserID(
-                                              json.encode(value.userId));
-                                      // ==============================================
-                                      Navigator.push(context,
+                                   Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
                                         return const SideBar();
                                       }));
-                                      print("Access Token: $globalAccessToken");
-                                      print("User ID: $globalUserID");
-                                    } else {
-                                      print("Not A valid User");
-                                    }
-                                  });
+                                  // _loginApi
+                                  //     .loginPost(_emailTextController.text,
+                                  //         _passwordTextController.text)
+                                  //     .then((value) async {
+                                  //   if (value!.status == true) {
+                                  //     //================== Local Storage ===========
+                                  //     await CommonLocalStorage()
+                                  //         .saveLocalStorageToken(
+                                  //             json.encode(value.jwt));
+                                  //     await CommonLocalStorage()
+                                  //         .saveLocalStorageUserID(
+                                  //             json.encode(value.userId));
+                                  //     // ==============================================
+                                  //     Navigator.push(context,
+                                  //         MaterialPageRoute(builder: (context) {
+                                  //       return const SideBar();
+                                  //     }));
+                                  //     print("Access Token: $globalAccessToken");
+                                  //     print("User ID: $globalUserID");
+                                  //   } else {
+                                  //     print("Not A valid User");
+                                  //   }
+                                  // });
                                 } else {
                                   print("Not A Valid User");
                                 }
