@@ -368,7 +368,10 @@ class AppointmentWidgets {
     );
   }
 
-  appointmentContainer({required BuildContext context}) {
+  appointmentContainer(
+      {required BuildContext context,
+      required String count,
+      required String date}) {
     return Container(
       width: double.infinity,
       // height: MediaQuery.of(context).size.height / 8,
@@ -400,10 +403,10 @@ class AppointmentWidgets {
                                 fontWeight: FontWeight.w400,
                                 color: myColors.blackColor,
                                 fontSize: 15),
-                            children: const [
+                            children: [
                           TextSpan(
-                            text: "November 12",
-                            style: TextStyle(
+                            text: date,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 18),
                           ),
                         ])),
@@ -413,8 +416,8 @@ class AppointmentWidgets {
               const SizedBox(
                 height: 5,
               ),
-              const Text(
-                "11",
+              Text(
+                count,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29),
               )
             ],

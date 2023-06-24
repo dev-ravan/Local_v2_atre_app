@@ -12,7 +12,7 @@ import 'package:http/http.dart' as http;
 import '../Model/loginModel/update_password_model.dart';
 
 class LoginApi extends ChangeNotifier {
-  // ******************************************* LOGIN & PASSWORD ***********************************************8
+  // ******************************************* LOGIN & PASSWORD ***********************************************
 
   Future<LoginModel?> loginPost(String email, String password) async {
     final http.Response response = await http.post(
