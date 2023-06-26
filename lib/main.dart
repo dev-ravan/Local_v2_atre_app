@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
+import 'Controller/login_controller.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
@@ -26,6 +28,8 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginApi>(create: (context) => LoginApi()),
+        ChangeNotifierProvider<LoginProvider>(
+            create: (context) => LoginProvider()),
         ChangeNotifierProvider<AppoinmentApi>(
             create: (context) => AppoinmentApi()),
       ],

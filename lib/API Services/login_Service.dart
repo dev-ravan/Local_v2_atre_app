@@ -8,7 +8,6 @@ import 'package:atre_windows/Model/loginModel/otp_model.dart';
 import 'package:atre_windows/Model/loginModel/verify_otp_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 import '../Model/loginModel/update_password_model.dart';
 
 class LoginApi extends ChangeNotifier {

@@ -67,121 +67,130 @@ class _AppointmentState extends State<Appointment> {
                               const SizedBox(
                                 height: 10,
                               ),
-                              myWidgets.searchField(),
-                              const SizedBox(
-                                height: 15,
-                              ),
-                              SizedBox(
-                                height: _height / 1.6,
-                                child: Consumer<AppoinmentApi>(
-                                    builder: (context, snapshot, child) {
-                                  if (snapshot.appointments.isEmpty) {
-                                    // snapshot.generatedAppoinmentList();
-                                    return Center(
-                                      child: Text(
-                                        "You don't have any appointment",
-                                        style: TextStyle(
-                                            color: myColors.greyFontColor),
-                                      ),
-                                    );
-                                  }
-
-                                  return SfDataGrid(
-                                    gridLinesVisibility:
-                                        GridLinesVisibility.none,
-                                    headerGridLinesVisibility:
-                                        GridLinesVisibility.both,
-                                    source: AppointmentDataSource(
-                                        snapshot.appointments),
-                                    columnWidthMode: ColumnWidthMode.fill,
-                                    onCellTap: (details) {
-                                      setState(() {
-                                        isVisible = false;
-                                      });
-                                    },
-                                    columns: <GridColumn>[
-                                      GridColumn(
-                                          columnName: 'patientID',
-                                          label: Container(
-                                              decoration: BoxDecoration(
-                                                  color: myColors.whiteColor,
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  10))),
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              alignment: Alignment.center,
-                                              child: const Text(
-                                                'Patient ID',
-                                              ))),
-                                      GridColumn(
-                                        columnName: 'name',
-                                        label: Container(
-                                            color: myColors.whiteColor,
-                                            padding: const EdgeInsets.all(16.0),
-                                            alignment: Alignment.center,
-                                            child: const Text(
-                                              'Name',
-                                            )),
-                                      ),
-                                      GridColumn(
-                                          columnName: 'radiologist',
-                                          label: Container(
-                                              color: myColors.whiteColor,
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              alignment: Alignment.center,
-                                              child: const Text(
-                                                'Radiologist',
-                                              ))),
-                                      GridColumn(
-                                          columnName: 'date',
-                                          label: Container(
-                                              color: myColors.whiteColor,
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              alignment: Alignment.center,
-                                              child: const Text(
-                                                'Date',
-                                              ))),
-                                      GridColumn(
-                                          columnName: 'time',
-                                          label: Container(
-                                              color: myColors.whiteColor,
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              alignment: Alignment.center,
-                                              child: const Text(
-                                                'Time',
-                                              ))),
-                                      GridColumn(
-                                          columnName: 'robotLocation',
-                                          label: Container(
-                                              decoration: BoxDecoration(
-                                                  color: myColors.whiteColor,
-                                                  borderRadius:
-                                                      const BorderRadius.only(
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  10),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  10))),
-                                              padding:
-                                                  const EdgeInsets.all(16.0),
-                                              alignment: Alignment.center,
-                                              child: const Text(
-                                                'RobotLocation',
-                                              ))),
-                                    ],
+                              Consumer<AppoinmentApi>(
+                                  builder: (context, snapshot, child) {
+                                if (snapshot.appointments.isEmpty) {
+                                  // snapshot.generatedAppoinmentList();
+                                  return Center(
+                                    child: Text(
+                                      "You don't have any appointment",
+                                      style: TextStyle(
+                                          color: myColors.greyFontColor),
+                                    ),
                                   );
-                                }),
-                              ),
+                                }
+
+                                return Column(
+                                  children: [
+                                    myWidgets.searchField(),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    SizedBox(
+                                      height: _height / 1.6,
+                                      child: SfDataGrid(
+                                        gridLinesVisibility:
+                                            GridLinesVisibility.none,
+                                        headerGridLinesVisibility:
+                                            GridLinesVisibility.both,
+                                        source: AppointmentDataSource(
+                                            snapshot.appointments),
+                                        columnWidthMode: ColumnWidthMode.fill,
+                                        onCellTap: (details) {
+                                          setState(() {
+                                            isVisible = false;
+                                          });
+                                        },
+                                        columns: <GridColumn>[
+                                          GridColumn(
+                                              columnName: 'patientID',
+                                              label: Container(
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          myColors.whiteColor,
+                                                      borderRadius:
+                                                          const BorderRadius.only(
+                                                              topLeft: Radius
+                                                                  .circular(10),
+                                                              bottomLeft: Radius
+                                                                  .circular(
+                                                                      10))),
+                                                  padding: const EdgeInsets.all(
+                                                      16.0),
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'Patient ID',
+                                                  ))),
+                                          GridColumn(
+                                            columnName: 'name',
+                                            label: Container(
+                                                color: myColors.whiteColor,
+                                                padding:
+                                                    const EdgeInsets.all(16.0),
+                                                alignment: Alignment.center,
+                                                child: const Text(
+                                                  'Name',
+                                                )),
+                                          ),
+                                          GridColumn(
+                                              columnName: 'radiologist',
+                                              label: Container(
+                                                  color: myColors.whiteColor,
+                                                  padding: const EdgeInsets.all(
+                                                      16.0),
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'Radiologist',
+                                                  ))),
+                                          GridColumn(
+                                              columnName: 'date',
+                                              label: Container(
+                                                  color: myColors.whiteColor,
+                                                  padding: const EdgeInsets.all(
+                                                      16.0),
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'Date',
+                                                  ))),
+                                          GridColumn(
+                                              columnName: 'time',
+                                              label: Container(
+                                                  color: myColors.whiteColor,
+                                                  padding: const EdgeInsets.all(
+                                                      16.0),
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'Time',
+                                                  ))),
+                                          GridColumn(
+                                              columnName: 'robotLocation',
+                                              label: Container(
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          myColors.whiteColor,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                                  .only(
+                                                              topRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          10),
+                                                              bottomRight:
+                                                                  Radius
+                                                                      .circular(
+                                                                          10))),
+                                                  padding: const EdgeInsets.all(
+                                                      16.0),
+                                                  alignment: Alignment.center,
+                                                  child: const Text(
+                                                    'RobotLocation',
+                                                  ))),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                );
+                              }),
                             ],
                           ))),
                   VerticalDivider(
