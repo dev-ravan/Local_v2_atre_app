@@ -193,18 +193,32 @@ class PatientDataSource extends DataGridSource {
                         children: [
                           Expanded(
                               child: Padding(
-                            padding: const EdgeInsets.only(left: 35, right: 35),
-                            child: ElevatedButton.icon(
+                            padding: const EdgeInsets.only(left: 45, right: 45),
+                            child:
+                                // patientWidget.buttonIcon(
+                                //     backGroundColor: myColors.greyButtonColor,
+                                //     onPressed: () {},
+                                //     icon: (Icons.edit_document),
+                                //     iconColor: myColors.lightBlueColor,
+                                //     labelText: 'Edit',
+                                //     labelColor: myColors.lightBlueColor)
+                                ElevatedButton.icon(
                               onPressed: () {},
-                              icon: Icon(Icons.edit_document),
-                              label: Text('Edit'),
+                              icon: Icon(
+                                Icons.edit_document,
+                                color: myColors.lightBlueColor,
+                              ),
+                              label: Text(
+                                'Edit',
+                                style:
+                                    TextStyle(color: myColors.lightBlueColor),
+                              ),
                               style: ElevatedButton.styleFrom(
-                                  // primary: Color.fromARGB(255, 255, 255, 255),
-                                  // onPrimary: myColors.lightBlueColor,
+                                  backgroundColor: myColors.whiteColor,
                                   side: BorderSide(
                                     color: myColors.lightBlueColor,
                                   ),
-                                  fixedSize: Size(100, 50),
+                                  //fixedSize: const Size(100, 50),
                                   shape: ContinuousRectangleBorder(
                                       borderRadius: BorderRadius.circular(5))),
                             ),

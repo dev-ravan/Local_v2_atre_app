@@ -130,23 +130,21 @@ class _PatientFormState extends State<PatientForm> {
                         padding: const EdgeInsets.only(left: 200, top: 20),
                         child: Row(
                           children: [
-                            Container(
-                                color: Colors.grey.shade200,
-                                child: patientWidget.buttonIcon(
-                                    onPressed: () {},
-                                    icon: (Icons.group_add_outlined),
-                                    iconColor: myColors.blackColor,
-                                    labelText: 'Cancel',
-                                    labelColor: myColors.blackColor)),
+                            patientWidget.buttonIcon(
+                                backGroundColor: myColors.greyButtonColor,
+                                onPressed: () {},
+                                icon: (Icons.group_add_outlined),
+                                iconColor: myColors.blackColor,
+                                labelText: 'Cancel',
+                                labelColor: myColors.blackColor),
                             const SizedBox(width: 30),
-                            Container(
-                                color: myColors.greenColor,
-                                child: patientWidget.buttonIcon(
-                                    onPressed: () {},
-                                    icon: (Icons.group_add_outlined),
-                                    iconColor: myColors.whiteColor,
-                                    labelText: 'Create',
-                                    labelColor: myColors.whiteColor))
+                            patientWidget.buttonIcon(
+                                backGroundColor: myColors.greenColor,
+                                onPressed: () {},
+                                icon: (Icons.group_add_outlined),
+                                iconColor: myColors.whiteColor,
+                                labelText: 'Create',
+                                labelColor: myColors.whiteColor)
                           ],
                         ),
                       )

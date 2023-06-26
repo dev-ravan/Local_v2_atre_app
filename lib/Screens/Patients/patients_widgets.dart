@@ -1,6 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constants/myWidgets.dart';
 
 final patientWidget = PatientWidget();
@@ -8,41 +7,40 @@ final patientWidget = PatientWidget();
 class PatientWidget {
   containerDecoration() {
     return BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      color: myColors.greyBg2Color,
+      borderRadius: BorderRadius.circular(10),
+      color: myColors.whiteContainerColor,
       boxShadow: [
         BoxShadow(
-          color: myColors.shadowColor3,
-          blurRadius: 0,
-          offset: Offset(0, 0),
-        ),
-        BoxShadow(
-          color: myColors.shadowColor3,
-          blurRadius: 5,
-          offset: Offset(0, 4),
-        ),
-        BoxShadow(
-          color: myColors.shadowColor6,
-          blurRadius: 10,
-          offset: Offset(0, 18),
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1.5,
+          blurRadius: 4,
+          offset: Offset(0, 3),
         ),
       ],
     );
   }
 
-  Widget buttonIcon(
-      {required Function onPressed,
-      required IconData icon,
-      required String labelText,
-      required Color iconColor,
-      required Color labelColor}) {
-    return TextButton.icon(
-        onPressed: onPressed as void Function(),
-        icon: Icon(icon, color: iconColor),
-        label: Text(
-          labelText,
-          style: TextStyle(color: labelColor),
-        ));
+  Widget buttonIcon({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(icon, color: iconColor),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          // side: BorderSide(color: borderColor),
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
+    );
   }
 
   Widget formField(

@@ -3,16 +3,14 @@ import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
 import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
-
 import '../../Constants/myWidgets.dart';
-import '../Appointment/appointment_widgets.dart';
 
 class Patient extends StatelessWidget {
   const Patient({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return PatientPage();
+    return const PatientPage();
   }
 }
 
