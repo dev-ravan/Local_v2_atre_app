@@ -193,16 +193,16 @@ class PatientDataSource extends DataGridSource {
                         children: [
                           Expanded(
                               child: Padding(
-                            padding: const EdgeInsets.only(left: 15, right: 15),
+                            padding: const EdgeInsets.only(left: 35, right: 35),
                             child: ElevatedButton.icon(
                               onPressed: () {},
                               icon: Icon(Icons.edit_document),
                               label: Text('Edit'),
                               style: ElevatedButton.styleFrom(
-                                  primary: Color.fromARGB(255, 255, 255, 255),
-                                  onPrimary: Color.fromARGB(249, 128, 195, 250),
+                                  // primary: Color.fromARGB(255, 255, 255, 255),
+                                  // onPrimary: myColors.lightBlueColor,
                                   side: BorderSide(
-                                    color: Color.fromARGB(255, 106, 183, 245),
+                                    color: myColors.lightBlueColor,
                                   ),
                                   fixedSize: Size(100, 50),
                                   shape: ContinuousRectangleBorder(
