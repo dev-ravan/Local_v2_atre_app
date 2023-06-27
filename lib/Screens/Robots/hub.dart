@@ -1,26 +1,26 @@
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:atre_windows/Constants/myColors.dart';
 
+import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
+import '../Patients/patients_widgets.dart';
 
-class PatientList extends StatefulWidget {
-  const PatientList({super.key});
+class Hub extends StatefulWidget {
+  const Hub({super.key});
 
   @override
-  State<PatientList> createState() => _PatientListState();
+  State<Hub> createState() => _HubState();
 }
 
-class _PatientListState extends State<PatientList> {
-  List<PatientDetails> patient = <PatientDetails>[];
-  PatientDataSource? patientDataSource;
+class _HubState extends State<Hub> {
+  List<HubDetails> hub = <HubDetails>[];
+  HubDataSource? hubDataSource;
 
   @override
   void initState() {
     super.initState();
-    patient = getEmployeeData();
-    patientDataSource = PatientDataSource(patientData: patient);
+    hub = getEmployeeData();
+    hubDataSource = HubDataSource(hubData: hub);
   }
 
   @override
@@ -30,6 +30,8 @@ class _PatientListState extends State<PatientList> {
     return Scaffold(
       body: Column(
         children: [
+          const SizedBox(height: 20),
+          myWidgets.titleText(title: "Hub"),
           const SizedBox(height: 20),
           myWidgets.searchField(),
           const SizedBox(height: 20),
@@ -44,7 +46,7 @@ class _PatientListState extends State<PatientList> {
             child: SfDataGrid(
                 gridLinesVisibility: GridLinesVisibility.none,
                 headerGridLinesVisibility: GridLinesVisibility.none,
-                source: patientDataSource!,
+                source: hubDataSource!,
                 columnWidthMode: ColumnWidthMode.fill,
                 columns: <GridColumn>[
                   GridColumn(
@@ -96,8 +98,8 @@ class _PatientListState extends State<PatientList> {
   }
 }
 
-class PatientDetails {
-  PatientDetails(
+class HubDetails {
+  HubDetails(
     this.patientID,
     this.name,
     this.location,
@@ -107,59 +109,29 @@ class PatientDetails {
   final String location;
 }
 
-List<PatientDetails> getEmployeeData() {
+List<HubDetails> getEmployeeData() {
   return [
-    PatientDetails(
+    HubDetails(
       'AM-1031',
       "Kamini R",
       "Coimbatore",
     ),
-    PatientDetails(
+    HubDetails(
       'AM-1023',
       "Jimnu Hre",
       "Coimbatore",
     ),
-    PatientDetails(
+    HubDetails(
       'AM-1033',
       "Balu Nim",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1043',
-      "Vinu Ron",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1053',
-      "Banu R",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1063',
-      "Parama F",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1073',
-      "Kavi R",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1083',
-      "Bala R",
-      "Coimbatore",
-    ),
-    PatientDetails(
-      'AM-1093',
-      "Chandran R",
       "Coimbatore",
     ),
   ];
 }
 
-class PatientDataSource extends DataGridSource {
-  PatientDataSource({required List<PatientDetails> patientData}) {
-    _patientData = patientData
+class HubDataSource extends DataGridSource {
+  HubDataSource({required List<HubDetails> hubData}) {
+    _hubData = hubData
         .map<DataGridRow>((e) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'patientID', value: e.patientID),
               DataGridCell<String>(columnName: 'name', value: e.name),
@@ -169,10 +141,10 @@ class PatientDataSource extends DataGridSource {
         .toList();
   }
 
-  List<DataGridRow> _patientData = [];
+  List<DataGridRow> _hubData = [];
 
   @override
-  List<DataGridRow> get rows => _patientData;
+  List<DataGridRow> get rows => _hubData;
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     Color getBackgroundColor() {

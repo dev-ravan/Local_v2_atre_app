@@ -43,6 +43,29 @@ class PatientWidget {
     );
   }
 
+  Widget buttonIconColor({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(icon, color: iconColor),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          side: BorderSide(color: myColors.lightBlueColor),
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
+    );
+  }
+
   Widget formField(
       {required String labelText,
       required String hintText,
@@ -69,16 +92,16 @@ class PatientWidget {
             labelStyle: TextStyle(color: myColors.greenColor)));
   }
 
-  Widget patientDetailsContainer({
-    required String patientID,
-    required String name,
-    required String address,
-    required String email,
-    required String dob,
-    required String gender,
-    required String maritalStatus,
-    required String emgContact,
-  }) {
+  Widget patientDetailsContainer(
+      {required String patientID,
+      required String name,
+      required String address,
+      required String email,
+      required String dob,
+      required String gender,
+      required String maritalStatus,
+      required String emgContact,
+      Color? borderColor}) {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -102,24 +125,16 @@ class PatientWidget {
               children: [
                 myWidgets.detailsText(title: "Patient Details"),
                 Padding(
-                  padding: const EdgeInsets.only(
-                    left: 60,
-                  ),
-                  child: ElevatedButton.icon(
-                    onPressed: () {},
-                    icon: Icon(Icons.edit_document),
-                    label: Text('Edit'),
-                    style: ElevatedButton.styleFrom(
-                        primary: myColors.whiteColor,
-                        onPrimary: myColors.lightBlueColor,
-                        side: BorderSide(
-                          color: myColors.lightBlueColor,
-                        ),
-                        fixedSize: Size(100, 50),
-                        shape: ContinuousRectangleBorder(
-                            borderRadius: BorderRadius.circular(5))),
-                  ),
-                ),
+                    padding: const EdgeInsets.only(
+                      left: 140,
+                    ),
+                    child: patientWidget.buttonIconColor(
+                        onPressed: () {},
+                        icon: (Icons.edit_document),
+                        iconColor: myColors.lightBlueColor,
+                        labelText: 'Edit',
+                        labelColor: myColors.lightBlueColor,
+                        backGroundColor: myColors.whiteColor)),
               ],
             ),
             const SizedBox(
@@ -186,7 +201,7 @@ class PatientWidget {
                         const SizedBox(
                           height: 25,
                         ),
-                        myWidgets.greyText(title: "Maritial Status"),
+                        myWidgets.greyText(title: "Marital Status"),
                         const SizedBox(
                           height: 20,
                         ),
