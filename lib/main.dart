@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 
+import 'Controller/appointment_controller.dart';
 import 'Controller/login_controller.dart';
 
 void main() {
@@ -32,6 +33,8 @@ class MyApp extends StatelessWidget {
             create: (context) => LoginProvider()),
         ChangeNotifierProvider<AppoinmentApi>(
             create: (context) => AppoinmentApi()),
+        ChangeNotifierProvider<AppointmentProvider>(
+            create: (context) => AppointmentProvider()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

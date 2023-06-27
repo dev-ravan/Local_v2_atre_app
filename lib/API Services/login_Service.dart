@@ -35,6 +35,8 @@ class LoginApi extends ChangeNotifier {
         // //-------------- Save User Id -----------
         final UserID = result.data.userId;
         globalUserID = UserID;
+
+        print(result);
         // log('Login Page Response ----> $login');
         notifyListeners();
         return loginModelFromJson(response.body);

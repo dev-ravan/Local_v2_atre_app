@@ -17,8 +17,14 @@ class LoginProvider extends ChangeNotifier {
 // This is for loader
   bool _isLoading = true;
 
-// This is used as a global form key for all text field
-  final _formKey = GlobalKey<FormState>();
+  // final _loginFormKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> get loginFormKey => _loginFormKey;
+  // final _forgetFormKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> get forgetFormKey => _forgetFormKey;
+  // final _otpFormKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> get otpFormKey => _otpFormKey;
+  // final _passwordFormKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> get passwordFormKey => _passwordFormKey;
 
 // These all are controller of the text field
   final _emailTextController = TextEditingController();
@@ -42,8 +48,6 @@ class LoginProvider extends ChangeNotifier {
   TextEditingController get newPassword => _newPassword;
   TextEditingController get confirmPassword => _confirmPassword;
   TextEditingController get otpController => _otpController;
-
-  GlobalKey<FormState> get formKey => _formKey;
 
   //=================== validation =======================
 

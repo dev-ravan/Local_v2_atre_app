@@ -25,6 +25,7 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
 // This is used as a global form key for all text field
+  final _formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -34,6 +35,14 @@ class _LoginState extends State<Login> {
     _loginProvider.passwordTextController.text = "1211";
 
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    final _loginProvider = Provider.of<LoginProvider>(context, listen: false);
+    _loginProvider.emailController.text = "velmurugan1211r@gmail.com";
+    _loginProvider.passwordTextController.text = "1211";
+    super.dispose();
   }
 
   @override
@@ -91,7 +100,7 @@ class _LoginState extends State<Login> {
                                 ),
                                 //********************Textfield******************//
                                 Form(
-                                  key: snapshot.formKey,
+                                  key: _formKey,
                                   child: Column(
                                     children: [
                                       loginWidgets.loginTextfield(
@@ -144,8 +153,7 @@ class _LoginState extends State<Login> {
                                     context: context,
                                     height: 22,
                                     onTap: () {
-                                      if (snapshot.formKey.currentState!
-                                          .validate()) {
+                                      if (_formKey.currentState!.validate()) {
                                         _loginApi
                                             .loginPost(
                                                 snapshot.emailController.text,
@@ -208,7 +216,7 @@ class _LoginState extends State<Login> {
                                       height: 30,
                                     ),
                                     Form(
-                                      key: snapshot.formKey,
+                                      key: _formKey,
                                       child: loginWidgets.loginTextfield(
                                         controller: snapshot.emailController,
                                         validator: snapshot.validateEmail,
@@ -225,7 +233,7 @@ class _LoginState extends State<Login> {
                                         height: 22,
                                         title: "Send OTP",
                                         onTap: () {
-                                          if (snapshot.formKey.currentState!
+                                          if (_formKey.currentState!
                                               .validate()) {
                                             print("Send OTP was clicked");
                                             snapshot.isLoadingFalse();
@@ -286,7 +294,7 @@ class _LoginState extends State<Login> {
                                           padding: const EdgeInsets.symmetric(
                                               horizontal: 40),
                                           child: Form(
-                                              key: snapshot.formKey,
+                                              key: _formKey,
                                               child: loginWidgets.otpTextfield(
                                                   controller:
                                                       snapshot.otpController,
@@ -302,7 +310,7 @@ class _LoginState extends State<Login> {
                                             height: 22,
                                             title: "Verify OTP",
                                             onTap: () {
-                                              if (snapshot.formKey.currentState!
+                                              if (_formKey.currentState!
                                                   .validate()) {
                                                 print("OTP was verified");
 
@@ -345,7 +353,7 @@ class _LoginState extends State<Login> {
                                           height: 30,
                                         ),
                                         Form(
-                                            key: snapshot.formKey,
+                                            key: _formKey,
                                             child: Column(
                                               children: [
                                                 loginWidgets.passwordTextfield(
@@ -386,8 +394,7 @@ class _LoginState extends State<Login> {
                                                     height: 22,
                                                     title: "Submit",
                                                     onTap: () {
-                                                      if (snapshot
-                                                          .formKey.currentState!
+                                                      if (_formKey.currentState!
                                                           .validate()) {
                                                         if (snapshot.newPassword
                                                                 .text ==
