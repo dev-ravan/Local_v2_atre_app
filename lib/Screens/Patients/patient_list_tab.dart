@@ -75,6 +75,15 @@ class _PatientListState extends State<PatientList> {
                           child: const Text(
                             'Location',
                           ))),
+                  GridColumn(
+                      columnName: 'button',
+                      label: Container(
+                          color: myColors.whiteColor,
+                          padding: const EdgeInsets.all(16.0),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            '',
+                          ))),
                 ]),
           )
         ],
@@ -151,6 +160,7 @@ class PatientDataSource extends DataGridSource {
               DataGridCell<String>(columnName: 'patientID', value: e.patientID),
               DataGridCell<String>(columnName: 'name', value: e.name),
               DataGridCell<String>(columnName: 'Location', value: e.location),
+              DataGridCell<String>(columnName: 'button', value: e.location),
             ]))
         .toList();
   }
@@ -173,13 +183,50 @@ class PatientDataSource extends DataGridSource {
     return DataGridRowAdapter(
         color: getBackgroundColor(),
         cells: row.getCells().map<Widget>((e) {
-          return Padding(
-            padding: const EdgeInsets.only(top: 10, bottom: 10),
-            child: Container(
+          return Container(
               alignment: Alignment.center,
-              child: Text(e.value.toString()),
-            ),
-          );
+              padding: const EdgeInsets.all(8.0),
+              child: e.columnName == 'button'
+                  ? LayoutBuilder(builder:
+                      (BuildContext context, BoxConstraints constraints) {
+                      return Row(
+                        children: [
+                          Expanded(
+                              child: Padding(
+                            padding: const EdgeInsets.only(left: 45, right: 45),
+                            child:
+                                // patientWidget.buttonIcon(
+                                //     backGroundColor: myColors.greyButtonColor,
+                                //     onPressed: () {},
+                                //     icon: (Icons.edit_document),
+                                //     iconColor: myColors.lightBlueColor,
+                                //     labelText: 'Edit',
+                                //     labelColor: myColors.lightBlueColor)
+                                ElevatedButton.icon(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.edit_document,
+                                color: myColors.lightBlueColor,
+                              ),
+                              label: Text(
+                                'Edit',
+                                style:
+                                    TextStyle(color: myColors.lightBlueColor),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: myColors.whiteColor,
+                                  side: BorderSide(
+                                    color: myColors.lightBlueColor,
+                                  ),
+                                  //fixedSize: const Size(100, 50),
+                                  shape: ContinuousRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5))),
+                            ),
+                          )),
+                        ],
+                      );
+                    })
+                  : Text(e.value.toString()));
         }).toList());
   }
 }
