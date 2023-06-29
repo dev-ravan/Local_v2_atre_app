@@ -32,6 +32,8 @@ dependencies:
   cherry_toast: ^1.2.1
   flutter_spinkit: ^5.2.0
   dropdown_search: ^5.0.6
+  webview_windows: ^0.2.2
+
 
 
   
