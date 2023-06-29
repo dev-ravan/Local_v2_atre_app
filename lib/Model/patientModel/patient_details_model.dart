@@ -4,70 +4,74 @@
 
 import 'dart:convert';
 
-PatientDetailsModel patientDetailsModelFromJson(String str) => PatientDetailsModel.fromJson(json.decode(str));
+PatientDetailsModel patientDetailsModelFromJson(String str) =>
+    PatientDetailsModel.fromJson(json.decode(str));
 
-String patientDetailsModelToJson(PatientDetailsModel data) => json.encode(data.toJson());
+String patientDetailsModelToJson(PatientDetailsModel data) =>
+    json.encode(data.toJson());
 
 class PatientDetailsModel {
-    String message;
-    bool status;
-    List<Datum> data;
+  String message;
+  bool status;
+  List<PatientDetails> data;
 
-    PatientDetailsModel({
-        required this.message,
-        required this.status,
-        required this.data,
-    });
+  PatientDetailsModel({
+    required this.message,
+    required this.status,
+    required this.data,
+  });
 
-    factory PatientDetailsModel.fromJson(Map<String, dynamic> json) => PatientDetailsModel(
+  factory PatientDetailsModel.fromJson(Map<String, dynamic> json) =>
+      PatientDetailsModel(
         message: json["message"],
         status: json["status"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
-    );
+        data: List<PatientDetails>.from(
+            json["data"].map((x) => PatientDetails.fromJson(x))),
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "message": message,
         "status": status,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
-    };
+      };
 }
 
-class Datum {
-    String patientId;
-    String patientName;
-    String patientAge;
-    String patientAddress;
-    String patientPinCode;
-    String patientPhoneNumber;
-    String emergencyContactName;
-    String emergencyContactNumber;
-    String maritalStatus;
-    String patientGender;
-    String patientEmail;
-    String patientLocation;
-    String clientId;
-    DateTime createdAt;
-    String createdBy;
+class PatientDetails {
+  String patientId;
+  String patientName;
+  String patientAge;
+  String patientAddress;
+  String patientPinCode;
+  String patientPhoneNumber;
+  String emergencyContactName;
+  String emergencyContactNumber;
+  String maritalStatus;
+  String patientGender;
+  String patientEmail;
+  String patientLocation;
+  String clientId;
+  DateTime createdAt;
+  String createdBy;
 
-    Datum({
-        required this.patientId,
-        required this.patientName,
-        required this.patientAge,
-        required this.patientAddress,
-        required this.patientPinCode,
-        required this.patientPhoneNumber,
-        required this.emergencyContactName,
-        required this.emergencyContactNumber,
-        required this.maritalStatus,
-        required this.patientGender,
-        required this.patientEmail,
-        required this.patientLocation,
-        required this.clientId,
-        required this.createdAt,
-        required this.createdBy,
-    });
+  PatientDetails({
+    required this.patientId,
+    required this.patientName,
+    required this.patientAge,
+    required this.patientAddress,
+    required this.patientPinCode,
+    required this.patientPhoneNumber,
+    required this.emergencyContactName,
+    required this.emergencyContactNumber,
+    required this.maritalStatus,
+    required this.patientGender,
+    required this.patientEmail,
+    required this.patientLocation,
+    required this.clientId,
+    required this.createdAt,
+    required this.createdBy,
+  });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory PatientDetails.fromJson(Map<String, dynamic> json) => PatientDetails(
         patientId: json["patient_id"],
         patientName: json["patient_name"],
         patientAge: json["patient_age"],
@@ -83,9 +87,9 @@ class Datum {
         clientId: json["client_id"],
         createdAt: DateTime.parse(json["created_at"]),
         createdBy: json["created_by"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "patient_id": patientId,
         "patient_name": patientName,
         "patient_age": patientAge,
@@ -101,5 +105,5 @@ class Datum {
         "client_id": clientId,
         "created_at": createdAt.toIso8601String(),
         "created_by": createdBy,
-    };
+      };
 }
