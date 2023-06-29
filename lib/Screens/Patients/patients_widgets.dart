@@ -77,12 +77,12 @@ class PatientWidget {
         decoration: InputDecoration(
             fillColor: myColors.whiteColor,
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(5),
                 borderSide: BorderSide(
                   color: myColors.greenColor,
                 )),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(
                 color: myColors.greenColor,
               ),

@@ -59,7 +59,7 @@ class _SideBarState extends State<SideBar> {
                           return const DoctorTab();
                         case 2:
                           _key.currentState?.closeDrawer();
-                          return const Patient();
+                          return const PatientPage();
                         case 3:
                           _key.currentState?.closeDrawer();
                           return const Hub();
