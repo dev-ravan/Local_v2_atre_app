@@ -186,23 +186,21 @@ class DoctorDataSource extends DataGridSource {
               child: e.columnName == 'button'
                   ? LayoutBuilder(builder:
                       (BuildContext context, BoxConstraints constraints) {
-                      return Expanded(
-                        child: Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.edit_document,
-                                  color: Colors.lightBlue,
-                                )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: myColors.redColor,
-                                ))
-                          ],
-                        ),
+                      return Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.edit_document,
+                                color: Colors.lightBlue,
+                              )),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.delete,
+                                color: myColors.redColor,
+                              ))
+                        ],
                       );
                     })
                   : Text(e.value.toString()));

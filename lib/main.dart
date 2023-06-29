@@ -1,11 +1,15 @@
 import 'dart:io';
 
+import 'package:atre_windows/API%20Services/appointment_Service.dart';
 import 'package:atre_windows/API%20Services/login_Service.dart';
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
+
+import 'Controller/appointment_controller.dart';
+import 'Controller/login_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +29,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<LoginApi>(create: (context) => LoginApi()),
+        ChangeNotifierProvider<LoginProvider>(
+            create: (context) => LoginProvider()),
+        ChangeNotifierProvider<AppoinmentApi>(
+            create: (context) => AppoinmentApi()),
+        ChangeNotifierProvider<AppointmentProvider>(
+            create: (context) => AppointmentProvider()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

@@ -3,6 +3,7 @@ import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 
 final appointmentWidgets = AppointmentWidgets();
 
@@ -367,7 +368,10 @@ class AppointmentWidgets {
     );
   }
 
-  appointmentContainer({required BuildContext context}) {
+  appointmentContainer(
+      {required BuildContext context,
+      required String count,
+      required String date}) {
     return Container(
       width: double.infinity,
       // height: MediaQuery.of(context).size.height / 8,
@@ -399,10 +403,10 @@ class AppointmentWidgets {
                                 fontWeight: FontWeight.w400,
                                 color: myColors.blackColor,
                                 fontSize: 15),
-                            children: const [
+                            children: [
                           TextSpan(
-                            text: "November 12",
-                            style: TextStyle(
+                            text: date,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w500, fontSize: 18),
                           ),
                         ])),
@@ -412,8 +416,8 @@ class AppointmentWidgets {
               const SizedBox(
                 height: 5,
               ),
-              const Text(
-                "11",
+              Text(
+                count,
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29),
               )
             ],
@@ -495,5 +499,34 @@ class AppointmentWidgets {
             labelText: labelText,
             hintText: hintText,
             labelStyle: TextStyle(color: myColors.greenColor)));
+  }
+
+  Widget dropdownButton({required String labelText, required List items}) {
+    return DropdownSearch<int>(
+      items: List.generate(50, (i) => i),
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        dropdownSearchDecoration: InputDecoration(
+            labelText: labelText,
+            filled: true,
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            labelStyle: TextStyle(color: myColors.greenColor)),
+      ),
+      popupProps: PopupProps.menu(
+        showSearchBox: true,
+        fit: FlexFit.loose,
+        constraints: BoxConstraints(maxHeight: 300),
+      ),
+    );
   }
 }
