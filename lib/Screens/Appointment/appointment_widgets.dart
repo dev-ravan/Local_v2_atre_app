@@ -1,13 +1,55 @@
 //appointment_widget
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:intl/intl.dart';
 
 final appointmentWidgets = AppointmentWidgets();
+// List<User>? selectedUserList = [];
 
 class AppointmentWidgets {
+  Widget chipSlots(
+      {required Function onTap,
+      required String text,
+      required double width,
+      required ListView listView,
+      required List selectedList}) {
+    return InkWell(
+        onTap: onTap as void Function(),
+        child: Container(
+            height: 50,
+            width: width,
+            decoration: BoxDecoration(
+                border: Border.all(color: myColors.greenColor),
+                borderRadius: BorderRadius.circular(10.0)),
+            child: selectedList.isEmpty
+                ? Center(
+                    child: Text(
+                      text,
+                      style: TextStyle(color: myColors.greenColor),
+                    ),
+                  )
+                : listView));
+  }
+  Widget button(
+      {required String label,
+      required Function onPressed,
+      required Widget icon,
+      Color? color
+      }) {
+    return TextButton.icon(
+        onPressed: onPressed as void Function(),
+        icon: icon,
+        label: Text(
+          label,
+          style: TextStyle(color: color),
+        ));
+  }
+
   Widget robotDetailsContainer(
       {required String robotID,
       required String robotName,
@@ -476,26 +518,28 @@ class AppointmentWidgets {
       required TextEditingController controller,
       TextInputType? type, //keyboard type
       int? maxLines}) {
-    return TextFormField(
-        controller: controller,
-        keyboardType: type,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-            fillColor: myColors.whiteColor,
-            focusedBorder: OutlineInputBorder(
+    return Container(
+      child: TextFormField(
+          controller: controller,
+          keyboardType: type,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+              fillColor: myColors.whiteColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: myColors.greenColor,
+                  )),
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
                   color: myColors.greenColor,
-                )),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: myColors.greenColor,
+                ),
               ),
-            ),
-            labelText: labelText,
-            hintText: hintText,
-            labelStyle: TextStyle(color: myColors.greenColor)));
+              labelText: labelText,
+              hintText: hintText,
+              labelStyle: TextStyle(color: myColors.greenColor))),
+    );
   }
 
   Widget dropdownButton({required String labelText, required List items}) {
@@ -524,6 +568,30 @@ class AppointmentWidgets {
         fit: FlexFit.loose,
         constraints: BoxConstraints(maxHeight: 300),
       ),
+    );
+  }
+
+  Widget datePicker({required DateFormat format}) {
+    return DateTimeField(
+      decoration: InputDecoration(
+          label: Text(
+            'Appointment Date',
+            style: TextStyle(color: myColors.greenColor),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green),
+              borderRadius: BorderRadius.circular(10))),
+      format: format,
+      onShowPicker: (context, currentValue) {
+        return showDatePicker(
+            context: context,
+            firstDate: DateTime(1900),
+            initialDate: currentValue ?? DateTime.now(),
+            lastDate: DateTime(2100));
+      },
     );
   }
 }

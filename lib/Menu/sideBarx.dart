@@ -150,7 +150,7 @@ class SideBarXExample extends StatelessWidget {
         SidebarXItem(icon: Icons.calendar_view_day, label: 'Appointment'),
         SidebarXItem(icon: FontAwesomeIcons.squarePlus, label: 'Doctor'),
         SidebarXItem(icon: FontAwesomeIcons.file, label: 'Patient'),
-        SidebarXItem(icon: FontAwesomeIcons.robot, label: 'Robots'),
+        SidebarXItem(icon: Icons.device_hub, label: 'Hub'),
         SidebarXItem(icon: Icons.file_copy, label: 'Reports'),
       ],
     );
