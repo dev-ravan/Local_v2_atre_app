@@ -9,38 +9,86 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:intl/intl.dart';
 
 final appointmentWidgets = AppointmentWidgets();
-// List<User>? selectedUserList = [];
 
 class AppointmentWidgets {
+  Widget mobileSearch(
+      {required TextEditingController controller, required Function onTap}) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Eg: 9361797872',
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              suffixIconColor: myColors.greenColor,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: myColors.greenColor,
+              ),
+              height: 52.5,
+              child: IconButton(
+                  splashRadius: null,
+                  onPressed: onTap as void Function(),
+                  icon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: myColors.whiteColor,
+                  )),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget chipSlots(
       {required Function onTap,
       required String text,
-      required double width,
       required ListView listView,
       required List selectedList}) {
-    return InkWell(
-        onTap: onTap as void Function(),
-        child: Container(
-            height: 50,
-            width: width,
-            decoration: BoxDecoration(
-                border: Border.all(color: myColors.greenColor),
-                borderRadius: BorderRadius.circular(10.0)),
-            child: selectedList.isEmpty
-                ? Center(
-                    child: Text(
-                      text,
-                      style: TextStyle(color: myColors.greenColor),
-                    ),
-                  )
-                : listView));
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: InkWell(
+          onTap: onTap as void Function(),
+          child: Container(
+              padding: EdgeInsets.only(left: 20),
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  border: Border.all(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: selectedList.isEmpty
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          text,
+                          style: TextStyle(color: myColors.greenColor),
+                        ),
+                      ],
+                    )
+                  : listView)),
+    );
   }
+
   Widget button(
       {required String label,
       required Function onPressed,
       required Widget icon,
-      Color? color
-      }) {
+      Color? color}) {
     return TextButton.icon(
         onPressed: onPressed as void Function(),
         icon: icon,
@@ -521,7 +569,8 @@ class AppointmentWidgets {
       required TextEditingController controller,
       TextInputType? type, //keyboard type
       int? maxLines}) {
-    return Container(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
           controller: controller,
           keyboardType: type,
