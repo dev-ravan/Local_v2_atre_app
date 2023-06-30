@@ -1,13 +1,103 @@
 //appointment_widget
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:intl/intl.dart';
 
 final appointmentWidgets = AppointmentWidgets();
 
 class AppointmentWidgets {
+  Widget mobileSearch(
+      {required TextEditingController controller, required Function onTap}) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Eg: 9361797872',
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              suffixIconColor: myColors.greenColor,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: myColors.greenColor,
+              ),
+              height: 52.5,
+              child: IconButton(
+                  splashRadius: null,
+                  onPressed: onTap as void Function(),
+                  icon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: myColors.whiteColor,
+                  )),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget chipSlots(
+      {required Function onTap,
+      required String text,
+      required ListView listView,
+      required List selectedList}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: InkWell(
+          onTap: onTap as void Function(),
+          child: Container(
+              padding: EdgeInsets.only(left: 20),
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  border: Border.all(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: selectedList.isEmpty
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          text,
+                          style: TextStyle(color: myColors.greenColor),
+                        ),
+                      ],
+                    )
+                  : listView)),
+    );
+  }
+
+  Widget button(
+      {required String label,
+      required Function onPressed,
+      required Widget icon,
+      Color? color}) {
+    return TextButton.icon(
+        onPressed: onPressed as void Function(),
+        icon: icon,
+        label: Text(
+          label,
+          style: TextStyle(color: color),
+        ));
+  }
+
   Widget robotDetailsContainer(
       {required String robotID,
       required String robotName,
@@ -479,26 +569,29 @@ class AppointmentWidgets {
       required TextEditingController controller,
       TextInputType? type, //keyboard type
       int? maxLines}) {
-    return TextFormField(
-        controller: controller,
-        keyboardType: type,
-        maxLines: maxLines,
-        decoration: InputDecoration(
-            fillColor: myColors.whiteColor,
-            focusedBorder: OutlineInputBorder(
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+          controller: controller,
+          keyboardType: type,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+              fillColor: myColors.whiteColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: myColors.greenColor,
+                  )),
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
                   color: myColors.greenColor,
-                )),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: myColors.greenColor,
+                ),
               ),
-            ),
-            labelText: labelText,
-            hintText: hintText,
-            labelStyle: TextStyle(color: myColors.greenColor)));
+              labelText: labelText,
+              hintText: hintText,
+              labelStyle: TextStyle(color: myColors.greenColor))),
+    );
   }
 
   Widget dropdownButton({required String labelText, required List items}) {
@@ -527,6 +620,30 @@ class AppointmentWidgets {
         fit: FlexFit.loose,
         constraints: BoxConstraints(maxHeight: 300),
       ),
+    );
+  }
+
+  Widget datePicker({required DateFormat format}) {
+    return DateTimeField(
+      decoration: InputDecoration(
+          label: Text(
+            'Appointment Date',
+            style: TextStyle(color: myColors.greenColor),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green),
+              borderRadius: BorderRadius.circular(10))),
+      format: format,
+      onShowPicker: (context, currentValue) {
+        return showDatePicker(
+            context: context,
+            firstDate: DateTime(1900),
+            initialDate: currentValue ?? DateTime.now(),
+            lastDate: DateTime(2100));
+      },
     );
   }
 }

@@ -44,14 +44,19 @@ class _DoctorTabState extends State<DoctorTab> {
                             padding: const EdgeInsets.only(right: 400),
                             child: Container(
                                 height: 40,
-                                color: myColors.greenColor,
+                                decoration: BoxDecoration(
+                                    color: myColors.greenColor,
+                                    borderRadius: BorderRadius.circular(5.0)),
                                 child: doctorWidgets.addDoctorButton(
                                     label: 'Add Doctor',
+                                    color: myColors.whiteColor,
                                     onPressed: () {
                                       setState(() {
                                         isDoctorForm = false;
                                       });
-                                    })),
+                                    },
+                                    icon: Icon(Icons.group_add_sharp,
+                                        color: myColors.whiteColor))),
                           ),
                         ),
                       ),
@@ -85,6 +90,6 @@ class _DoctorTabState extends State<DoctorTab> {
                   ))
                 ]),
               )
-            : DoctorForm());
+            : const DoctorForm());
   }
 }
