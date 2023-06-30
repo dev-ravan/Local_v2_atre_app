@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../../Constants/myColors.dart';
 import 'appointment_widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class AppointmentForm extends StatefulWidget {
