@@ -1,9 +1,9 @@
-import 'package:atre_windows/Screens/Robots/hub_List.dart';
+import 'package:atre_windows/Screens/Robots/hub_list.dart';
+import 'package:atre_windows/Screens/Robots/robots.list.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
-import '../Patients/patient_form_Tab.dart';
-import '../Patients/patient_list_tab.dart';
 
 class Hub extends StatefulWidget {
   const Hub({super.key});
@@ -13,6 +13,7 @@ class Hub extends StatefulWidget {
 }
 
 class _HubState extends State<Hub> {
+  bool isviewDetailsclicked = false;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -24,23 +25,55 @@ class _HubState extends State<Hub> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                myWidgets.titleText(title: "Hub"),
+                Row(
+                  children: [
+                    myWidgets.titleText(
+                        title: !isviewDetailsclicked ? 'Hub' : 'Robot'),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: myWidgets.buttonIcon(
+                            backGroundColor: myColors.greenColor,
+                            onPressed: () {},
+                            icon: !isviewDetailsclicked
+                                ? (Icons.device_hub)
+                                : (FontAwesomeIcons.robot),
+                            iconColor: myColors.whiteColor,
+                            labelText: !isviewDetailsclicked
+                                ? ' Add Hub'
+                                : 'Add Robot',
+                            labelColor: myColors.whiteColor),
+                      ),
+                    ),
+                  ],
+                ),
                 Expanded(
                   child: DefaultTabController(
                       length: 2,
                       child: Scaffold(
                         appBar: TabBar(
+                          onTap: (value) {
+                            if (value == 1) {
+                              setState(() {
+                                isviewDetailsclicked = true;
+                              });
+                              print('robot');
+                            } else {
+                              setState(() {
+                                isviewDetailsclicked = false;
+                              });
+                            }
+                          },
                           indicatorColor: myColors.greenColor,
                           labelColor: myColors.blackColor,
-                          tabs: const [
+                          tabs: [
                             Tab(
                               text: 'Hub List',
                             ),
                             Tab(text: 'Robots List'),
                           ],
                         ),
-                        body: const TabBarView(
-                            children: [HubList(), PatientList()]),
+                        body: TabBarView(children: [HubList(), RobotsList()]),
                       )),
                 ),
               ],

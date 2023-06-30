@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
@@ -60,23 +62,20 @@ class _PatientPageState extends State<PatientPage> {
           ),
           Expanded(
               child: snapshot.isPatientDetails == true
-                  ? Padding(
-                      padding: EdgeInsets.only(top: 250, right: 25),
-                      child: Container(
-                          height: 500,
-                          width: double.infinity,
-                          decoration: patientWidget.containerDecoration(),
-                          child: patientWidget.patientDetailsContainer(
-                              address:
-                                  "Effica Automation ,Neelambur,Tamil Nadu,641062",
-                              dob: "12/08/1998",
-                              email: "kamini1310@gmail.com",
-                              emgContact: "Father \n+91 9303812901",
-                              gender: "femele",
-                              maritalStatus: "single",
-                              patientID: "AM-1013",
-                              name: "Kamini")),
-                    )
+                  ? Container(
+                      height: 500,
+                      width: double.infinity,
+                      decoration: patientWidget.containerDecoration(),
+                      child: patientWidget.patientDetailsContainer(
+                          address:
+                              "Effica Automation ,Neelambur,Tamil Nadu,641062",
+                          dob: "12/08/1998",
+                          email: "kamini1310@gmail.com",
+                          emgContact: "Father \n+91 9303812901",
+                          gender: "femele",
+                          maritalStatus: "single",
+                          patientID: "AM-1013",
+                          name: "Kamini"))
                   : Container())
         ],
       ),

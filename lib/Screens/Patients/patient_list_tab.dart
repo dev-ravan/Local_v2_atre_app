@@ -1,9 +1,9 @@
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:atre_windows/Constants/myColors.dart';
-
 import '../../Constants/myWidgets.dart';
 import '../../Controller/patient_controller.dart';
 
@@ -38,12 +38,6 @@ class _PatientListState extends State<PatientList> {
           children: [
             const SizedBox(height: 20),
             myWidgets.searchField(),
-            const SizedBox(height: 20),
-            TextField(
-              decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                      borderSide: BorderSide(color: myColors.greyBgColor))),
-            ),
             const SizedBox(height: 10),
             SizedBox(
               height: height / 2,
@@ -70,7 +64,7 @@ class _PatientListState extends State<PatientList> {
                               'Patient ID',
                             ))),
                     GridColumn(
-                      columnName: 'name',
+                      columnName: 'Name',
                       label: Container(
                           color: myColors.whiteColor,
                           padding: const EdgeInsets.all(16.0),

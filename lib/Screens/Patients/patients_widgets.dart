@@ -20,52 +20,6 @@ class PatientWidget {
     );
   }
 
-  Widget buttonIcon({
-    required Function onPressed,
-    required IconData icon,
-    required String labelText,
-    required Color iconColor,
-    required Color labelColor,
-    required Color backGroundColor,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed as void Function(),
-      icon: Icon(icon, color: iconColor),
-      label: Text(
-        labelText,
-        style: TextStyle(color: labelColor),
-      ),
-      style: ElevatedButton.styleFrom(
-          // side: BorderSide(color: borderColor),
-          backgroundColor: backGroundColor,
-          shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5))),
-    );
-  }
-
-  Widget buttonIconColor({
-    required Function onPressed,
-    required IconData icon,
-    required String labelText,
-    required Color iconColor,
-    required Color labelColor,
-    required Color backGroundColor,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed as void Function(),
-      icon: Icon(icon, color: iconColor),
-      label: Text(
-        labelText,
-        style: TextStyle(color: labelColor),
-      ),
-      style: ElevatedButton.styleFrom(
-          side: BorderSide(color: myColors.lightBlueColor),
-          backgroundColor: backGroundColor,
-          shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5))),
-    );
-  }
-
   Widget formField(
       {required String labelText,
       required String hintText,
@@ -128,7 +82,7 @@ class PatientWidget {
                     padding: const EdgeInsets.only(
                       left: 140,
                     ),
-                    child: patientWidget.buttonIconColor(
+                    child: myWidgets.buttonIconColor(
                         onPressed: () {},
                         icon: (Icons.edit_document),
                         iconColor: myColors.lightBlueColor,

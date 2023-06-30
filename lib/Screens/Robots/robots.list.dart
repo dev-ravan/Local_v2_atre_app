@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-import 'package:atre_windows/Constants/myColors.dart';
+import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
 
-class HubList extends StatefulWidget {
-  const HubList({super.key});
+class RobotsList extends StatefulWidget {
+  const RobotsList({super.key});
 
   @override
-  State<HubList> createState() => _HubListState();
+  State<RobotsList> createState() => _RobotsListState();
 }
 
-class _HubListState extends State<HubList> {
-  List<HubDetails> hub = <HubDetails>[];
-  HubDataSource? hubDataSource;
+class _RobotsListState extends State<RobotsList> {
+  List<RobotDetails> robot = <RobotDetails>[];
+  RobotDataSource? robotDataSource;
 
   @override
   void initState() {
     super.initState();
-    hub = getEmployeeData();
-    hubDataSource = HubDataSource(hubData: hub);
+    robot = getEmployeeData();
+    robotDataSource = RobotDataSource(robotData: robot);
   }
 
   @override
@@ -36,11 +36,11 @@ class _HubListState extends State<HubList> {
             child: SfDataGrid(
                 gridLinesVisibility: GridLinesVisibility.none,
                 headerGridLinesVisibility: GridLinesVisibility.none,
-                source: hubDataSource!,
+                source: robotDataSource!,
                 columnWidthMode: ColumnWidthMode.fill,
                 columns: <GridColumn>[
                   GridColumn(
-                      columnName: 'Hub Name',
+                      columnName: 'Robot Name',
                       label: Container(
                           decoration: BoxDecoration(
                               color: myColors.whiteColor,
@@ -50,16 +50,16 @@ class _HubListState extends State<HubList> {
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
                           child: const Text(
-                            ' Hub name',
+                            'Robot Name',
                           ))),
                   GridColumn(
-                      columnName: 'Hub location',
+                      columnName: 'Robot location',
                       label: Container(
                           color: myColors.whiteColor,
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
                           child: const Text(
-                            'Hub Location',
+                            'Robot Location',
                           ))),
                   GridColumn(
                       columnName: 'button',
@@ -78,8 +78,8 @@ class _HubListState extends State<HubList> {
   }
 }
 
-class HubDetails {
-  HubDetails(
+class RobotDetails {
+  RobotDetails(
     this.hubName,
     this.location,
   );
@@ -87,39 +87,39 @@ class HubDetails {
   final String location;
 }
 
-List<HubDetails> getEmployeeData() {
+List<RobotDetails> getEmployeeData() {
   return [
-    HubDetails(
+    RobotDetails(
       "Royal Care",
       "Coimbatore",
     ),
-    HubDetails(
+    RobotDetails(
       "KMCH",
       "Coimbatore",
     ),
-    HubDetails(
+    RobotDetails(
       "TMF-HSP",
       "Coimbatore",
     ),
   ];
 }
 
-class HubDataSource extends DataGridSource {
-  HubDataSource({required List<HubDetails> hubData}) {
-    _hubData = hubData
+class RobotDataSource extends DataGridSource {
+  RobotDataSource({required List<RobotDetails> robotData}) {
+    _robotData = robotData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<String>(columnName: 'Hub Name', value: e.hubName),
+              DataGridCell<String>(columnName: 'Robot Name', value: e.hubName),
               DataGridCell<String>(
-                  columnName: 'Hub Location', value: e.location),
+                  columnName: 'Robot Location', value: e.location),
               DataGridCell<String>(columnName: 'button', value: e.toString()),
             ]))
         .toList();
   }
 
-  List<DataGridRow> _hubData = [];
+  List<DataGridRow> _robotData = [];
 
   @override
-  List<DataGridRow> get rows => _hubData;
+  List<DataGridRow> get rows => _robotData;
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     Color getBackgroundColor() {
@@ -150,7 +150,7 @@ class HubDataSource extends DataGridSource {
                                       onPressed: () {},
                                       icon: (FontAwesomeIcons.robot),
                                       iconColor: myColors.lightBlueColor,
-                                      labelText: 'Add Robot',
+                                      labelText: 'View details',
                                       labelColor: myColors.lightBlueColor))),
                         ],
                       );
