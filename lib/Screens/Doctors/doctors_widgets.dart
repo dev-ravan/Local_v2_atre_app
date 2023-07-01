@@ -16,13 +16,18 @@ class DoctorWidgets {
     );
   }
 
-  Widget addDoctorButton({required String label, required Function onPressed }) {
+  Widget addDoctorButton(
+      {required String label,
+      required Function onPressed,
+      required Widget icon,
+      Color? color
+      }) {
     return TextButton.icon(
-        onPressed:  onPressed as void Function(), 
-        icon: Icon(Icons.group_add_sharp, color: myColors.whiteColor),
+        onPressed: onPressed as void Function(),
+        icon: icon,
         label: Text(
           label,
-          style: TextStyle(color: myColors.whiteColor),
+          style: TextStyle(color: color),
         ));
   }
 
@@ -60,17 +65,17 @@ class DoctorWidgets {
         BoxShadow(
           color: myColors.shadowColor3,
           blurRadius: 0,
-          offset: Offset(0, 0),
+          offset: const Offset(0, 0),
         ),
         BoxShadow(
           color: myColors.shadowColor3,
           blurRadius: 5,
-          offset: Offset(0, 4),
+          offset: const Offset(0, 4),
         ),
         BoxShadow(
           color: myColors.shadowColor6,
           blurRadius: 10,
-          offset: Offset(0, 18),
+          offset: const Offset(0, 18),
         ),
       ],
     );
