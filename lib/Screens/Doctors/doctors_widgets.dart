@@ -1,5 +1,6 @@
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
-
+import 'package:intl/intl.dart';
 import '../../Constants/myColors.dart';
 
 final doctorWidgets = DoctorWidgets();
@@ -20,8 +21,7 @@ class DoctorWidgets {
       {required String label,
       required Function onPressed,
       required Widget icon,
-      Color? color
-      }) {
+      Color? color}) {
     return TextButton.icon(
         onPressed: onPressed as void Function(),
         icon: icon,
@@ -29,6 +29,28 @@ class DoctorWidgets {
           label,
           style: TextStyle(color: color),
         ));
+  }
+
+  Widget timeSlot({required DateFormat format}) {
+    return DateTimeField(
+      decoration: InputDecoration(
+          label: Text('Appointment Time'),
+          labelStyle: TextStyle(
+            color: myColors.greenColor,
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: myColors.greenColor)),
+          border:
+              OutlineInputBorder(borderSide: BorderSide(color: Colors.green))),
+      format: format,
+      onShowPicker: (context, currentValue) async {
+        final TimeOfDay? time = await showTimePicker(
+          context: context,
+          initialTime: TimeOfDay.fromDateTime(currentValue ?? DateTime.now()),
+        );
+        return time == null ? null : DateTimeField.convert(time);
+      },
+    );
   }
 
   Widget formField(
@@ -42,12 +64,12 @@ class DoctorWidgets {
         decoration: InputDecoration(
             fillColor: myColors.whiteColor,
             focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(5),
                 borderSide: BorderSide(
                   color: myColors.greenColor,
                 )),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(5),
               borderSide: BorderSide(
                 color: myColors.greenColor,
               ),

@@ -1,6 +1,7 @@
-import 'package:atre_windows/Screens/Doctors/doctors.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
+import 'package:intl/intl.dart';
 
 import '../../Constants/myColors.dart';
 
@@ -12,14 +13,18 @@ class DoctorForm extends StatefulWidget {
 }
 
 final _formDoctorKey = GlobalKey<FormState>();
-final nameTextController = TextEditingController();
-final registrationNumberTextController = TextEditingController();
-final emailTextController = TextEditingController();
-final hospitalNameTextController = TextEditingController();
-final phoneTextController = TextEditingController();
+TextEditingController nameTextController = TextEditingController();
+TextEditingController registrationNumberTextController =
+    TextEditingController();
+TextEditingController emailTextController = TextEditingController();
+TextEditingController hospitalNameTextController = TextEditingController();
+TextEditingController phoneTextController = TextEditingController();
+TextEditingController radiologistLicenseTextControl = TextEditingController();
+TextEditingController timeSlotTextControl = TextEditingController();
 
 class _DoctorFormState extends State<DoctorForm> {
   bool isDoctor = true;
+  final format = DateFormat("hh:mm a");
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -38,14 +43,14 @@ class _DoctorFormState extends State<DoctorForm> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Container(
-                  height: 500,
-                  width: 700,
+                  height: 550,
+                  width: 800,
                   decoration: doctorWidgets.containerDecoration(),
                   child: Column(
                     children: [
                       Padding(
                         padding:
-                            const EdgeInsets.only(top: 60, left: 50, right: 50),
+                            const EdgeInsets.only(top: 40, left: 50, right: 50),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -65,7 +70,7 @@ class _DoctorFormState extends State<DoctorForm> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 16.0),
+                      const SizedBox(height: 10.0),
                       Padding(
                         padding:
                             const EdgeInsets.only(top: 40, left: 50, right: 50),
@@ -87,10 +92,10 @@ class _DoctorFormState extends State<DoctorForm> {
                           ],
                         ),
                       ),
-                      const SizedBox(height: 16),
+                      const SizedBox(height: 10),
                       Padding(
-                        padding: const EdgeInsets.only(
-                            top: 40, left: 50, right: 365),
+                        padding:
+                            const EdgeInsets.only(top: 40, left: 50, right: 55),
                         child: Row(
                           children: <Widget>[
                             Expanded(
@@ -98,6 +103,25 @@ class _DoctorFormState extends State<DoctorForm> {
                                     labelText: 'Phone Number',
                                     hintText: '',
                                     controller: phoneTextController)),
+                            const SizedBox(
+                              width: 30.0,
+                            ),
+                            Expanded(
+                                child: doctorWidgets.formField(
+                                    labelText: 'Phone Number',
+                                    hintText: '',
+                                    controller: phoneTextController)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 40, left: 50, right: 420),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                                child: doctorWidgets.timeSlot(format: format)),
                           ],
                         ),
                       ),
