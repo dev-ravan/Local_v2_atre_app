@@ -14,6 +14,7 @@ class HubList extends StatefulWidget {
 class _HubListState extends State<HubList> {
   List<HubDetails> hub = <HubDetails>[];
   HubDataSource? hubDataSource;
+  bool isAddRobotClicked = false;
 
   @override
   void initState() {
@@ -147,7 +148,11 @@ class HubDataSource extends DataGridSource {
                                   padding: EdgeInsets.only(left: 70, right: 70),
                                   child: myWidgets.buttonIconColor(
                                       backGroundColor: myColors.whiteColor,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        // setState(() {
+                                        //   isAddRobotClicked =
+                                        // });
+                                      },
                                       icon: (FontAwesomeIcons.robot),
                                       iconColor: myColors.lightBlueColor,
                                       labelText: 'Add Robot',

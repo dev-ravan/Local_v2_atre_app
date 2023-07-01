@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:window_size/window_size.dart';
 import 'Controller/appointment_controller.dart';
+import 'Controller/hub_robot_controller.dart';
 import 'Controller/login_controller.dart';
 
 void main() {
@@ -35,7 +36,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<AppointmentProvider>(
             create: (context) => AppointmentProvider()),
         ChangeNotifierProvider<PatientProvider>(
-            create: (context) => PatientProvider())
+            create: (context) => PatientProvider()),
+        ChangeNotifierProvider<RobotProvider>(
+            create: (context) => RobotProvider()),
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
