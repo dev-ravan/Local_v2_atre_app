@@ -324,6 +324,11 @@ class _AppointmentState extends State<Appointment> {
                                   child: appointmentWidgets
                                       .appointmentDetailsContainer(
                                           onTapConnect: () async {
+                                            // Navigator.push(
+                                            //     context,
+                                            //     MaterialPageRoute(
+                                            //         builder: (context) =>
+                                            //             const WebViewWindows()));
                                             final webview = await WebviewWindow.create(
                                                 configuration: CreateConfiguration(
                                                     userDataFolderWindows:
