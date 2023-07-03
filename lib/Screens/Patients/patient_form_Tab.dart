@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -130,7 +131,7 @@ class _PatientFormState extends State<PatientForm> {
                         padding: const EdgeInsets.only(left: 200, top: 20),
                         child: Row(
                           children: [
-                            patientWidget.buttonIcon(
+                            myWidgets.buttonIcon(
                                 backGroundColor: myColors.greyButtonColor,
                                 onPressed: () {},
                                 icon: (Icons.group_add_outlined),
@@ -138,7 +139,7 @@ class _PatientFormState extends State<PatientForm> {
                                 labelText: 'Cancel',
                                 labelColor: myColors.blackColor),
                             const SizedBox(width: 30),
-                            patientWidget.buttonIcon(
+                            myWidgets.buttonIcon(
                                 backGroundColor: myColors.greenColor,
                                 onPressed: () {},
                                 icon: (Icons.group_add_outlined),

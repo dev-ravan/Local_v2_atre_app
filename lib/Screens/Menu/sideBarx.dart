@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
 
+import '../Robots/hub.dart';
+
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
 
@@ -57,10 +59,10 @@ class _SideBarState extends State<SideBar> {
                           return const DoctorTab();
                         case 2:
                           _key.currentState?.closeDrawer();
-                          return const Patient();
+                          return const PatientPage();
                         case 3:
                           _key.currentState?.closeDrawer();
-                          return const Text('UI changed');
+                          return const Hub();
                         default:
                           return Center(
                             child: Text(

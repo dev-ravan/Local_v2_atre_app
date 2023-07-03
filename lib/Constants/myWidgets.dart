@@ -116,8 +116,62 @@ class MyWidgets {
       title,
       style: TextStyle(
           color: myColors.greenColor,
+          decoration: TextDecoration.underline,
           letterSpacing: 0.5,
           fontWeight: FontWeight.w500),
+    );
+  }
+
+  Widget buttonIcon({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(
+        icon,
+        color: iconColor,
+        size: 15,
+      ),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
+    );
+  }
+
+  Widget buttonIconColor({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(
+        icon,
+        color: iconColor,
+        size: 15,
+      ),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          side: BorderSide(color: myColors.lightBlueColor),
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
     );
   }
 }

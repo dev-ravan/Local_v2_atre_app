@@ -1,6 +1,11 @@
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:atre_windows/Constants/myColors.dart';
+import '../../Constants/myWidgets.dart';
+import '../../Controller/patient_controller.dart';
 
 class PatientList extends StatefulWidget {
   const PatientList({super.key});
@@ -15,6 +20,8 @@ class _PatientListState extends State<PatientList> {
 
   @override
   void initState() {
+    final _patientProvider =
+        Provider.of<PatientProvider>(context, listen: false);
     super.initState();
     patient = getEmployeeData();
     patientDataSource = PatientDataSource(patientData: patient);
@@ -23,70 +30,62 @@ class _PatientListState extends State<PatientList> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
+    final _patientProvider = Provider.of<PatientProvider>(context);
 
     return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          TextField(
-            //==========1
-            decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: myColors.greyBgColor))),
-          ),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: height / 2,
-            child: SfDataGrid(
-                gridLinesVisibility: GridLinesVisibility.none,
-                headerGridLinesVisibility: GridLinesVisibility.none,
-                source: patientDataSource!,
-                columnWidthMode: ColumnWidthMode.fill,
-                columns: <GridColumn>[
-                  GridColumn(
-                      columnName: 'patientID',
-                      label: Container(
-                          decoration: BoxDecoration(
-                              color: myColors.whiteColor,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10))),
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Patient ID',
-                          ))),
-                  GridColumn(
-                    columnName: 'name',
-                    label: Container(
-                        color: myColors.whiteColor,
-                        padding: const EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Name',
-                        )),
-                  ),
-                  GridColumn(
-                      columnName: 'location',
+      body: Consumer<PatientProvider>(
+        builder: (context, snapshot, child) => Column(
+          children: [
+            const SizedBox(height: 20),
+            myWidgets.searchField(),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: height / 2,
+              child: SfDataGrid(
+                  gridLinesVisibility: GridLinesVisibility.none,
+                  headerGridLinesVisibility: GridLinesVisibility.none,
+                  source: patientDataSource!,
+                  onCellTap: (details) {
+                    snapshot.isPatientTrue();
+                  },
+                  columnWidthMode: ColumnWidthMode.fill,
+                  columns: <GridColumn>[
+                    GridColumn(
+                        columnName: 'patientID',
+                        label: Container(
+                            decoration: BoxDecoration(
+                                color: myColors.whiteColor,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10))),
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Patient ID',
+                            ))),
+                    GridColumn(
+                      columnName: 'Name',
                       label: Container(
                           color: myColors.whiteColor,
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
                           child: const Text(
-                            'Location',
-                          ))),
-                  GridColumn(
-                      columnName: 'button',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            '',
-                          ))),
-                ]),
-          )
-        ],
+                            'Name',
+                          )),
+                    ),
+                    GridColumn(
+                        columnName: 'location',
+                        label: Container(
+                            color: myColors.whiteColor,
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Location',
+                            ))),
+                  ]),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -160,7 +159,6 @@ class PatientDataSource extends DataGridSource {
               DataGridCell<String>(columnName: 'patientID', value: e.patientID),
               DataGridCell<String>(columnName: 'name', value: e.name),
               DataGridCell<String>(columnName: 'Location', value: e.location),
-              DataGridCell<String>(columnName: 'button', value: e.location),
             ]))
         .toList();
   }
@@ -186,47 +184,7 @@ class PatientDataSource extends DataGridSource {
           return Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(8.0),
-              child: e.columnName == 'button'
-                  ? LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
-                      return Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                            padding: const EdgeInsets.only(left: 45, right: 45),
-                            child:
-                                // patientWidget.buttonIcon(
-                                //     backGroundColor: myColors.greyButtonColor,
-                                //     onPressed: () {},
-                                //     icon: (Icons.edit_document),
-                                //     iconColor: myColors.lightBlueColor,
-                                //     labelText: 'Edit',
-                                //     labelColor: myColors.lightBlueColor)
-                                ElevatedButton.icon(
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.edit_document,
-                                color: myColors.lightBlueColor,
-                              ),
-                              label: Text(
-                                'Edit',
-                                style:
-                                    TextStyle(color: myColors.lightBlueColor),
-                              ),
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: myColors.whiteColor,
-                                  side: BorderSide(
-                                    color: myColors.lightBlueColor,
-                                  ),
-                                  //fixedSize: const Size(100, 50),
-                                  shape: ContinuousRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5))),
-                            ),
-                          )),
-                        ],
-                      );
-                    })
-                  : Text(e.value.toString()));
+              child: Text(e.value.toString()));
         }).toList());
   }
 }
