@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:intl/intl.dart';
 
 class AppointmentProvider extends ChangeNotifier {
+//************************************************ Appointment List Provider *********************************************************
   AppointmentDataSource? _appointmentDataSource;
   DateTime _today = DateTime.now();
   bool _isVisible = true;
@@ -46,6 +47,19 @@ class AppointmentProvider extends ChangeNotifier {
         .generatedAppoinmentList(DateFormat("yyyy-MM-dd").format(today));
     notifyListeners();
   }
+
+//************************************************ Create Appointment Provider *********************************************************
+
+  final patientName = TextEditingController();
+  final appointmentLocation = TextEditingController();
+  final refDoctor = TextEditingController();
+  final scanType = TextEditingController();
+  final docName = TextEditingController();
+  final radiologist = TextEditingController();
+  final date = TextEditingController();
+  final time = TextEditingController();
+  final diffDiagnosis = TextEditingController();
+  final search = TextEditingController();
 }
 
 // ***************** Table Components **********************

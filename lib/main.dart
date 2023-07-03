@@ -35,6 +35,8 @@ class MyApp extends StatelessWidget {
             create: (context) => AppoinmentApi()),
         ChangeNotifierProvider<AppointmentProvider>(
             create: (context) => AppointmentProvider()),
+        ChangeNotifierProvider<AppointmentProvider>(
+            create: (context) => AppointmentProvider())
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

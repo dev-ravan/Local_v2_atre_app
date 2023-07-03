@@ -1,7 +1,9 @@
 import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../Constants/myColors.dart';
+import '../../Controller/appointment_controller.dart';
 import 'appointment_widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
@@ -16,300 +18,304 @@ class AppointmentForm extends StatefulWidget {
 class _AppointmentFormState extends State<AppointmentForm> {
   final format = DateFormat("dd / MM / yyyy");
   List<User>? selectedUserList = [];
-  TextEditingController diagnosisTextControl = TextEditingController();
-  TextEditingController _searchController = TextEditingController();
+  // TextEditingController diagnosisTextControl = TextEditingController();
+  // TextEditingController _searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    diagnosisTextControl.text = 'Differential Diagnosis';
+    final _appointmentProvider =
+        Provider.of<AppointmentProvider>(context, listen: false);
+    _appointmentProvider.diffDiagnosis.text = 'Differential Diagnosis';
   }
 
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40, top: 120),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              children: [
-                Expanded(
-                  flex: 2,
-                  child: myWidgets.titleText(title: 'New Appointment'),
-                ),
-                Expanded(
-                    child: appointmentWidgets.mobileSearch(
-                        controller: _searchController, onTap: () {}))
+        child: Consumer<AppointmentProvider>(
+          builder: (context, snap, child) => Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: myWidgets.titleText(title: 'New Appointment'),
+                  ),
+                  Expanded(
+                      child: appointmentWidgets.mobileSearch(
+                          controller: snap.search, onTap: () {}))
 
-                // myWidgets.searchField()
-              ],
-            ),
-            const SizedBox(height: 16.0),
-            Container(
-              height: 550,
-              width: double.infinity,
-              decoration: appointmentWidgets.containerBoxDecoration(),
-              child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  children: [
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: Column(
-                            children: [
-                              // ********************************************* Patient Name ***************************************************
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Patient Name'),
-
-                              // ********************************************* Scan Type **************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Scan Type'),
-                              // ********************************************* Appointment Date ***************************************************
-
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20, vertical: 14),
-                                child: DateTimeField(
-                                  resetIcon: null,
-                                  decoration: InputDecoration(
-                                      border: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.green),
-                                      ),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderSide: const BorderSide(
-                                              color: Colors.green),
-                                          borderRadius:
-                                              BorderRadius.circular(10))),
-                                  format: format,
-                                  onShowPicker: (context, currentValue) {
-                                    return showDatePicker(
-                                        context: context,
-                                        firstDate: DateTime(1900),
-                                        initialDate:
-                                            currentValue ?? DateTime.now(),
-                                        lastDate: DateTime(2100));
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              // ********************************************* Appointment Location ***************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Appointment Location'),
-
-                              // ********************************************* Doctor Name ***************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Doctor Name'),
-                              // ********************************************* Appointment Time ***************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Appointment Time'),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              // ********************************************* Referred Doctor ***************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Referred Doctor'),
-                              // ********************************************* Radiologist Name ***************************************************
-
-                              appointmentWidgets.chipSlots(
-                                  onTap: _openFilterDialog,
-                                  listView: ListView.builder(
-                                    itemCount: selectedUserList!.length,
-                                    itemBuilder: (context, index) {
-                                      return ListTile(
-                                        title: Center(
-                                          child: Text(
-                                              selectedUserList![index].name!,
-                                              style: const TextStyle(
-                                                  color: Color.fromARGB(
-                                                      255, 0, 0, 0))),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                  selectedList: selectedUserList!,
-                                  text: 'Radiologist Name'),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    // ********************************************* Differential Diagnosis ***************************************************
-
-                    appointmentWidgets.formField(
-                        maxLines: 3,
-                        labelText: '',
-                        hintText: 'Differential Diagnosis',
-                        controller: diagnosisTextControl),
-                    const SizedBox(
-                      height: 35,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              borderRadius: BorderRadius.circular(5.0)),
-                          child: appointmentWidgets.button(
-                              label: 'Cancel',
-                              color: myColors.blackColor,
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.cancel,
-                                color: myColors.blackColor,
-                              )),
-                        ),
-                        const SizedBox(width: 20),
-                        Container(
-                          height: 40,
-                          width: 150,
-                          decoration: BoxDecoration(
-                              color: myColors.greenColor,
-                              borderRadius: BorderRadius.circular(5.0)),
-                          child: appointmentWidgets.button(
-                              label: 'Create',
-                              color: myColors.whiteColor,
-                              onPressed: () {},
-                              icon: Icon(
-                                Icons.group_add,
-                                color: myColors.whiteColor,
-                              )),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                        onTap: () {},
-                        child: myWidgets.greenText(title: "Add New Patient")),
-                  ],
-                ),
+                  // myWidgets.searchField()
+                ],
               ),
-            )
-          ],
+              const SizedBox(height: 16.0),
+              Container(
+                height: 550,
+                width: double.infinity,
+                decoration: appointmentWidgets.containerBoxDecoration(),
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              children: [
+                                // ********************************************* Patient Name ***************************************************
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Patient Name'),
+
+                                // ********************************************* Scan Type **************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Scan Type'),
+                                // ********************************************* Appointment Date ***************************************************
+
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 14),
+                                  child: DateTimeField(
+                                    resetIcon: null,
+                                    decoration: InputDecoration(
+                                        border: const OutlineInputBorder(
+                                          borderSide:
+                                              BorderSide(color: Colors.green),
+                                        ),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderSide: const BorderSide(
+                                                color: Colors.green),
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                    format: format,
+                                    onShowPicker: (context, currentValue) {
+                                      return showDatePicker(
+                                          context: context,
+                                          firstDate: DateTime(1900),
+                                          initialDate:
+                                              currentValue ?? DateTime.now(),
+                                          lastDate: DateTime(2100));
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                // ********************************************* Appointment Location ***************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Appointment Location'),
+
+                                // ********************************************* Doctor Name ***************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Doctor Name'),
+                                // ********************************************* Appointment Time ***************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Appointment Time'),
+                              ],
+                            ),
+                          ),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                // ********************************************* Referred Doctor ***************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Referred Doctor'),
+                                // ********************************************* Radiologist Name ***************************************************
+
+                                appointmentWidgets.chipSlots(
+                                    onTap: _openFilterDialog,
+                                    listView: ListView.builder(
+                                      itemCount: selectedUserList!.length,
+                                      itemBuilder: (context, index) {
+                                        return ListTile(
+                                          title: Center(
+                                            child: Text(
+                                                selectedUserList![index].name!,
+                                                style: const TextStyle(
+                                                    color: Color.fromARGB(
+                                                        255, 0, 0, 0))),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                    selectedList: selectedUserList!,
+                                    text: 'Radiologist Name'),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      // ********************************************* Differential Diagnosis ***************************************************
+
+                      appointmentWidgets.formField(
+                          maxLines: 3,
+                          labelText: '',
+                          hintText: 'Differential Diagnosis',
+                          controller: snap.diffDiagnosis),
+                      const SizedBox(
+                        height: 35,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            height: 40,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: Colors.grey.shade200,
+                                borderRadius: BorderRadius.circular(5.0)),
+                            child: appointmentWidgets.button(
+                                label: 'Cancel',
+                                color: myColors.blackColor,
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.cancel,
+                                  color: myColors.blackColor,
+                                )),
+                          ),
+                          const SizedBox(width: 20),
+                          Container(
+                            height: 40,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: myColors.greenColor,
+                                borderRadius: BorderRadius.circular(5.0)),
+                            child: appointmentWidgets.button(
+                                label: 'Create',
+                                color: myColors.whiteColor,
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.group_add,
+                                  color: myColors.whiteColor,
+                                )),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      InkWell(
+                          onTap: () {},
+                          child: myWidgets.greenText(title: "Add New Patient")),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
