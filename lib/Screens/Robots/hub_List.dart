@@ -1,8 +1,12 @@
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:atre_windows/Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
+import '../../Controller/hub_robot_controller.dart';
 
 class HubList extends StatefulWidget {
   const HubList({super.key});
@@ -18,6 +22,7 @@ class _HubListState extends State<HubList> {
 
   @override
   void initState() {
+    final _robotProvider = Provider.of<RobotProvider>(context, listen: false);
     super.initState();
     hub = getEmployeeData();
     hubDataSource = HubDataSource(hubData: hub);
@@ -26,54 +31,57 @@ class _HubListState extends State<HubList> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          myWidgets.searchField(),
-          const SizedBox(height: 10),
-          SizedBox(
-            height: height / 2,
-            child: SfDataGrid(
-                gridLinesVisibility: GridLinesVisibility.none,
-                headerGridLinesVisibility: GridLinesVisibility.none,
-                source: hubDataSource!,
-                columnWidthMode: ColumnWidthMode.fill,
-                columns: <GridColumn>[
-                  GridColumn(
-                      columnName: 'Hub Name',
-                      label: Container(
-                          decoration: BoxDecoration(
-                              color: myColors.whiteColor,
-                              borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(10),
-                                  bottomLeft: Radius.circular(10))),
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            ' Hub name',
-                          ))),
-                  GridColumn(
-                      columnName: 'Hub location',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Hub Location',
-                          ))),
-                  GridColumn(
-                      columnName: 'button',
-                      label: Container(
-                          color: myColors.whiteColor,
-                          padding: const EdgeInsets.all(16.0),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            '',
-                          ))),
-                ]),
-          )
-        ],
+    // final _robotProvider = Provider.of<RobotProvider>(context);
+    return Consumer(
+      builder: (context, snapshot, child) => Scaffold(
+        body: Column(
+          children: [
+            const SizedBox(height: 20),
+            myWidgets.searchField(),
+            const SizedBox(height: 10),
+            SizedBox(
+              height: height / 2,
+              child: SfDataGrid(
+                  gridLinesVisibility: GridLinesVisibility.none,
+                  headerGridLinesVisibility: GridLinesVisibility.none,
+                  source: hubDataSource!,
+                  columnWidthMode: ColumnWidthMode.fill,
+                  columns: <GridColumn>[
+                    GridColumn(
+                        columnName: 'Hub Name',
+                        label: Container(
+                            decoration: BoxDecoration(
+                                color: myColors.whiteColor,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10))),
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              ' Hub name',
+                            ))),
+                    GridColumn(
+                        columnName: 'Hub location',
+                        label: Container(
+                            color: myColors.whiteColor,
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              'Hub Location',
+                            ))),
+                    GridColumn(
+                        columnName: 'button',
+                        label: Container(
+                            color: myColors.whiteColor,
+                            padding: const EdgeInsets.all(16.0),
+                            alignment: Alignment.center,
+                            child: const Text(
+                              '',
+                            ))),
+                  ]),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -135,32 +143,31 @@ class HubDataSource extends DataGridSource {
     return DataGridRowAdapter(
         color: getBackgroundColor(),
         cells: row.getCells().map<Widget>((e) {
-          return Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(8.0),
-              child: e.columnName == 'button'
-                  ? LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
-                      return Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                                  padding: EdgeInsets.only(left: 70, right: 70),
-                                  child: myWidgets.buttonIconColor(
-                                      backGroundColor: myColors.whiteColor,
-                                      onPressed: () {
-                                        // setState(() {
-                                        //   isAddRobotClicked =
-                                        // });
-                                      },
-                                      icon: (FontAwesomeIcons.robot),
-                                      iconColor: myColors.lightBlueColor,
-                                      labelText: 'Add Robot',
-                                      labelColor: myColors.lightBlueColor))),
-                        ],
-                      );
-                    })
-                  : Text(e.value.toString()));
+          return Consumer<RobotProvider>(
+            builder: (context, snapshot, child) => Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8.0),
+                child: e.columnName == 'button'
+                    ? LayoutBuilder(builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                        return Row(
+                          children: [
+                            Expanded(
+                                child: myWidgets.buttonIconColor(
+                                    backGroundColor: myColors.whiteColor,
+                                    onPressed: () {
+                                      snapshot.isAddRobotTrue();
+                                      print(snapshot.isAddRobotClicked);
+                                    },
+                                    icon: (FontAwesomeIcons.robot),
+                                    iconColor: myColors.lightBlueColor,
+                                    labelText: 'Add Robot',
+                                    labelColor: myColors.lightBlueColor)),
+                          ],
+                        );
+                      })
+                    : Text(e.value.toString())),
+          );
         }).toList());
   }
 }

@@ -1,13 +1,11 @@
-import 'package:atre_windows/Constants/myColors.dart';
-import 'package:atre_windows/Constants/myWidgets.dart';
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
+import '../Patients/patients_widgets.dart';
 
-class PatientForm extends StatefulWidget {
-  const PatientForm({super.key});
+class RobotForm extends StatefulWidget {
+  const RobotForm({super.key});
 
   @override
-  State<PatientForm> createState() => _PatientFormState();
+  State<RobotForm> createState() => _RobotFormState();
 }
 
 final _formPatientkey = GlobalKey<FormState>();
@@ -19,12 +17,13 @@ final phoneTextController = TextEditingController();
 final dateOfBirthController = TextEditingController();
 final emergencyPhoneTextController = TextEditingController();
 
-class _PatientFormState extends State<PatientForm> {
+class _RobotFormState extends State<RobotForm> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: <Widget>[
           Center(
             //********************Patient Form******************//
             child: Padding(
@@ -126,35 +125,14 @@ class _PatientFormState extends State<PatientForm> {
                           )),
                         ],
                       ),
-                      const SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 200, top: 20),
-                        child: Row(
-                          children: [
-                            myWidgets.buttonIcon(
-                                backGroundColor: myColors.greyButtonColor,
-                                onPressed: () {},
-                                icon: (Icons.group_add_outlined),
-                                iconColor: myColors.blackColor,
-                                labelText: 'Cancel',
-                                labelColor: myColors.blackColor),
-                            const SizedBox(width: 30),
-                            myWidgets.buttonIcon(
-                                backGroundColor: myColors.greenColor,
-                                onPressed: () {},
-                                icon: (Icons.group_add_outlined),
-                                iconColor: myColors.whiteColor,
-                                labelText: 'Create',
-                                labelColor: myColors.whiteColor)
-                          ],
-                        ),
-                      )
                     ],
                   ),
                 ),
               ),
             ),
           ),
-        ]);
+        ]),
+      ],
+    );
   }
 }

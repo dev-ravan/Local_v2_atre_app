@@ -130,21 +130,26 @@ class MyWidgets {
     required Color labelColor,
     required Color backGroundColor,
   }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed as void Function(),
-      icon: Icon(
-        icon,
-        color: iconColor,
-        size: 15,
+    return Container(
+      height: 40,
+      decoration: BoxDecoration(
+          color: myColors.greenColor, borderRadius: BorderRadius.circular(5.0)),
+      child: ElevatedButton.icon(
+        onPressed: onPressed as void Function(),
+        icon: Icon(
+          icon,
+          color: iconColor,
+          size: 15,
+        ),
+        label: Text(
+          labelText,
+          style: TextStyle(color: labelColor),
+        ),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: backGroundColor,
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(5))),
       ),
-      label: Text(
-        labelText,
-        style: TextStyle(color: labelColor),
-      ),
-      style: ElevatedButton.styleFrom(
-          backgroundColor: backGroundColor,
-          shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5))),
     );
   }
 

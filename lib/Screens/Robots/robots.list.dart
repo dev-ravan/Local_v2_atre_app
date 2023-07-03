@@ -143,15 +143,13 @@ class RobotDataSource extends DataGridSource {
                       return Row(
                         children: [
                           Expanded(
-                              child: Padding(
-                                  padding: EdgeInsets.only(left: 70, right: 70),
-                                  child: myWidgets.buttonIconColor(
-                                      backGroundColor: myColors.whiteColor,
-                                      onPressed: () {},
-                                      icon: (FontAwesomeIcons.robot),
-                                      iconColor: myColors.lightBlueColor,
-                                      labelText: 'View details',
-                                      labelColor: myColors.lightBlueColor))),
+                              child: myWidgets.buttonIconColor(
+                                  backGroundColor: myColors.whiteColor,
+                                  onPressed: () {},
+                                  icon: (FontAwesomeIcons.robot),
+                                  iconColor: myColors.lightBlueColor,
+                                  labelText: 'View details',
+                                  labelColor: myColors.lightBlueColor)),
                         ],
                       );
                     })
