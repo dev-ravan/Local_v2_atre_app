@@ -7,6 +7,8 @@ import 'package:atre_windows/Model/appointmentModel/appointment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../Model/patientModel/patient_details_model.dart';
+
 class AppoinmentApi extends ChangeNotifier {
   // ******************************************* APPOINTMENT LIST ***********************************************
 
@@ -40,13 +42,14 @@ class AppoinmentApi extends ChangeNotifier {
   }
 
   void generatedAppoinmentList(String date) async {
-    final http.Response response = await http.post(
-        Uri.parse("${baseUrl}admin/list-of-appointments-and-count"),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $globalAccessToken',
-        },
-        body: jsonEncode(<String, String>{"selected_date": date}));
+    final http.Response response =
+        await http.post(Uri.parse("${baseUrl}list-of-appointments-and-count"),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'user-agent': version,
+              'Authorization': 'Bearer $globalAccessToken'
+            },
+            body: jsonEncode(<String, String>{"selected_date": date}));
 
     try {
       if (response.statusCode == 200) {
@@ -56,6 +59,36 @@ class AppoinmentApi extends ChangeNotifier {
         notifyListeners();
       } else {
         return null;
+      }
+    } catch (e) {
+      print("Error:--> $e");
+    }
+  }
+
+  // ******************************************* APPOINTMENT LIST ***********************************************
+
+  List<PatientDetails> patientList = [];
+
+  Future<PatientDetailsModel?> updatePassword(
+      {required String mobNumber}) async {
+    final http.Response response = await http.post(
+        Uri.parse("${baseUrl}get-patient-info"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'user-agent': version
+        },
+        body: jsonEncode(<String, dynamic>{"patient_phone_number": mobNumber}));
+
+    try {
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        print(data);
+
+        notifyListeners();
+        return patientDetailsModelFromJson(response.body);
+      } else {
+        return patientDetailsModelFromJson(response.body);
       }
     } catch (e) {
       print("Error:--> $e");

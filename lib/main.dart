@@ -39,6 +39,8 @@ class MyApp extends StatelessWidget {
             create: (context) => PatientProvider()),
         ChangeNotifierProvider<RobotProvider>(
             create: (context) => RobotProvider()),
+        ChangeNotifierProvider<AppointmentProvider>(
+            create: (context) => AppointmentProvider())
       ],
       child: MaterialApp(
           debugShowCheckedModeBanner: false,

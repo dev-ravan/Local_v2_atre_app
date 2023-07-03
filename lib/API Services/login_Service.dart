@@ -14,10 +14,10 @@ class LoginApi extends ChangeNotifier {
   // ******************************************* LOGIN & PASSWORD ***********************************************
 
   Future<LoginModel?> loginPost(String email, String password) async {
-    final http.Response response = await http.post(
-        Uri.parse("${baseUrl}admin/login"),
+    final http.Response response = await http.post(Uri.parse("${baseUrl}login"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'user-agent': version
         },
         body: jsonEncode(<String, String>{
           "user_email": email,
@@ -51,12 +51,13 @@ class LoginApi extends ChangeNotifier {
   // ******************************************* SEND OTP ***********************************************8
 
   Future<OtpModel?> otpGet(String email) async {
-    final http.Response response =
-        await http.post(Uri.parse("${baseUrl}admin/request-otp"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, String>{"user_email": email}));
+    final http.Response response = await http.post(
+        Uri.parse("${baseUrl}request-otp"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'user-agent': version
+        },
+        body: jsonEncode(<String, String>{"user_email": email}));
 
     try {
       if (response.statusCode == 200) {
@@ -78,9 +79,10 @@ class LoginApi extends ChangeNotifier {
 
   Future<VerifyOtpModel?> otpVerify(String email, String otp) async {
     final http.Response response = await http.post(
-        Uri.parse("${baseUrl}admin/verify-otp"),
+        Uri.parse("${baseUrl}verify-otp"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
+          'user-agent': version
         },
         body: jsonEncode(<String, String>{"user_email": email, "otp": otp}));
 
@@ -104,15 +106,16 @@ class LoginApi extends ChangeNotifier {
 
   Future<UpdatePasswordModel?> updatePassword(
       String email, String password) async {
-    final http.Response response =
-        await http.patch(Uri.parse("${baseUrl}admin/update-password"),
-            headers: <String, String>{
-              'Content-Type': 'application/json; charset=UTF-8',
-            },
-            body: jsonEncode(<String, dynamic>{
-              "user_email": email,
-              "update_auth_details": {"user_password": password}
-            }));
+    final http.Response response = await http.patch(
+        Uri.parse("${baseUrl}update-password"),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'user-agent': version
+        },
+        body: jsonEncode(<String, dynamic>{
+          "user_email": email,
+          "update_auth_details": {"user_password": password}
+        }));
 
     try {
       if (response.statusCode == 200) {
