@@ -4,10 +4,14 @@
         "cupertino",
         "datagrid",
         "Doosan",
+        "errno",
+        "Faild",
         "Kamini",
         "localstorage",
         "manisha",
         "sidebarx",
+        "spinkit",
         "syncfusion"
-    ]
+    ],
+    "C_Cpp.errorSquiggles": "disabled"
 }

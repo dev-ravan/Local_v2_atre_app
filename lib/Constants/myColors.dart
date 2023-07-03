@@ -19,6 +19,10 @@ class MyColors {
   Color shadowColor3 = Color(0x0c000000);
   Color shadowColor4 = Color(0x02000000);
   Color shadowColor5 = Color(0x00000000);
+  Color shadowColor6 = Color(0x0a000000);
+  Color shadowColor7 = Color(0x07000000);
   Color textColor = Color(0XFF131C33);
   Color tileColor = Color(0XFFF5F7FB);
+  Color lightBlueColor = Color(0xFF52A4D2);
+  Color greyButtonColor = Color(0xFFF2F2F2);
 }

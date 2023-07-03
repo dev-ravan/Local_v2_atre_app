@@ -1,48 +1,46 @@
-import 'package:atre_windows/Constants/myColors.dart';
-import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-class DoctorsActiveLog extends StatefulWidget {
-  const DoctorsActiveLog({super.key});
+import '../../Constants/myColors.dart';
+import '../../Constants/myWidgets.dart';
+
+class RobotsList extends StatefulWidget {
+  const RobotsList({super.key});
 
   @override
-  State<DoctorsActiveLog> createState() => _DoctorsActiveLogState();
+  State<RobotsList> createState() => _RobotsListState();
 }
 
-class _DoctorsActiveLogState extends State<DoctorsActiveLog> {
-  List<DoctorDetails> appointment = <DoctorDetails>[];
-  DoctorDataSource? doctorDataSource;
-   @override
+class _RobotsListState extends State<RobotsList> {
+  List<RobotDetails> robot = <RobotDetails>[];
+  RobotDataSource? robotDataSource;
+
+  @override
   void initState() {
     super.initState();
-    appointment = getEmployeeData();
-    doctorDataSource = DoctorDataSource(doctorData: appointment);
+    robot = getEmployeeData();
+    robotDataSource = RobotDataSource(robotData: robot);
   }
-  
-
 
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-
     return Scaffold(
       body: Column(
         children: [
           const SizedBox(height: 20),
-         myWidgets.searchField(),
+          myWidgets.searchField(),
           const SizedBox(height: 10),
           SizedBox(
             height: height / 2,
             child: SfDataGrid(
-            
                 gridLinesVisibility: GridLinesVisibility.none,
                 headerGridLinesVisibility: GridLinesVisibility.none,
-                source: doctorDataSource!,
+                source: robotDataSource!,
                 columnWidthMode: ColumnWidthMode.fill,
                 columns: <GridColumn>[
                   GridColumn(
-
-                      columnName: 'doctorID',
+                      columnName: 'Robot Name',
                       label: Container(
                           decoration: BoxDecoration(
                               color: myColors.whiteColor,
@@ -52,31 +50,20 @@ class _DoctorsActiveLogState extends State<DoctorsActiveLog> {
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
                           child: const Text(
-                            'Doctor ID',
+                            'Robot Name',
                           ))),
                   GridColumn(
-                    columnName: 'name',
-                    label: Container(
-                        color: myColors.whiteColor,
-                        padding: const EdgeInsets.all(16.0),
-                        alignment: Alignment.center,
-                        child: const Text(
-                          'Name',
-                        )),
-                  ),
-                  GridColumn(
-                      columnName: 'contact',
+                      columnName: 'Robot location',
                       label: Container(
                           color: myColors.whiteColor,
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
                           child: const Text(
-                            'Contact',
+                            'Robot Location',
                           ))),
                   GridColumn(
                       columnName: 'button',
                       label: Container(
-                          
                           color: myColors.whiteColor,
                           padding: const EdgeInsets.all(16.0),
                           alignment: Alignment.center,
@@ -91,45 +78,48 @@ class _DoctorsActiveLogState extends State<DoctorsActiveLog> {
   }
 }
 
-class DoctorDetails {
-  DoctorDetails(
-    this.doctorID,
-    this.name,
-    this.contact,
+class RobotDetails {
+  RobotDetails(
+    this.hubName,
+    this.location,
   );
-  final String doctorID;
-  final String name;
-  final String contact;
+  final String hubName;
+  final String location;
 }
 
-List<DoctorDetails> getEmployeeData() {
+List<RobotDetails> getEmployeeData() {
   return [
-    DoctorDetails(
-      'AM-1031',
-      "Ragav R",
-      "91 9018276354",
+    RobotDetails(
+      "Royal Care",
+      "Coimbatore",
     ),
-   
+    RobotDetails(
+      "KMCH",
+      "Coimbatore",
+    ),
+    RobotDetails(
+      "TMF-HSP",
+      "Coimbatore",
+    ),
   ];
 }
 
-class DoctorDataSource extends DataGridSource {
-  DoctorDataSource({required List<DoctorDetails> doctorData}) {
-    _appointmentData = doctorData
+class RobotDataSource extends DataGridSource {
+  RobotDataSource({required List<RobotDetails> robotData}) {
+    _robotData = robotData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<String>(columnName: 'patientID', value: e.doctorID),
-              DataGridCell<String>(columnName: 'name', value: e.name),
-              DataGridCell<String>(columnName: 'Contact', value: e.contact),
-              DataGridCell<String>(columnName: 'button', value: e.contact),
+              DataGridCell<String>(columnName: 'Robot Name', value: e.hubName),
+              DataGridCell<String>(
+                  columnName: 'Robot Location', value: e.location),
+              DataGridCell<String>(columnName: 'button', value: e.toString()),
             ]))
         .toList();
   }
 
-  List<DataGridRow> _appointmentData = [];
+  List<DataGridRow> _robotData = [];
 
   @override
-  List<DataGridRow> get rows => _appointmentData;
-
+  List<DataGridRow> get rows => _robotData;
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {
     Color getBackgroundColor() {
@@ -146,22 +136,22 @@ class DoctorDataSource extends DataGridSource {
         cells: row.getCells().map<Widget>((e) {
           return Container(
               alignment: Alignment.center,
-              padding:const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: e.columnName == 'button'
                   ? LayoutBuilder(builder:
                       (BuildContext context, BoxConstraints constraints) {
                       return Row(
                         children: [
                           Expanded(
-                            child: ElevatedButton(
-                             style: ElevatedButton.styleFrom(
-                               backgroundColor: myColors.greenColor
-                             ),
-                             onPressed: (){}, child: Text('View details',
-                             style: TextStyle(
-                               color: myColors.whiteColor
-                             ),)),
-                          ),
+                              child: Padding(
+                                  padding: EdgeInsets.only(left: 70, right: 70),
+                                  child: myWidgets.buttonIconColor(
+                                      backGroundColor: myColors.whiteColor,
+                                      onPressed: () {},
+                                      icon: (FontAwesomeIcons.robot),
+                                      iconColor: myColors.lightBlueColor,
+                                      labelText: 'View details',
+                                      labelColor: myColors.lightBlueColor))),
                         ],
                       );
                     })

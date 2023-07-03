@@ -1,11 +1,102 @@
+//appointment_widget
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:intl/intl.dart';
 
 final appointmentWidgets = AppointmentWidgets();
 
 class AppointmentWidgets {
+  Widget mobileSearch(
+      {required TextEditingController controller, required Function onTap}) {
+    return Row(
+      children: [
+        Expanded(
+          flex: 4,
+          child: TextFormField(
+            controller: controller,
+            decoration: InputDecoration(
+              hintText: 'Eg: 9361797872',
+              focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10)),
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              suffixIconColor: myColors.greenColor,
+            ),
+          ),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: myColors.greenColor,
+              ),
+              height: 52.5,
+              child: IconButton(
+                  splashRadius: null,
+                  onPressed: onTap as void Function(),
+                  icon: Icon(
+                    Icons.search,
+                    size: 30,
+                    color: myColors.whiteColor,
+                  )),
+            ),
+          ),
+        )
+      ],
+    );
+  }
+
+  Widget chipSlots(
+      {required Function onTap,
+      required String text,
+      required ListView listView,
+      required List selectedList}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+      child: InkWell(
+          onTap: onTap as void Function(),
+          child: Container(
+              padding: EdgeInsets.only(left: 20),
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  border: Border.all(color: myColors.greenColor),
+                  borderRadius: BorderRadius.circular(10.0)),
+              child: selectedList.isEmpty
+                  ? Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          text,
+                          style: TextStyle(color: myColors.greenColor),
+                        ),
+                      ],
+                    )
+                  : listView)),
+    );
+  }
+
+  Widget button(
+      {required String label,
+      required Function onPressed,
+      required Widget icon,
+      Color? color}) {
+    return TextButton.icon(
+        onPressed: onPressed as void Function(),
+        icon: icon,
+        label: Text(
+          label,
+          style: TextStyle(color: color),
+        ));
+  }
+
   Widget robotDetailsContainer(
       {required String robotID,
       required String robotName,
@@ -366,7 +457,10 @@ class AppointmentWidgets {
     );
   }
 
-  appointmentContainer({required BuildContext context}) {
+  appointmentContainer(
+      {required BuildContext context,
+      required String count,
+      required String date}) {
     return Container(
       width: double.infinity,
       // height: MediaQuery.of(context).size.height / 8,
@@ -382,7 +476,7 @@ class AppointmentWidgets {
           ),
         ],
       ),
-      child: const Column(children: [
+      child: Column(children: [
         Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -391,23 +485,29 @@ class AppointmentWidgets {
               Row(
                 children: [
                   Expanded(
-                    child: Text("Appointments on  ",
-                        style: TextStyle(fontWeight: FontWeight.w400)),
-                  ),
-                  Expanded(
-                    child: Text(
-                      "November 12",
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                    ),
+                    child: RichText(
+                        text: TextSpan(
+                            text: "Appointments on  ",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                color: myColors.blackColor,
+                                fontSize: 15),
+                            children: [
+                          TextSpan(
+                            text: date,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 18),
+                          ),
+                        ])),
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text(
-                "11",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26),
+                count,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 29),
               )
             ],
           ),
@@ -435,6 +535,114 @@ class AppointmentWidgets {
         ],
       ),
       child: tableCalendar,
+    );
+  }
+
+  containerBoxDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: myColors.whiteColor,
+      boxShadow: [
+        BoxShadow(
+          color: myColors.shadowColor3,
+          blurRadius: 0,
+          offset: Offset(0, 0),
+        ),
+        BoxShadow(
+          color: myColors.shadowColor3,
+          blurRadius: 10,
+          offset: Offset(0, 4),
+        ),
+        BoxShadow(
+          color: myColors.shadowColor7,
+          blurRadius: 24,
+          offset: Offset(0, 40),
+        ),
+      ],
+    );
+  }
+
+  Widget formField(
+      {required String labelText,
+      required String hintText,
+      required TextEditingController controller,
+      TextInputType? type, //keyboard type
+      int? maxLines}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      child: TextFormField(
+          controller: controller,
+          keyboardType: type,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+              fillColor: myColors.whiteColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: myColors.greenColor,
+                  )),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                ),
+              ),
+              labelText: labelText,
+              hintText: hintText,
+              labelStyle: TextStyle(color: myColors.greenColor))),
+    );
+  }
+
+  Widget dropdownButton({required String labelText, required List items}) {
+    return DropdownSearch<int>(
+      items: List.generate(50, (i) => i),
+      dropdownDecoratorProps: DropDownDecoratorProps(
+        dropdownSearchDecoration: InputDecoration(
+            labelText: labelText,
+            filled: true,
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(12),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            labelStyle: TextStyle(color: myColors.greenColor)),
+      ),
+      popupProps: PopupProps.menu(
+        showSearchBox: true,
+        fit: FlexFit.loose,
+        constraints: BoxConstraints(maxHeight: 300),
+      ),
+    );
+  }
+
+  Widget datePicker({required DateFormat format}) {
+    return DateTimeField(
+      decoration: InputDecoration(
+          label: Text(
+            'Appointment Date',
+            style: TextStyle(color: myColors.greenColor),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.green),
+          ),
+          enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.green),
+              borderRadius: BorderRadius.circular(10))),
+      format: format,
+      onShowPicker: (context, currentValue) {
+        return showDatePicker(
+            context: context,
+            firstDate: DateTime(1900),
+            initialDate: currentValue ?? DateTime.now(),
+            lastDate: DateTime(2100));
+      },
     );
   }
 }

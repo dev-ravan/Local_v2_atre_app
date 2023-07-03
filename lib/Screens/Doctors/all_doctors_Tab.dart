@@ -3,6 +3,8 @@ import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
+import '../../Model/doctorModel/list_all_doctor_service.dart';
+
 class AllDoctorsTab extends StatefulWidget {
   const AllDoctorsTab({super.key});
 
@@ -11,13 +13,13 @@ class AllDoctorsTab extends StatefulWidget {
 }
 
 class _AllDoctorsTabState extends State<AllDoctorsTab> {
-  List<DoctorDetails> appointment = <DoctorDetails>[];
+  List<DoctorList> appointment = <DoctorList>[];
   DoctorDataSource? doctorDataSource;
 
   @override
   void initState() {
     super.initState();
-    appointment = getEmployeeData();
+    //appointment = getEmployeeData();
     doctorDataSource = DoctorDataSource(doctorData: appointment);
   }
 
@@ -88,75 +90,75 @@ class _AllDoctorsTabState extends State<AllDoctorsTab> {
   }
 }
 
-class DoctorDetails {
-  DoctorDetails(
-    this.doctorID,
-    this.name,
-    this.contact,
-  );
-  final String doctorID;
-  final String name;
-  final String contact;
-}
+// class DoctorDetails {
+//   DoctorDetails(
+//     this.doctorID,
+//     this.name,
+//     this.contact,
+//   );
+//   final String doctorID;
+//   final String name;
+//   final String contact;
+// }
 
-List<DoctorDetails> getEmployeeData() {
-  return [
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-    DoctorDetails(
-      'AM-1031',
-      "Kamini R",
-      "91 9018276354",
-    ),
-  ];
-}
+// List<DoctorDetails> getEmployeeData() {
+//   return [
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//     DoctorDetails(
+//       'AM-1031',
+//       "Kamini R",
+//       "91 9018276354",
+//     ),
+//   ];
+// }
 
 class DoctorDataSource extends DataGridSource {
-  DoctorDataSource({required List<DoctorDetails> doctorData}) {
+  DoctorDataSource({required List<DoctorList> doctorData}) {
     _appointmentData = doctorData
         .map<DataGridRow>((e) => DataGridRow(cells: [
-              DataGridCell<String>(columnName: 'patientID', value: e.doctorID),
-              DataGridCell<String>(columnName: 'name', value: e.name),
-              DataGridCell<String>(columnName: 'Contact', value: e.contact),
-              DataGridCell<String>(columnName: 'button', value: e.contact),
+              DataGridCell<String>(columnName: 'patientID', value: e.doctorId),
+              DataGridCell<String>(columnName: 'name', value: e.doctorName),
+              DataGridCell<String>(columnName: 'Contact', value: e.doctorPhoneNumber),
+          
             ]))
         .toList();
   }
@@ -186,23 +188,21 @@ class DoctorDataSource extends DataGridSource {
               child: e.columnName == 'button'
                   ? LayoutBuilder(builder:
                       (BuildContext context, BoxConstraints constraints) {
-                      return Expanded(
-                        child: Row(
-                          children: [
-                            IconButton(
-                                onPressed: () {},
-                                icon: const Icon(
-                                  Icons.edit_document,
-                                  color: Colors.lightBlue,
-                                )),
-                            IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.delete,
-                                  color: myColors.redColor,
-                                ))
-                          ],
-                        ),
+                      return Row(
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: const Icon(
+                                Icons.edit_document,
+                                color: Colors.lightBlue,
+                              )),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.delete,
+                                color: myColors.redColor,
+                              ))
+                        ],
                       );
                     })
                   : Text(e.value.toString()));

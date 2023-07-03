@@ -1,4 +1,5 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ class _PatientFormState extends State<PatientForm> {
               child: Container(
                 height: 500,
                 width: 700,
-                decoration: patientWidget.ContainerDecoration(),
+                decoration: patientWidget.containerDecoration(),
                 child: Padding(
                   padding: const EdgeInsets.all(40.0),
                   child: Column(
@@ -43,7 +44,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 50),
-                                  child: patientWidget.FormField(
+                                  child: patientWidget.formField(
                                       labelText: 'Name',
                                       hintText: '',
                                       controller: nameTextController))),
@@ -52,7 +53,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 50),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Date of Birth',
                                 hintText: '',
                                 controller: dateOfBirthController),
@@ -67,7 +68,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                                   padding: const EdgeInsets.only(
                                       top: 20, left: 10, right: 50),
-                                  child: patientWidget.FormField(
+                                  child: patientWidget.formField(
                                       labelText: 'Address',
                                       hintText: '',
                                       controller: addressTextController))),
@@ -76,7 +77,7 @@ class _PatientFormState extends State<PatientForm> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 20, left: 10, right: 50),
-                              child: patientWidget.FormField(
+                              child: patientWidget.formField(
                                   labelText: 'Pin Code',
                                   hintText: '',
                                   controller: emergencyPhoneTextController),
@@ -92,7 +93,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 50),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Phone',
                                 hintText: '',
                                 controller: phoneTextController),
@@ -102,7 +103,7 @@ class _PatientFormState extends State<PatientForm> {
                             child: Padding(
                               padding: const EdgeInsets.only(
                                   top: 20, left: 10, right: 50),
-                              child: patientWidget.FormField(
+                              child: patientWidget.formField(
                                   labelText: 'EmergencyPhone',
                                   hintText: '',
                                   controller: emergencyPhoneTextController),
@@ -118,7 +119,7 @@ class _PatientFormState extends State<PatientForm> {
                               child: Padding(
                             padding: const EdgeInsets.only(
                                 top: 20, left: 10, right: 400),
-                            child: patientWidget.FormField(
+                            child: patientWidget.formField(
                                 labelText: 'Marital Status',
                                 hintText: '',
                                 controller: maritalStatusTextController),
@@ -130,23 +131,21 @@ class _PatientFormState extends State<PatientForm> {
                         padding: const EdgeInsets.only(left: 200, top: 20),
                         child: Row(
                           children: [
-                            Container(
-                                color: Colors.grey.shade200,
-                                child: patientWidget.ButtonIcon(
-                                    onPressed: () {},
-                                    icon: (Icons.group_add_outlined),
-                                    iconColor: myColors.blackColor,
-                                    labelText: 'Cancel',
-                                    labelColor: myColors.blackColor)),
+                            myWidgets.buttonIcon(
+                                backGroundColor: myColors.greyButtonColor,
+                                onPressed: () {},
+                                icon: (Icons.group_add_outlined),
+                                iconColor: myColors.blackColor,
+                                labelText: 'Cancel',
+                                labelColor: myColors.blackColor),
                             const SizedBox(width: 30),
-                            Container(
-                                color: myColors.greenColor,
-                                child: patientWidget.ButtonIcon(
-                                    onPressed: () {},
-                                    icon: (Icons.group_add_outlined),
-                                    iconColor: myColors.whiteColor,
-                                    labelText: 'Create',
-                                    labelColor: myColors.whiteColor))
+                            myWidgets.buttonIcon(
+                                backGroundColor: myColors.greenColor,
+                                onPressed: () {},
+                                icon: (Icons.group_add_outlined),
+                                iconColor: myColors.whiteColor,
+                                labelText: 'Create',
+                                labelColor: myColors.whiteColor)
                           ],
                         ),
                       )

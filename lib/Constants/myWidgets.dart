@@ -1,9 +1,28 @@
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:cherry_toast/cherry_toast.dart';
+import 'package:cherry_toast/resources/arrays.dart';
 import 'package:flutter/material.dart';
 
 final myWidgets = MyWidgets();
 
 class MyWidgets {
+  toastMsg({required BuildContext context, required String msg}) {
+    return CherryToast.warning(
+      title: const Text("Warning"),
+      enableIconAnimation: false,
+      displayTitle: false,
+      description: Text(
+        msg,
+        style: const TextStyle(fontWeight: FontWeight.w400),
+      ),
+      animationType: AnimationType.fromTop,
+      borderRadius: 10,
+      animationDuration: const Duration(milliseconds: 600),
+      autoDismiss: true,
+      animationCurve: Curves.easeInCirc,
+    ).show(context);
+  }
+
   titleText({required String title}) {
     return Text(
       title,
@@ -97,8 +116,62 @@ class MyWidgets {
       title,
       style: TextStyle(
           color: myColors.greenColor,
+          decoration: TextDecoration.underline,
           letterSpacing: 0.5,
           fontWeight: FontWeight.w500),
+    );
+  }
+
+  Widget buttonIcon({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(
+        icon,
+        color: iconColor,
+        size: 15,
+      ),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
+    );
+  }
+
+  Widget buttonIconColor({
+    required Function onPressed,
+    required IconData icon,
+    required String labelText,
+    required Color iconColor,
+    required Color labelColor,
+    required Color backGroundColor,
+  }) {
+    return ElevatedButton.icon(
+      onPressed: onPressed as void Function(),
+      icon: Icon(
+        icon,
+        color: iconColor,
+        size: 15,
+      ),
+      label: Text(
+        labelText,
+        style: TextStyle(color: labelColor),
+      ),
+      style: ElevatedButton.styleFrom(
+          side: BorderSide(color: myColors.lightBlueColor),
+          backgroundColor: backGroundColor,
+          shape: ContinuousRectangleBorder(
+              borderRadius: BorderRadius.circular(5))),
     );
   }
 }
