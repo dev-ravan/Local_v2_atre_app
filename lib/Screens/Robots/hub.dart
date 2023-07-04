@@ -40,6 +40,7 @@ class _HubState extends State<Hub> {
                                 child: Align(
                                   alignment: Alignment.topRight,
                                   child: myWidgets.buttonIcon(
+                                      iconSize: 15,
                                       backGroundColor: myColors.greenColor,
                                       onPressed: () {},
                                       icon: !snapshot.isTabClicked

@@ -27,4 +27,15 @@ class RobotProvider extends ChangeNotifier {
     _isAddRobotClicked = true;
     notifyListeners();
   }
+
+  // ***************** Robot Controllers **********************
+
+  final nameTextController = TextEditingController();
+  final setting1TextController = TextEditingController();
+  final setting2TextController = TextEditingController();
+  final setting3TextController = TextEditingController();
+  final setting4TextController = TextEditingController();
+  final setting5TextController = TextEditingController();
+  final setting6TextController = TextEditingController();
+  final setting7TextController = TextEditingController();
 }

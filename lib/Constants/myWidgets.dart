@@ -129,9 +129,11 @@ class MyWidgets {
     required Color iconColor,
     required Color labelColor,
     required Color backGroundColor,
+    required double iconSize,
   }) {
     return Container(
       height: 40,
+      width: 150,
       decoration: BoxDecoration(
           color: myColors.greenColor, borderRadius: BorderRadius.circular(5.0)),
       child: ElevatedButton.icon(
@@ -139,7 +141,7 @@ class MyWidgets {
         icon: Icon(
           icon,
           color: iconColor,
-          size: 15,
+          size: iconSize,
         ),
         label: Text(
           labelText,
@@ -178,5 +180,46 @@ class MyWidgets {
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(5))),
     );
+  }
+
+  containerDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: myColors.whiteContainerColor,
+      boxShadow: [
+        BoxShadow(
+          color: myColors.greyShadowColor.withOpacity(0.5),
+          spreadRadius: 1.5,
+          blurRadius: 4,
+          offset: Offset(0, 3),
+        ),
+      ],
+    );
+  }
+
+  Widget formField(
+      {required String labelText,
+      required String hintText,
+      required TextEditingController controller,
+      TextInputType? type}) {
+    return TextFormField(
+        controller: controller,
+        keyboardType: type,
+        decoration: InputDecoration(
+            fillColor: myColors.whiteColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                )),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5),
+              borderSide: BorderSide(
+                color: myColors.greenColor,
+              ),
+            ),
+            labelText: labelText,
+            hintText: hintText,
+            labelStyle: TextStyle(color: myColors.greenColor)));
   }
 }

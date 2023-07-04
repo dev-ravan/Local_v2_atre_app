@@ -5,47 +5,6 @@ import '../../Constants/myWidgets.dart';
 final patientWidget = PatientWidget();
 
 class PatientWidget {
-  containerDecoration() {
-    return BoxDecoration(
-      borderRadius: BorderRadius.circular(10),
-      color: myColors.whiteContainerColor,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.grey.withOpacity(0.5),
-          spreadRadius: 1.5,
-          blurRadius: 4,
-          offset: Offset(0, 3),
-        ),
-      ],
-    );
-  }
-
-  Widget formField(
-      {required String labelText,
-      required String hintText,
-      required TextEditingController controller,
-      TextInputType? type}) {
-    return TextFormField(
-        controller: controller,
-        keyboardType: type,
-        decoration: InputDecoration(
-            fillColor: myColors.whiteColor,
-            focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(5),
-                borderSide: BorderSide(
-                  color: myColors.greenColor,
-                )),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5),
-              borderSide: BorderSide(
-                color: myColors.greenColor,
-              ),
-            ),
-            labelText: labelText,
-            hintText: hintText,
-            labelStyle: TextStyle(color: myColors.greenColor)));
-  }
-
   Widget patientDetailsContainer(
       {required String patientID,
       required String name,
@@ -63,7 +22,7 @@ class PatientWidget {
         color: myColors.whiteContainerColor,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
+            color: myColors.greyShadowColor.withOpacity(0.5),
             spreadRadius: 1.5,
             blurRadius: 4,
             offset: Offset(0, 3),
