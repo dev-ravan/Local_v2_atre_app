@@ -571,6 +571,7 @@ class AppointmentWidgets {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20),
       child: TextFormField(
+        
           controller: controller,
           keyboardType: type,
           maxLines: maxLines,
@@ -588,6 +589,7 @@ class AppointmentWidgets {
                 ),
               ),
               labelText: labelText,
+              
               hintText: hintText,
               labelStyle: TextStyle(color: myColors.greenColor))),
     );
