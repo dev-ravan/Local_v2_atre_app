@@ -122,6 +122,15 @@ class MyWidgets {
     );
   }
 
+  Widget greenLabelText({required String title}) {
+    return Text(
+      title,
+      style: TextStyle(
+        color: myColors.greenColor,
+      ),
+    );
+  }
+
   Widget buttonIcon({
     required Function onPressed,
     required IconData icon,

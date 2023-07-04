@@ -65,17 +65,37 @@ class AppoinmentApi extends ChangeNotifier {
     }
   }
 
-  // ******************************************* APPOINTMENT LIST ***********************************************
+  // ******************************************* PATIENT DETAILS LIST ***********************************************
 
   List<PatientDetails> patientList = [];
+  List patientNameList = [];
 
-  Future<PatientDetailsModel?> updatePassword(
+  void listOfPatients(mobNumber) {
+    generatePatientList(mobNumber: mobNumber).then((value) {
+      if (value!.data.isEmpty) {
+        patientList = [];
+        patientNameList = [];
+        notifyListeners();
+      } else {
+        for (var i = 0; i < value.data.length; i++) {
+          patientNameList.clear();
+          patientNameList.add(value.data[i].patientName);
+        }
+        patientList = [...value.data];
+        print("patientNameList: $patientNameList");
+        notifyListeners();
+      }
+    });
+  }
+
+  Future<PatientDetailsModel?> generatePatientList(
       {required String mobNumber}) async {
     final http.Response response = await http.post(
         Uri.parse("${baseUrl}get-patient-info"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'user-agent': version
+          'user-agent': version,
+          'Authorization': 'Bearer $globalAccessToken'
         },
         body: jsonEncode(<String, dynamic>{"patient_phone_number": mobNumber}));
 

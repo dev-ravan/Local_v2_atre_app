@@ -1,7 +1,7 @@
 import 'package:atre_windows/Constants/myWidgets.dart';
-import 'package:filter_list/filter_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../../API Services/appointment_Service.dart';
 import '../../Constants/myColors.dart';
 import '../../Controller/appointment_controller.dart';
 import 'appointment_widgets.dart';
@@ -17,24 +17,37 @@ class AppointmentForm extends StatefulWidget {
 
 class _AppointmentFormState extends State<AppointmentForm> {
   final format = DateFormat("dd / MM / yyyy");
-  List<User>? selectedUserList = [];
-  // TextEditingController diagnosisTextControl = TextEditingController();
-  // TextEditingController _searchController = TextEditingController();
+  String? patientName;
+  String? locationName;
+  String? scanTypeName;
+  String? refDocName;
+  String? radiologistName;
+
+  List<dynamic> location = ["Coimbatore", "Chennai", "Thiruvarur", 'Selam'];
+  List<dynamic> scanType = [
+    "X-Ray",
+    "MRI",
+    "Electrocardiogram (ECG)",
+    'CT scan'
+  ];
+  List<dynamic> refDoc = ["Ravan", "Sachin", "Gowsalya", 'Manisha', 'Malavika'];
 
   @override
   void initState() {
     super.initState();
-    final _appointmentProvider =
-        Provider.of<AppointmentProvider>(context, listen: false);
-    _appointmentProvider.diffDiagnosis.text = 'Differential Diagnosis';
+
+    Provider.of<AppointmentProvider>(context, listen: false);
+    Provider.of<AppoinmentApi>(context, listen: false);
   }
 
   Widget build(BuildContext context) {
+    final _appointmentApi = Provider.of<AppoinmentApi>(context);
+
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40, top: 120),
-        child: Consumer<AppointmentProvider>(
-          builder: (context, snap, child) => Column(
+        child: Consumer2<AppointmentProvider, AppoinmentApi>(
+          builder: (context, snap, snapApi, child) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
@@ -45,9 +58,10 @@ class _AppointmentFormState extends State<AppointmentForm> {
                   ),
                   Expanded(
                       child: appointmentWidgets.mobileSearch(
-                          controller: snap.search, onTap: () {}))
-
-                  // myWidgets.searchField()
+                          controller: snap.search,
+                          onTap: () {
+                            _appointmentApi.listOfPatients(snap.search.text);
+                          }))
                 ],
               ),
               const SizedBox(height: 16.0),
@@ -70,45 +84,28 @@ class _AppointmentFormState extends State<AppointmentForm> {
                             child: Column(
                               children: [
                                 // ********************************************* Patient Name ***************************************************
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Patient Name'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {
+                                      patientName = value;
+                                      print(patientName);
+                                    });
+                                  },
+                                  labelText: "Patient Name",
+                                  items: snapApi.patientNameList,
+                                ),
 
                                 // ********************************************* Scan Type **************************************************
 
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Scan Type'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {
+                                      scanTypeName = value;
+                                    });
+                                  },
+                                  labelText: "Scan Type",
+                                  items: scanType,
+                                ),
                                 // ********************************************* Appointment Date ***************************************************
 
                                 Padding(
@@ -117,6 +114,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
                                   child: DateTimeField(
                                     resetIcon: null,
                                     decoration: InputDecoration(
+                                        label: myWidgets.greenLabelText(
+                                            title: "Appointment Date"),
                                         border: const OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: Colors.green),
@@ -145,65 +144,33 @@ class _AppointmentFormState extends State<AppointmentForm> {
                               children: [
                                 // ********************************************* Appointment Location ***************************************************
 
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Appointment Location'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {
+                                      locationName = value;
+                                    });
+                                  },
+                                  labelText: "Appointment Location",
+                                  items: location,
+                                ),
 
                                 // ********************************************* Doctor Name ***************************************************
 
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Doctor Name'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {});
+                                  },
+                                  labelText: "Doctor Name",
+                                  items: snapApi.patientNameList,
+                                ),
                                 // ********************************************* Appointment Time ***************************************************
-
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Appointment Time'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {});
+                                  },
+                                  labelText: "Appointment Time",
+                                  items: snapApi.patientNameList,
+                                ),
                               ],
                             ),
                           ),
@@ -212,44 +179,26 @@ class _AppointmentFormState extends State<AppointmentForm> {
                               children: [
                                 // ********************************************* Referred Doctor ***************************************************
 
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Referred Doctor'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {
+                                      refDocName = value;
+                                    });
+                                  },
+                                  labelText: "Referred Doctor",
+                                  items: refDoc,
+                                ),
                                 // ********************************************* Radiologist Name ***************************************************
 
-                                appointmentWidgets.chipSlots(
-                                    onTap: _openFilterDialog,
-                                    listView: ListView.builder(
-                                      itemCount: selectedUserList!.length,
-                                      itemBuilder: (context, index) {
-                                        return ListTile(
-                                          title: Center(
-                                            child: Text(
-                                                selectedUserList![index].name!,
-                                                style: const TextStyle(
-                                                    color: Color.fromARGB(
-                                                        255, 0, 0, 0))),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                    selectedList: selectedUserList!,
-                                    text: 'Radiologist Name'),
+                                appointmentWidgets.dropdownButton(
+                                  onChange: (value) {
+                                    setState(() {
+                                      radiologistName = value;
+                                    });
+                                  },
+                                  labelText: "Radiologist Name",
+                                  items: refDoc,
+                                ),
                               ],
                             ),
                           ),
@@ -262,8 +211,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
 
                       appointmentWidgets.formField(
                           maxLines: 3,
-                          labelText: '',
-                          hintText: 'Differential Diagnosis',
+                          labelText: 'Differential Diagnosis',
+                          hintText: '',
                           controller: snap.diffDiagnosis),
                       const SizedBox(
                         height: 35,
@@ -304,7 +253,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       InkWell(
@@ -320,99 +269,4 @@ class _AppointmentFormState extends State<AppointmentForm> {
       ),
     );
   }
-
-  Future<void> _openFilterDialog({required}) async {
-    await FilterListDialog.display<User>(
-      context,
-      hideSelectedTextCount: true,
-      themeData: FilterListThemeData(
-        context,
-      ),
-      height: 400,
-      width: 500,
-      listData: userList,
-      hideCloseIcon: true,
-      enableOnlySingleSelection: true,
-      selectedListData: selectedUserList,
-      choiceChipLabel: (item) => item!.name,
-      validateSelectedItem: (list, val) => list!.contains(val),
-      controlButtons: [ControlButtonType.All, ControlButtonType.Reset],
-      onItemSearch: (user, query) {
-        return user.name!.toLowerCase().contains(query.toLowerCase());
-      },
-      onApplyButtonClick: (list) {
-        setState(() {
-          selectedUserList = List.from(list!);
-        });
-        Navigator.pop(context);
-      },
-      choiceChipBuilder: (context, item, isSelected) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              border: Border.all(
-                color: isSelected! ? myColors.greenColor : Colors.grey[400]!,
-              )),
-          child: Text(
-            item.name,
-            style: TextStyle(
-                color: isSelected ? myColors.greenColor : Colors.grey[500]),
-          ),
-        );
-      },
-    );
-  }
 }
-
-class User {
-  final String? name;
-  final String? avatar;
-  User({this.name, this.avatar});
-}
-
-/// Creating a global list for example purpose.
-/// Generally it should be within data class or where ever you want
-List<User> userList = [
-  User(name: "Abigail", avatar: "user.png"),
-  User(name: "Audrey", avatar: "user.png"),
-  User(name: "Ava", avatar: "user.png"),
-  User(name: "Bella", avatar: "user.png"),
-  User(name: "Bernadette", avatar: "user.png"),
-  User(name: "Carol", avatar: "user.png"),
-  User(name: "Claire", avatar: "user.png"),
-  User(name: "Deirdre", avatar: "user.png"),
-  User(name: "Donna", avatar: "user.png"),
-  User(name: "Dorothy", avatar: "user.png"),
-  User(name: "Faith", avatar: "user.png"),
-  User(name: "Gabrielle", avatar: "user.png"),
-  User(name: "Grace", avatar: "user.png"),
-  User(name: "Hannah", avatar: "user.png"),
-  User(name: "Heather", avatar: "user.png"),
-  User(name: "Irene", avatar: "user.png"),
-  User(name: "Jan", avatar: "user.png"),
-  User(name: "Jane", avatar: "user.png"),
-  User(name: "Julia", avatar: "user.png"),
-  User(name: "Kylie", avatar: "user.png"),
-  User(name: "Lauren", avatar: "user.png"),
-  User(name: "Leah", avatar: "user.png"),
-  User(name: "Lisa", avatar: "user.png"),
-  User(name: "Melanie", avatar: "user.png"),
-  User(name: "Natalie", avatar: "user.png"),
-  User(name: "Olivia", avatar: "user.png"),
-  User(name: "Penelope", avatar: "user.png"),
-  User(name: "Rachel", avatar: "user.png"),
-  User(name: "Ruth", avatar: "user.png"),
-  User(name: "Sally", avatar: "user.png"),
-  User(name: "Samantha", avatar: "user.png"),
-  User(name: "Sarah", avatar: "user.png"),
-  User(name: "Theresa", avatar: "user.png"),
-  User(name: "Una", avatar: "user.png"),
-  User(name: "Vanessa", avatar: "user.png"),
-  User(name: "Victoria", avatar: "user.png"),
-  User(name: "Wanda", avatar: "user.png"),
-  User(name: "Wendy", avatar: "user.png"),
-  User(name: "Yvonne", avatar: "user.png"),
-  User(name: "Zoe", avatar: "user.png"),
-];

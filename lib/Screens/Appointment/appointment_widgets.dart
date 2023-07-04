@@ -593,31 +593,36 @@ class AppointmentWidgets {
     );
   }
 
-  Widget dropdownButton({required String labelText, required List items}) {
-    return DropdownSearch<int>(
-      items: List.generate(50, (i) => i),
-      dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
-            labelText: labelText,
-            filled: true,
-            fillColor: myColors.whiteColor,
-            focusedBorder: OutlineInputBorder(
+  Widget dropdownButton(
+      {required String labelText,
+      required List<dynamic> items,
+      required Function(dynamic)? onChange}) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+      child: DropdownSearch<dynamic>(
+        onChanged: onChange,
+        items: items,
+        dropdownDecoratorProps: DropDownDecoratorProps(
+          dropdownSearchDecoration: InputDecoration(
+              labelText: labelText,
+              filled: true,
+              fillColor: myColors.whiteColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide(
+                    color: myColors.greenColor,
+                  )),
+              enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide(
                   color: myColors.greenColor,
-                )),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(12),
-              borderSide: BorderSide(
-                color: myColors.greenColor,
+                ),
               ),
-            ),
-            labelStyle: TextStyle(color: myColors.greenColor)),
-      ),
-      popupProps: PopupProps.menu(
-        showSearchBox: true,
-        fit: FlexFit.loose,
-        constraints: BoxConstraints(maxHeight: 300),
+              labelStyle: TextStyle(color: myColors.greenColor)),
+        ),
+        popupProps: PopupProps.menu(
+          fit: FlexFit.loose,
+        ),
       ),
     );
   }
