@@ -2,8 +2,6 @@
 //
 //     final doctorList = doctorListFromJson(jsonString);
 
-import 'package:meta/meta.dart';
-import 'dart:convert';
 
 
 class DoctorList {

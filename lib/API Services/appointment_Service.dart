@@ -55,7 +55,7 @@ class AppoinmentApi extends ChangeNotifier {
       if (response.statusCode == 200) {
         _appointments = parseAppointments(response.body);
         appointmentsCount = parseAppointments(response.body).length;
-        // print(_appointments);
+       print(_appointments);
         notifyListeners();
       } else {
         return null;
