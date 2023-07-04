@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:atre_windows/Screens/Doctors/all_doctors_Tab.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../Constants/myColors.dart';
 import '../Model/doctorModel/list_all_doctor_service.dart';
 
 class DoctorProvider extends ChangeNotifier {
-  DoctorDataSource? _doctorDataSource;
   final doctorName = TextEditingController();
   final registrationNumber = TextEditingController();
   final email = TextEditingController();
@@ -21,7 +19,47 @@ class DoctorProvider extends ChangeNotifier {
     _isDoctorForm = false;
     notifyListeners();
   }
+//===================Validation================
+  String? validateName(String? value) {
+    return value!.isEmpty ? 'Please enter name' : null;
+  }
+String? validateRegistrationNumber(String? value) {
+    return value!.isEmpty ? 'Please enter  RegistrationNumber' : null;
+  }
+    String? validateEmail(String? value) {
+    const pattern = r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+        r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+        r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+        r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+        r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+        r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+        r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])';
+    final regex = RegExp(pattern);
+
+    return value!.isEmpty
+        ? 'Please enter your email id'
+        : !regex.hasMatch(value)
+            ? 'Enter a valid email address'
+            : null;
+  }
+  String? validateHospitalName(String? value) {
+    return value!.isEmpty ? 'Please enter hospital name' : null;
+  }
+  String? validatePhoneNumber(String? value) {
+    return value!.isEmpty ? 'Please enter Phone Number' : null;
+  }
+    String? validateRadiologistNumber(String? value) {
+    return value!.isEmpty ? 'Please enter Radiologist Number' : null;
+  }
+
+
+
+
+
+  
 }
+
+
 
 class DoctorDataSource extends DataGridSource {
   DoctorDataSource({required List<DoctorList> doctorData}) {
@@ -29,7 +67,8 @@ class DoctorDataSource extends DataGridSource {
         .map<DataGridRow>((e) => DataGridRow(cells: [
               DataGridCell<String>(columnName: 'patientID', value: e.doctorId),
               DataGridCell<String>(columnName: 'name', value: e.doctorName),
-              DataGridCell<String>(columnName: 'Contact', value: e.doctorPhoneNumber),
+              DataGridCell<String>(
+                  columnName: 'Contact', value: e.doctorPhoneNumber),
               DataGridCell<String>(columnName: 'button', value: e.toString()),
             ]))
         .toList();

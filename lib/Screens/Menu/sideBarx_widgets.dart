@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
-import 'package:sidebarx/sidebarx.dart';
 
 import '../../Constants/myColors.dart';
 

@@ -28,7 +28,6 @@ class _DoctorTabState extends State<DoctorTab> {
   int tabIndex = 0;
   @override
   void initState() {
-    final _doctorProvider = Provider.of<DoctorProvider>(context, listen: false);
     super.initState();
   }
 

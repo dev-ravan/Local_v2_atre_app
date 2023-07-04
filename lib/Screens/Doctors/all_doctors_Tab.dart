@@ -18,7 +18,6 @@ class _AllDoctorsTabState extends State<AllDoctorsTab> {
   void initState() {
     super.initState();
     final doctorApi = Provider.of<DoctorApi>(context, listen: false);
-    final doctorProvider = Provider.of<DoctorProvider>(context, listen: false);
     doctorApi.generatedDoctorList();
   }
 

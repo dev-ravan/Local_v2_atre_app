@@ -1,4 +1,3 @@
-import 'package:atre_windows/Screens/Doctors/doctors.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -23,19 +22,16 @@ class _DoctorFormState extends State<DoctorForm> {
 
 @override
 void initState(){
-     final _doctorProvider =
-        Provider.of<DoctorProvider>(context, listen: false);
          super.initState();
 }
 
   @override
   Widget build(BuildContext context) {
-        final _doctorProvider = Provider.of<DoctorProvider>(context);
 
     return Padding(
       padding: const EdgeInsets.only(top: 120, left: 40, right: 40),
       child: Consumer<DoctorProvider>(
-        builder: (context, snap, child) => Column(
+        builder: (context, snapshot, child) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             doctorWidgets.titleText(heading: 'New Doctor'),
@@ -61,9 +57,13 @@ void initState(){
                             children: <Widget>[
                               Expanded(
                                   child: doctorWidgets.formField(
+                                    
                                       labelText: 'Name',
                                       hintText: '',
-                                      controller: snap.doctorName)),
+                                      controller: snapshot.doctorName,
+                                       validator: snapshot.validateName
+                                      
+                                      )),
                               const SizedBox(
                                 width: 30.0,
                               ),
@@ -71,7 +71,8 @@ void initState(){
                                   child: doctorWidgets.formField(
                                       labelText: 'Registration Number',
                                       hintText: '',
-                                      controller: snap.registrationNumber)),
+                                      controller: snapshot.registrationNumber,
+                                     validator: snapshot.validateRegistrationNumber )),
                             ],
                           ),
                         ),
@@ -85,7 +86,7 @@ void initState(){
                                   child: doctorWidgets.formField(
                                       labelText: 'Email',
                                       hintText: '',
-                                      controller: snap.email)),
+                                      controller: snapshot.email, validator: snapshot.validateEmail)),
                               const SizedBox(
                                 width: 30.0,
                               ),
@@ -93,7 +94,7 @@ void initState(){
                                   child: doctorWidgets.formField(
                                       labelText: 'Hospital Name',
                                       hintText: '',
-                                      controller: snap.hospitalName)),
+                                      controller: snapshot.hospitalName, validator: snapshot.validateHospitalName)),
                             ],
                           ),
                         ),
@@ -107,7 +108,7 @@ void initState(){
                                   child: doctorWidgets.formField(
                                       labelText: 'Phone Number',
                                       hintText: '',
-                                      controller: snap.doctorPhoneNumber)),
+                                      controller: snapshot.doctorPhoneNumber, validator: snapshot.validatePhoneNumber)),
                               const SizedBox(
                                 width: 30.0,
                               ),
@@ -116,7 +117,7 @@ void initState(){
                                       labelText: 'Radiologist License Number',
                                       hintText: '',
                                       controller:
-                                          snap.radiologistLicenseNumber)),
+                                          snapshot.radiologistLicenseNumber, validator: snapshot.validateRadiologistNumber)),
                             ],
                           ),
                         ),
