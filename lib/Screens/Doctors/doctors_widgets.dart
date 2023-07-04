@@ -57,9 +57,11 @@ class DoctorWidgets {
       {required String labelText,
       required String hintText,
       required TextEditingController controller,
+       required String? Function(String?) validator,
       TextInputType? type}) {
     return TextFormField(
         controller: controller,
+        validator: validator,
         keyboardType: type,
         decoration: InputDecoration(
             fillColor: myColors.whiteColor,
