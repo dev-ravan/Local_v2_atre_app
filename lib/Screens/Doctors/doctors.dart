@@ -1,10 +1,12 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Constants/myWidgets.dart';
+import 'package:atre_windows/Controller/doctor_controller.dart';
 import 'package:atre_windows/Screens/Doctors/all_doctors_Tab.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_active_log_Tab.dart';
 import 'package:atre_windows/Screens/Doctors/doctors_widgets.dart';
 import 'package:atre_windows/Screens/Doctors/new_doctor_form.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Doctor extends StatelessWidget {
   const Doctor({super.key});
@@ -23,73 +25,75 @@ class DoctorTab extends StatefulWidget {
 }
 
 class _DoctorTabState extends State<DoctorTab> {
-  bool isDoctorForm = true;
   int tabIndex = 0;
+  @override
+  void initState() {
+    final _doctorProvider = Provider.of<DoctorProvider>(context, listen: false);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: isDoctorForm
-            ? Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40, top: 80),
-                child: Column(children: [
-                  const SizedBox(height: 25),
-                  Row(
-                    children: [
-                      myWidgets.titleText(title: 'Doctor'),
-                      Expanded(
-                        child: Align(
-                          alignment: Alignment.topRight,
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 400),
-                            child: Container(
-                                height: 40,
-                                decoration: BoxDecoration(
-                                    color: myColors.greenColor,
-                                    borderRadius: BorderRadius.circular(5.0)),
-                                child: doctorWidgets.addDoctorButton(
-                                    label: 'Add Doctor',
-                                    color: myColors.whiteColor,
-                                    onPressed: () {
-                                      setState(() {
-                                        isDoctorForm = false;
-                                      });
-                                    },
-                                    icon: Icon(Icons.group_add_sharp,
-                                        color: myColors.whiteColor))),
-                          ),
+        body: Consumer<DoctorProvider>(
+      builder: (context, snap, child) => snap.isDoctorForm
+          ? Padding(
+              padding: const EdgeInsets.only(left: 40, right: 40, top: 80),
+              child: Column(children: [
+                const SizedBox(height: 25),
+                Row(
+                  children: [
+                    myWidgets.titleText(title: 'Doctor'),
+                    Expanded(
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 400),
+                          child: Container(
+                              height: 40,
+                              decoration: BoxDecoration(
+                                  color: myColors.greenColor,
+                                  borderRadius: BorderRadius.circular(5.0)),
+                              child: doctorWidgets.addDoctorButton(
+                                  label: 'Add Doctor',
+                                  color: myColors.whiteColor,
+                                  onPressed: () {
+                                    snap.isDoctorFalse();
+                                  },
+                                  icon: Icon(Icons.group_add_sharp,
+                                      color: myColors.whiteColor))),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 20, right: 400),
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: DefaultTabController(
-                          length: 2,
-                          child: Scaffold(
-                            appBar: TabBar(
-                              indicatorColor: myColors.greenColor,
-                              labelColor: myColors.textColor,
-                              tabs: const [
-                                Tab(
-                                  text: 'All Doctors',
-                                ),
-                                Tab(text: 'Doctors Active Log'),
-                              ],
-                            ),
-                            body: const TabBarView(children: [
-                              AllDoctorsTab(),
-                              DoctorsActiveLog()
-                            ]),
-                          )),
                     ),
-                  ))
-                ]),
-              )
-            : const DoctorForm());
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Expanded(
+                    child: Padding(
+                  padding: const EdgeInsets.only(left: 20, right: 400),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: DefaultTabController(
+                        length: 2,
+                        child: Scaffold(
+                          appBar: TabBar(
+                            indicatorColor: myColors.greenColor,
+                            labelColor: myColors.textColor,
+                            tabs: const [
+                              Tab(
+                                text: 'All Doctors',
+                              ),
+                              Tab(text: 'Doctors Active Log'),
+                            ],
+                          ),
+                          body: const TabBarView(
+                              children: [AllDoctorsTab(), DoctorsActiveLog()]),
+                        )),
+                  ),
+                ))
+              ]),
+            )
+          : const DoctorForm(),
+    ));
   }
 }

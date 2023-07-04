@@ -29,9 +29,9 @@ class DoctorApi extends ChangeNotifier {
     }).toList();
   }
 
-  void generatedDoctorList(String date) async {
-    final http.Response response = await http.post(
-        Uri.parse("${baseUrl}admin/list-all-doctor"),
+  void generatedDoctorList() async {
+    final http.Response response = await http.get(
+        Uri.parse("${baseUrl}list-all-doctor"),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
           'Authorization': 'Bearer $globalAccessToken'
