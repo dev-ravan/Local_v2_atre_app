@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
@@ -62,7 +64,6 @@ class _PatientPageState extends State<PatientPage> {
               child: snapshot.isPatientDetails == true
                   ? Container(
                       height: 500,
-                      width: double.infinity,
                       decoration: myWidgets.containerDecoration(),
                       child: patientWidget.patientDetailsContainer(
                           address:

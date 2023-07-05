@@ -35,19 +35,16 @@ class PatientWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 myWidgets.detailsText(title: "Patient Details"),
-                Padding(
-                    padding: const EdgeInsets.only(
-                      left: 140,
-                    ),
-                    child: myWidgets.buttonIconColor(
-                        onPressed: () {},
-                        icon: (Icons.edit_document),
-                        iconColor: myColors.lightBlueColor,
-                        labelText: 'Edit',
-                        labelColor: myColors.lightBlueColor,
-                        backGroundColor: myColors.whiteColor)),
+                myWidgets.buttonIconColor(
+                    onPressed: () {},
+                    icon: (Icons.edit_document),
+                    iconColor: myColors.lightBlueColor,
+                    labelText: 'Edit',
+                    labelColor: myColors.lightBlueColor,
+                    backGroundColor: myColors.whiteColor),
               ],
             ),
             const SizedBox(

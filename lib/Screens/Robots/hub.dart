@@ -18,6 +18,7 @@ class Hub extends StatefulWidget {
 class _HubState extends State<Hub> {
   @override
   Widget build(BuildContext context) {
+    //********************Hub Main Page******************************************//
     return Consumer<RobotProvider>(
         builder: (context, snapshot, child) => snapshot.isAddRobotClicked ==
                 false
@@ -42,7 +43,11 @@ class _HubState extends State<Hub> {
                                   child: myWidgets.buttonIcon(
                                       iconSize: 15,
                                       backGroundColor: myColors.greenColor,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        !snapshot.isTabClicked
+                                            ? snapshot.isAddHubTrue()
+                                            : snapshot.isAddRobotTrue();
+                                      },
                                       icon: !snapshot.isTabClicked
                                           ? (Icons.device_hub)
                                           : (FontAwesomeIcons.robot),
@@ -87,7 +92,61 @@ class _HubState extends State<Hub> {
                       ),
                     ),
                   ),
-                  Expanded(child: Container())
+                  //********************Hub Form******************************************//
+                  Expanded(
+                      child: snapshot.isAddHubClicked == true
+                          ? Container(
+                              height: 350,
+                              decoration: myWidgets.containerDecoration(),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 40, vertical: 30),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    myWidgets.titleText(title: "New Hub"),
+                                    myWidgets.formField(
+                                        labelText: 'Hub Name',
+                                        hintText: '',
+                                        controller:
+                                            snapshot.nameTextController),
+                                    myWidgets.formField(
+                                        labelText: ' Hub Location',
+                                        hintText: '',
+                                        controller:
+                                            snapshot.setting2TextController),
+                                    const SizedBox(height: 25),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        myWidgets.buttonIcon(
+                                            iconSize: 20,
+                                            backGroundColor:
+                                                myColors.greyButtonColor,
+                                            onPressed: () {},
+                                            icon: (Icons.cancel),
+                                            iconColor: myColors.blackColor,
+                                            labelText: 'Cancel',
+                                            labelColor: myColors.blackColor),
+                                        const SizedBox(width: 30),
+                                        myWidgets.buttonIcon(
+                                            iconSize: 20,
+                                            backGroundColor:
+                                                myColors.greenColor,
+                                            onPressed: () {},
+                                            icon: (Icons.device_hub),
+                                            iconColor: myColors.whiteColor,
+                                            labelText: 'Create',
+                                            labelColor: myColors.whiteColor)
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          : Container())
                 ],
               )
             : RobotForm());

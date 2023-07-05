@@ -23,131 +23,85 @@ class _PatientFormState extends State<PatientForm> {
             Center(
               //********************Patient Form******************//
               child: Padding(
-                padding: const EdgeInsets.only(top: 20),
+                padding: EdgeInsets.symmetric(horizontal: 120, vertical: 30),
                 child: Container(
                   height: 500,
-                  width: 700,
+                  width: double.infinity,
                   decoration: myWidgets.containerDecoration(),
                   child: Padding(
                     padding: const EdgeInsets.all(40.0),
                     child: Column(
                       children: [
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
+                            //********************TextFormField******************//
                             Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, left: 10, right: 50),
-                                    child: myWidgets.formField(
-                                        labelText: 'Name',
-                                        hintText: '',
-                                        controller: snap.nameTextController))),
-                            const SizedBox(width: 16.0),
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 20, left: 10, right: 50),
-                              child: myWidgets.formField(
-                                  labelText: 'Date of Birth',
-                                  hintText: '',
-                                  controller: snap.dateOfBirthController),
+                                child: Column(
+                              children: [
+                                myWidgets.formField(
+                                    labelText: 'Name',
+                                    hintText: '',
+                                    controller: snap.nameTextController),
+                                myWidgets.formField(
+                                    labelText: 'Address',
+                                    hintText: '',
+                                    controller: snap.addressTextController),
+                                myWidgets.formField(
+                                    labelText: 'Phone',
+                                    hintText: '',
+                                    controller: snap.phoneTextController),
+                                myWidgets.formField(
+                                    labelText: 'Marital Status',
+                                    hintText: '',
+                                    controller:
+                                        snap.maritalStatusTextController)
+                              ],
                             )),
-                          ],
-                        ),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                                child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 20, left: 10, right: 50),
-                                    child: myWidgets.formField(
-                                        labelText: 'Address',
-                                        hintText: '',
-                                        controller:
-                                            snap.addressTextController))),
                             const SizedBox(width: 16.0),
                             Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 50),
-                                child: myWidgets.formField(
+                                child: Column(
+                              children: [
+                                myWidgets.formField(
+                                    labelText: 'Date of Birth',
+                                    hintText: '',
+                                    controller: snap.dateOfBirthController),
+                                myWidgets.formField(
                                     labelText: 'Pin Code',
                                     hintText: '',
                                     controller:
                                         snap.emergencyPhoneTextController),
-                              ),
-                            )
-                          ],
-                        ),
-                        const SizedBox(height: 10.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 20, left: 10, right: 50),
-                              child: myWidgets.formField(
-                                  labelText: 'Phone',
-                                  hintText: '',
-                                  controller: snap.phoneTextController),
-                            )),
-                            const SizedBox(width: 16.0),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 50),
-                                child: myWidgets.formField(
+                                myWidgets.formField(
                                     labelText: 'EmergencyPhone',
                                     hintText: '',
                                     controller:
                                         snap.emergencyPhoneTextController),
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 16.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Expanded(
-                                child: Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 20, left: 10, right: 400),
-                              child: myWidgets.formField(
-                                  labelText: 'Marital Status',
-                                  hintText: '',
-                                  controller: snap.maritalStatusTextController),
+                              ],
                             )),
                           ],
                         ),
-                        const SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 200, top: 20),
-                          child: Row(
-                            children: [
-                              myWidgets.buttonIcon(
-                                  iconSize: 15,
-                                  backGroundColor: myColors.greyButtonColor,
-                                  onPressed: () {},
-                                  icon: (Icons.group_add_outlined),
-                                  iconColor: myColors.blackColor,
-                                  labelText: 'Cancel',
-                                  labelColor: myColors.blackColor),
-                              const SizedBox(width: 30),
-                              myWidgets.buttonIcon(
-                                  iconSize: 15,
-                                  backGroundColor: myColors.greenColor,
-                                  onPressed: () {},
-                                  icon: (Icons.group_add_outlined),
-                                  iconColor: myColors.whiteColor,
-                                  labelText: 'Create',
-                                  labelColor: myColors.whiteColor)
-                            ],
-                          ),
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            myWidgets.buttonIcon(
+                                iconSize: 20,
+                                backGroundColor: myColors.greyButtonColor,
+                                onPressed: () {},
+                                icon: (Icons.cancel),
+                                iconColor: myColors.blackColor,
+                                labelText: 'Cancel',
+                                labelColor: myColors.blackColor),
+                            const SizedBox(width: 30),
+                            myWidgets.buttonIcon(
+                                iconSize: 20,
+                                backGroundColor: myColors.greenColor,
+                                onPressed: () {},
+                                icon: (Icons.group_add_outlined),
+                                iconColor: myColors.whiteColor,
+                                labelText: 'Create',
+                                labelColor: myColors.whiteColor)
+                          ],
                         )
                       ],
                     ),

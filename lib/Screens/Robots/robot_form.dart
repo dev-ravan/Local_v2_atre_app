@@ -14,8 +14,6 @@ class RobotForm extends StatefulWidget {
 class _RobotFormState extends State<RobotForm> {
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-
     return Consumer<RobotProvider>(
       builder: (context, snap, child) => Padding(
         padding: const EdgeInsets.only(left: 40, right: 40, top: 120),
@@ -29,8 +27,6 @@ class _RobotFormState extends State<RobotForm> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    width: double.infinity,
-                    height: height / 1.5,
                     decoration: myWidgets.containerDecoration(),
                     child: Padding(
                       padding: const EdgeInsets.all(40.0),
@@ -40,128 +36,72 @@ class _RobotFormState extends State<RobotForm> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: <Widget>[
                               Expanded(
-                                  child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 50),
-                                      child: myWidgets.formField(
-                                          labelText: 'Name',
-                                          hintText: '',
-                                          controller:
-                                              snap.nameTextController))),
-                              const SizedBox(width: 16.0),
-                              Expanded(
-                                  child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 50),
-                                child: myWidgets.formField(
-                                    labelText: 'Setting Value 1',
-                                    hintText: '',
-                                    controller: snap.setting1TextController),
+                                  child: Column(
+                                children: [
+                                  myWidgets.formField(
+                                      labelText: 'Name',
+                                      hintText: '',
+                                      controller: snap.nameTextController),
+                                  myWidgets.formField(
+                                      labelText: 'Setting Value 2',
+                                      hintText: '',
+                                      controller: snap.setting2TextController),
+                                  myWidgets.formField(
+                                      labelText: 'Setting Value 4',
+                                      hintText: '',
+                                      controller: snap.setting4TextController),
+                                  myWidgets.formField(
+                                      labelText: 'Setting Value 6',
+                                      hintText: '',
+                                      controller: snap.setting4TextController)
+                                ],
                               )),
-                            ],
-                          ),
-                          const SizedBox(height: 25.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                  child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 20, left: 10, right: 50),
-                                      child: myWidgets.formField(
-                                          labelText: 'Setting Value 2',
-                                          hintText: '',
-                                          controller:
-                                              snap.setting2TextController))),
                               const SizedBox(width: 16.0),
                               Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, left: 10, right: 50),
-                                  child: myWidgets.formField(
+                                  child: Column(
+                                children: [
+                                  myWidgets.formField(
+                                      labelText: 'Setting Value 1',
+                                      hintText: '',
+                                      controller: snap.setting1TextController),
+                                  myWidgets.formField(
                                       labelText: 'Setting Value 3',
                                       hintText: '',
                                       controller: snap.setting3TextController),
-                                ),
-                              )
-                            ],
-                          ),
-                          const SizedBox(height: 25.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                  child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 50),
-                                child: myWidgets.formField(
-                                    labelText: 'Setting Value 4',
-                                    hintText: '',
-                                    controller: snap.setting4TextController),
-                              )),
-                              const SizedBox(width: 16.0),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, left: 10, right: 50),
-                                  child: myWidgets.formField(
+                                  myWidgets.formField(
                                       labelText: 'Setting Value 5',
                                       hintText: '',
                                       controller: snap.setting4TextController),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 25.0),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Expanded(
-                                  child: Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 20, left: 10, right: 50),
-                                child: myWidgets.formField(
-                                    labelText: 'Setting Value 6',
-                                    hintText: '',
-                                    controller: snap.setting4TextController),
-                              )),
-                              const SizedBox(width: 16.0),
-                              Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      top: 20, left: 10, right: 50),
-                                  child: myWidgets.formField(
+                                  myWidgets.formField(
                                       labelText: 'Setting Value 7',
                                       hintText: '',
                                       controller: snap.setting4TextController),
-                                ),
-                              ),
+                                ],
+                              )),
                             ],
                           ),
                           const SizedBox(height: 25),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 200, top: 20),
-                            child: Row(
-                              children: [
-                                myWidgets.buttonIcon(
-                                    iconSize: 20,
-                                    backGroundColor: myColors.greyButtonColor,
-                                    onPressed: () {},
-                                    icon: (Icons.cancel),
-                                    iconColor: myColors.blackColor,
-                                    labelText: 'Cancel',
-                                    labelColor: myColors.blackColor),
-                                const SizedBox(width: 30),
-                                myWidgets.buttonIcon(
-                                    iconSize: 20,
-                                    backGroundColor: myColors.greenColor,
-                                    onPressed: () {},
-                                    icon: (Icons.group_add_outlined),
-                                    iconColor: myColors.whiteColor,
-                                    labelText: 'Create',
-                                    labelColor: myColors.whiteColor)
-                              ],
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              myWidgets.buttonIcon(
+                                  iconSize: 20,
+                                  backGroundColor: myColors.greyButtonColor,
+                                  onPressed: () {},
+                                  icon: (Icons.cancel),
+                                  iconColor: myColors.blackColor,
+                                  labelText: 'Cancel',
+                                  labelColor: myColors.blackColor),
+                              const SizedBox(width: 30),
+                              myWidgets.buttonIcon(
+                                  iconSize: 20,
+                                  backGroundColor: myColors.greenColor,
+                                  onPressed: () {},
+                                  icon: (Icons.group_add_outlined),
+                                  iconColor: myColors.whiteColor,
+                                  labelText: 'Create',
+                                  labelColor: myColors.whiteColor)
+                            ],
                           )
                         ],
                       ),

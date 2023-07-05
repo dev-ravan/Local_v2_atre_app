@@ -157,7 +157,6 @@ class HubDataSource extends DataGridSource {
                                     backGroundColor: myColors.whiteColor,
                                     onPressed: () {
                                       snapshot.isAddRobotTrue();
-                                      print(snapshot.isAddRobotClicked);
                                     },
                                     icon: (FontAwesomeIcons.robot),
                                     iconColor: myColors.lightBlueColor,
