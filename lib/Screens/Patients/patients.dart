@@ -62,19 +62,15 @@ class _PatientPageState extends State<PatientPage> {
           ),
           Expanded(
               child: snapshot.isPatientDetails == true
-                  ? Container(
-                      height: 500,
-                      decoration: myWidgets.containerDecoration(),
-                      child: patientWidget.patientDetailsContainer(
-                          address:
-                              "Effica Automation ,Neelambur,Tamil Nadu,641062",
-                          dob: "12/08/1998",
-                          email: "kamini1310@gmail.com",
-                          emgContact: "Father \n+91 9303812901",
-                          gender: "femele",
-                          maritalStatus: "single",
-                          patientID: "AM-1013",
-                          name: "Kamini"))
+                  ? patientWidget.patientDetailsContainer(
+                      address: "Effica Automation ,Neelambur,Tamil Nadu,641062",
+                      dob: "12/08/1998",
+                      email: "kamini1310@gmail.com",
+                      emgContact: "Father \n+91 9303812901",
+                      gender: "femele",
+                      maritalStatus: "single",
+                      patientID: "AM-1013",
+                      name: "Kamini")
                   : Container())
         ],
       ),

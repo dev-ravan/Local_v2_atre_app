@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
 import '../../Controller/hub_robot_controller.dart';
+import 'hub_widgets.dart';
 
 class Hub extends StatefulWidget {
   const Hub({super.key});
@@ -69,6 +70,7 @@ class _HubState extends State<Hub> {
                                     onTap: (value) {
                                       if (value == 1) {
                                         snapshot.isTabBarTrue();
+                                        snapshot.isHubCancelFalse();
                                       } else {
                                         setState(() {
                                           snapshot.isTabBarFalse();
@@ -117,6 +119,7 @@ class _HubState extends State<Hub> {
                                         controller:
                                             snapshot.setting2TextController),
                                     const SizedBox(height: 25),
+                                    //**************** Hub Form button*************/
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -125,7 +128,9 @@ class _HubState extends State<Hub> {
                                             iconSize: 20,
                                             backGroundColor:
                                                 myColors.greyButtonColor,
-                                            onPressed: () {},
+                                            onPressed: () {
+                                              snapshot.isHubCancelFalse();
+                                            },
                                             icon: (Icons.cancel),
                                             iconColor: myColors.blackColor,
                                             labelText: 'Cancel',
@@ -146,7 +151,15 @@ class _HubState extends State<Hub> {
                                 ),
                               ),
                             )
-                          : Container())
+                          : robotWidget.robotDetailsContainer(
+                              robotID: "Robot33",
+                              robotName: "DoosanA0",
+                              setting1: "002.73",
+                              setting2: "-38.210",
+                              setting3: "23.706",
+                              setting4: "-90.78",
+                              setting5: "389.09",
+                              setting6: "-090803"))
                 ],
               )
             : RobotForm());

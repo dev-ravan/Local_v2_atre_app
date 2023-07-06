@@ -87,7 +87,9 @@ class _RobotFormState extends State<RobotForm> {
                               myWidgets.buttonIcon(
                                   iconSize: 20,
                                   backGroundColor: myColors.greyButtonColor,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    snap.isAddRobotFalse();
+                                  },
                                   icon: (Icons.cancel),
                                   iconColor: myColors.blackColor,
                                   labelText: 'Cancel',

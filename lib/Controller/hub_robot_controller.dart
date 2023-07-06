@@ -4,9 +4,11 @@ class RobotProvider extends ChangeNotifier {
   bool _isTabClicked = false;
   bool _isAddHubClicked = false;
   bool _isAddRobotClicked = false;
+  bool _isRobotDetailsClicked = false;
   bool get isTabClicked => _isTabClicked;
   bool get isAddHubClicked => _isAddHubClicked;
   bool get isAddRobotClicked => _isAddRobotClicked;
+  bool get isRobotDetailsClicked => _isRobotDetailsClicked;
 
   void isTabBarTrue() {
     _isTabClicked = true;
@@ -25,6 +27,26 @@ class RobotProvider extends ChangeNotifier {
 
   void isAddRobotTrue() {
     _isAddRobotClicked = true;
+    notifyListeners();
+  }
+
+  void isHubCancelFalse() {
+    _isAddHubClicked = false;
+    notifyListeners();
+  }
+
+  void isAddRobotFalse() {
+    _isAddRobotClicked = false;
+    notifyListeners();
+  }
+
+  void isRobotDetailsTrue() {
+    _isRobotDetailsClicked = true;
+    notifyListeners();
+  }
+
+  void isRobotDetailsFalse() {
+    _isRobotDetailsClicked = false;
     notifyListeners();
   }
 
