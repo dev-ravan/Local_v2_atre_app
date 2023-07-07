@@ -5,10 +5,17 @@ class RobotProvider extends ChangeNotifier {
   bool _isAddHubClicked = false;
   bool _isAddRobotClicked = false;
   bool _isRobotDetailsClicked = false;
+  bool _isRobotView = false;
+  bool get isRobotView => _isRobotView;
   bool get isTabClicked => _isTabClicked;
   bool get isAddHubClicked => _isAddHubClicked;
   bool get isAddRobotClicked => _isAddRobotClicked;
   bool get isRobotDetailsClicked => _isRobotDetailsClicked;
+
+  void isRobotViewTrue() {
+    _isRobotView = false;
+    notifyListeners();
+  }
 
   void isTabBarTrue() {
     _isTabClicked = true;

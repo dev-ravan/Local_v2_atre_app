@@ -1,20 +1,23 @@
-// ignore_for_file: unused_field
-
 import 'package:flutter/material.dart';
 
 class PatientProvider extends ChangeNotifier {
   bool _isPatientDetails = false;
   bool get isPatientDetails => _isPatientDetails;
-  bool _isEdit = false;
-  bool get isEdit => _isPatientDetails;
+  bool _isEditClicked = false;
+  bool get isEditClicked => _isEditClicked;
 
   void isPatientTrue() {
     _isPatientDetails = !_isPatientDetails;
     notifyListeners();
   }
 
+  void isPatientFalse() {
+    _isPatientDetails = false;
+    notifyListeners();
+  }
+
   void isEditTrue() {
-    _isEdit = true;
+    _isEditClicked = true;
     notifyListeners();
   }
 

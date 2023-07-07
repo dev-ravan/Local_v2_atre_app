@@ -23,7 +23,8 @@ class _PatientFormState extends State<PatientForm> {
             Center(
               //********************Patient Form******************//
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 120, vertical: 30),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 120, vertical: 30),
                 child: Container(
                   height: 500,
                   width: double.infinity,

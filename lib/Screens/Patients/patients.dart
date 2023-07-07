@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Screens/Patients/patient_details_card.dart';
 import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
 import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
@@ -43,6 +44,13 @@ class _PatientPageState extends State<PatientPage> {
                         length: 2,
                         child: Scaffold(
                           appBar: TabBar(
+                            onTap: (value) {
+                              if (value == 1) {
+                                snapshot.isPatientFalse();
+                              } else {
+                                snapshot.isPatientFalse();
+                              }
+                            },
                             indicatorColor: myColors.greenColor,
                             labelColor: myColors.blackColor,
                             tabs: const [
@@ -61,17 +69,11 @@ class _PatientPageState extends State<PatientPage> {
             ),
           ),
           Expanded(
-              child: snapshot.isPatientDetails == true
-                  ? patientWidget.patientDetailsContainer(
-                      address: "Effica Automation ,Neelambur,Tamil Nadu,641062",
-                      dob: "12/08/1998",
-                      email: "kamini1310@gmail.com",
-                      emgContact: "Father \n+91 9303812901",
-                      gender: "femele",
-                      maritalStatus: "single",
-                      patientID: "AM-1013",
-                      name: "Kamini")
-                  : Container())
+            // child: snapshot.isPatientDetails == true
+            //     ? patientDetailsCard()
+            //     : Container()
+            child: patientDetailsCard(),
+          )
         ],
       ),
     );

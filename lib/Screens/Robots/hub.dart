@@ -71,10 +71,11 @@ class _HubState extends State<Hub> {
                                       if (value == 1) {
                                         snapshot.isTabBarTrue();
                                         snapshot.isHubCancelFalse();
+                                        snapshot.isRobotDetailsFalse();
+                                        snapshot.isRobotViewTrue();
                                       } else {
-                                        setState(() {
-                                          snapshot.isTabBarFalse();
-                                        });
+                                        snapshot.isTabBarFalse();
+                                        snapshot.isRobotViewTrue();
                                       }
                                     },
                                     indicatorColor: myColors.greenColor,
@@ -151,15 +152,17 @@ class _HubState extends State<Hub> {
                                 ),
                               ),
                             )
-                          : robotWidget.robotDetailsContainer(
-                              robotID: "Robot33",
-                              robotName: "DoosanA0",
-                              setting1: "002.73",
-                              setting2: "-38.210",
-                              setting3: "23.706",
-                              setting4: "-90.78",
-                              setting5: "389.09",
-                              setting6: "-090803"))
+                          : snapshot.isRobotView == false
+                              ? robotWidget.robotDetailsContainer(
+                                  robotID: "Robot33",
+                                  robotName: "DoosanA0",
+                                  setting1: "002.73",
+                                  setting2: "-38.210",
+                                  setting3: "23.706",
+                                  setting4: "-90.78",
+                                  setting5: "389.09",
+                                  setting6: "-090803")
+                              : Container())
                 ],
               )
             : RobotForm());

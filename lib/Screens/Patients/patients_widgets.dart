@@ -1,6 +1,7 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/myWidgets.dart';
+import '../Doctors/new_doctor_form.dart';
 
 final patientWidget = PatientWidget();
 
@@ -14,6 +15,7 @@ class PatientWidget {
       required String gender,
       required String maritalStatus,
       required String emgContact,
+      required Function editOnPressed,
       Color? borderColor}) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,7 +38,106 @@ class PatientWidget {
           ),
           child: Padding(
             padding: const EdgeInsets.all(30),
-            child: Column(
+            child:
+                //  Column(
+                //   crossAxisAlignment: CrossAxisAlignment.start,
+                //   children: [
+                //     Row(
+                //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //       children: [
+                //         myWidgets.detailsText(title: "Patient Details"),
+                //         myWidgets.buttonIconColor(
+                //             onPressed: editOnPressed,
+                //             icon: (Icons.edit_document),
+                //             iconColor: myColors.lightBlueColor,
+                //             labelText: 'Edit',
+                //             labelColor: myColors.lightBlueColor,
+                //             backGroundColor: myColors.whiteColor),
+                //       ],
+                //     ),
+                //     const SizedBox(
+                //       height: 17,
+                //     ),
+                //     Row(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Expanded(
+                //             flex: 2,
+                //             child: Column(
+                //               crossAxisAlignment: CrossAxisAlignment.start,
+                //               children: [
+                //                 myWidgets.greyText(title: "Patient ID"),
+                //                 const SizedBox(
+                //                   height: 20,
+                //                 ),
+                //                 myWidgets.miniDetailsText(title: patientID),
+                //                 const SizedBox(
+                //                   height: 25,
+                //                 ),
+                //                 myWidgets.greyText(title: "Name"),
+                //                 const SizedBox(
+                //                   height: 20,
+                //                 ),
+                //                 myWidgets.miniDetailsText(title: name),
+                //                 const SizedBox(
+                //                   height: 25,
+                //                 ),
+                //                 myWidgets.greyText(title: "Email"),
+                //                 const SizedBox(
+                //                   height: 20,
+                //                 ),
+                //                 myWidgets.miniDetailsText(title: email),
+                //                 const SizedBox(
+                //                   height: 25,
+                //                 ),
+                //                 myWidgets.greyText(title: "Address"),
+                //                 const SizedBox(
+                //                   height: 20,
+                //                 ),
+                //                 myWidgets.miniDetailsText(title: address),
+                //               ],
+                //             )),
+                //         Expanded(
+                //             child: Column(
+                //           crossAxisAlignment: CrossAxisAlignment.start,
+                //           mainAxisAlignment: MainAxisAlignment.start,
+                //           children: [
+                //             myWidgets.greyText(title: "DOB"),
+                //             const SizedBox(
+                //               height: 20,
+                //             ),
+                //             myWidgets.miniDetailsText(title: dob),
+                //             const SizedBox(
+                //               height: 25,
+                //             ),
+                //             myWidgets.greyText(title: "Gender"),
+                //             const SizedBox(
+                //               height: 20,
+                //             ),
+                //             myWidgets.miniDetailsText(title: gender),
+                //             const SizedBox(
+                //               height: 25,
+                //             ),
+                //             myWidgets.greyText(title: "Marital Status"),
+                //             const SizedBox(
+                //               height: 20,
+                //             ),
+                //             myWidgets.miniDetailsText(title: maritalStatus),
+                //             const SizedBox(
+                //               height: 25,
+                //             ),
+                //             myWidgets.greyText(title: "Emergency contact"),
+                //             const SizedBox(
+                //               height: 20,
+                //             ),
+                //             myWidgets.miniDetailsText(title: emgContact),
+                //           ],
+                //         ))
+                //       ],
+                //     )
+                //   ],
+                // ),//
+                Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
@@ -44,10 +145,10 @@ class PatientWidget {
                   children: [
                     myWidgets.detailsText(title: "Patient Details"),
                     myWidgets.buttonIconColor(
-                        onPressed: () {},
-                        icon: (Icons.edit_document),
+                        onPressed: editOnPressed,
+                        icon: (Icons.file_copy_rounded),
                         iconColor: myColors.lightBlueColor,
-                        labelText: 'Edit',
+                        labelText: 'save',
                         labelColor: myColors.lightBlueColor,
                         backGroundColor: myColors.whiteColor),
                   ],
@@ -59,41 +160,57 @@ class PatientWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                        flex: 2,
+                        // flex: 1,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            myWidgets.greyText(title: "Patient ID"),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            myWidgets.miniDetailsText(title: patientID),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            myWidgets.greyText(title: "Name"),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            myWidgets.miniDetailsText(title: name),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            myWidgets.greyText(title: "Email"),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            myWidgets.miniDetailsText(title: email),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            myWidgets.greyText(title: "Address"),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            myWidgets.miniDetailsText(title: address),
-                          ],
-                        )),
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        myWidgets.greyText(title: "Patient ID"),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              fillColor: myColors.whiteColor,
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(
+                                    color: myColors.greenColor,
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: myColors.greenColor,
+                                ),
+                              ),
+                              labelStyle:
+                                  TextStyle(color: myColors.greenColor)),
+                        ),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        myWidgets.greyText(title: "Name"),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        myWidgets.miniDetailsText(title: name),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        myWidgets.greyText(title: "Email"),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        myWidgets.miniDetailsText(title: email),
+                        const SizedBox(
+                          height: 25,
+                        ),
+                        myWidgets.greyText(title: "Address"),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        myWidgets.miniDetailsText(title: address),
+                      ],
+                    )),
                     Expanded(
                         child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +220,23 @@ class PatientWidget {
                         const SizedBox(
                           height: 20,
                         ),
-                        myWidgets.miniDetailsText(title: dob),
+                        TextFormField(
+                          decoration: InputDecoration(
+                              fillColor: myColors.whiteColor,
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: BorderSide(
+                                    color: myColors.greenColor,
+                                  )),
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(5),
+                                borderSide: BorderSide(
+                                  color: myColors.greenColor,
+                                ),
+                              ),
+                              labelStyle:
+                                  TextStyle(color: myColors.greenColor)),
+                        ),
                         const SizedBox(
                           height: 25,
                         ),
