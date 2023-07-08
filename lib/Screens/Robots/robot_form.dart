@@ -89,6 +89,7 @@ class _RobotFormState extends State<RobotForm> {
                                   backGroundColor: myColors.greyButtonColor,
                                   onPressed: () {
                                     snap.isAddRobotFalse();
+                                    snap.emptyShow();
                                   },
                                   icon: (Icons.cancel),
                                   iconColor: myColors.blackColor,

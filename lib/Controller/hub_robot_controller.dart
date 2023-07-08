@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Screens/Robots/hub_widgets.dart';
 
 class RobotProvider extends ChangeNotifier {
   bool _isTabClicked = false;
@@ -11,6 +12,28 @@ class RobotProvider extends ChangeNotifier {
   bool get isAddHubClicked => _isAddHubClicked;
   bool get isAddRobotClicked => _isAddRobotClicked;
   bool get isRobotDetailsClicked => _isRobotDetailsClicked;
+  HubRobotContainer _selectedContainer = HubRobotContainer.emptyContainer;
+  HubRobotContainer get selectedContainer => _selectedContainer;
+
+  void newHubShow() {
+    _selectedContainer = HubRobotContainer.newHub;
+    notifyListeners();
+  }
+
+  void emptyShow() {
+    _selectedContainer = HubRobotContainer.emptyContainer;
+    notifyListeners();
+  }
+
+  void robotDetailsShow() {
+    _selectedContainer = HubRobotContainer.robotDetails;
+    notifyListeners();
+  }
+
+  void robotDetailsEditShow() {
+    _selectedContainer = HubRobotContainer.editRobotDetails;
+    notifyListeners();
+  }
 
   void isRobotViewTrue() {
     _isRobotView = false;
@@ -24,11 +47,6 @@ class RobotProvider extends ChangeNotifier {
 
   void isTabBarFalse() {
     _isTabClicked = false;
-    notifyListeners();
-  }
-
-  void isAddHubTrue() {
-    _isAddHubClicked = true;
     notifyListeners();
   }
 

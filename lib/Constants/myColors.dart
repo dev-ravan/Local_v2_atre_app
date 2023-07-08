@@ -26,4 +26,5 @@ class MyColors {
   Color lightBlueColor = Color(0xFF52A4D2);
   Color greyButtonColor = Color(0xFFF2F2F2);
   Color greyShadowColor = Color(0xFFD6D6D6);
+  Color orangeTextColor = Color(0XFFE76100);
 }

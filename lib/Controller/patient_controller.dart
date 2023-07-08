@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PatientProvider extends ChangeNotifier {
-  bool _isPatientDetails = false;
-  bool get isPatientDetails => _isPatientDetails;
   bool _isEditClicked = false;
+  bool _isPatientDetails = false;
   bool get isEditClicked => _isEditClicked;
+  bool get isPatientDetails => _isPatientDetails;
 
   void isPatientTrue() {
     _isPatientDetails = !_isPatientDetails;

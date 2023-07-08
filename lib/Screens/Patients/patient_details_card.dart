@@ -1,7 +1,6 @@
 import 'package:atre_windows/Controller/patient_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
 
@@ -37,6 +36,7 @@ Widget patientDetailsCard() {
                         children: [
                           myWidgets.detailsText(title: "Patient Details"),
                           myWidgets.buttonIconColor(
+                              borderColor: myColors.lightBlueColor,
                               onPressed: () {
                                 snap.isPatientFalse;
                               },
@@ -137,6 +137,7 @@ Widget patientDetailsCard() {
                         children: [
                           myWidgets.detailsText(title: "Patient Details"),
                           myWidgets.buttonIconColor(
+                              borderColor: myColors.lightBlueColor,
                               onPressed: () {},
                               icon: (Icons.file_copy_rounded),
                               iconColor: myColors.lightBlueColor,

@@ -156,14 +156,14 @@ class MyWidgets {
     );
   }
 
-  Widget buttonIconColor({
-    required Function onPressed,
-    required IconData icon,
-    required String labelText,
-    required Color iconColor,
-    required Color labelColor,
-    required Color backGroundColor,
-  }) {
+  Widget buttonIconColor(
+      {required Function onPressed,
+      required IconData icon,
+      required String labelText,
+      required Color iconColor,
+      required Color labelColor,
+      required Color backGroundColor,
+      required Color borderColor}) {
     return ElevatedButton.icon(
       onPressed: onPressed as void Function(),
       icon: Icon(
@@ -176,7 +176,7 @@ class MyWidgets {
         style: TextStyle(color: labelColor),
       ),
       style: ElevatedButton.styleFrom(
-          side: BorderSide(color: myColors.lightBlueColor),
+          side: BorderSide(color: borderColor),
           backgroundColor: backGroundColor,
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(5))),

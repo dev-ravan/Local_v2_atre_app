@@ -1,10 +1,9 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
 
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Screens/Patients/patient_details_card.dart';
 import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Constants/myWidgets.dart';

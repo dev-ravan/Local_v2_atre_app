@@ -154,6 +154,7 @@ class HubDataSource extends DataGridSource {
                           children: [
                             Expanded(
                                 child: myWidgets.buttonIconColor(
+                                    borderColor: myColors.lightBlueColor,
                                     backGroundColor: myColors.whiteColor,
                                     onPressed: () {
                                       snapshot.isAddRobotTrue();

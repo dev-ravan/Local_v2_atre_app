@@ -46,7 +46,7 @@ class _HubState extends State<Hub> {
                                       backGroundColor: myColors.greenColor,
                                       onPressed: () {
                                         !snapshot.isTabClicked
-                                            ? snapshot.isAddHubTrue()
+                                            ? snapshot.newHubShow()
                                             : snapshot.isAddRobotTrue();
                                       },
                                       icon: !snapshot.isTabClicked
@@ -75,6 +75,7 @@ class _HubState extends State<Hub> {
                                         snapshot.isRobotViewTrue();
                                       } else {
                                         snapshot.isTabBarFalse();
+                                        snapshot.emptyShow();
                                         snapshot.isRobotViewTrue();
                                       }
                                     },
@@ -97,72 +98,8 @@ class _HubState extends State<Hub> {
                   ),
                   //********************Hub Form******************************************//
                   Expanded(
-                      child: snapshot.isAddHubClicked == true
-                          ? Container(
-                              height: 350,
-                              decoration: myWidgets.containerDecoration(),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 40, vertical: 30),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    myWidgets.titleText(title: "New Hub"),
-                                    myWidgets.formField(
-                                        labelText: 'Hub Name',
-                                        hintText: '',
-                                        controller:
-                                            snapshot.nameTextController),
-                                    myWidgets.formField(
-                                        labelText: ' Hub Location',
-                                        hintText: '',
-                                        controller:
-                                            snapshot.setting2TextController),
-                                    const SizedBox(height: 25),
-                                    //**************** Hub Form button*************/
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        myWidgets.buttonIcon(
-                                            iconSize: 20,
-                                            backGroundColor:
-                                                myColors.greyButtonColor,
-                                            onPressed: () {
-                                              snapshot.isHubCancelFalse();
-                                            },
-                                            icon: (Icons.cancel),
-                                            iconColor: myColors.blackColor,
-                                            labelText: 'Cancel',
-                                            labelColor: myColors.blackColor),
-                                        const SizedBox(width: 30),
-                                        myWidgets.buttonIcon(
-                                            iconSize: 20,
-                                            backGroundColor:
-                                                myColors.greenColor,
-                                            onPressed: () {},
-                                            icon: (Icons.device_hub),
-                                            iconColor: myColors.whiteColor,
-                                            labelText: 'Create',
-                                            labelColor: myColors.whiteColor)
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              ),
-                            )
-                          : snapshot.isRobotView == false
-                              ? robotWidget.robotDetailsContainer(
-                                  robotID: "Robot33",
-                                  robotName: "DoosanA0",
-                                  setting1: "002.73",
-                                  setting2: "-38.210",
-                                  setting3: "23.706",
-                                  setting4: "-90.78",
-                                  setting5: "389.09",
-                                  setting6: "-090803")
-                              : Container())
+                      child: getHubRoboContainer(
+                          selectContainer: snapshot.selectedContainer))
                 ],
               )
             : RobotForm());

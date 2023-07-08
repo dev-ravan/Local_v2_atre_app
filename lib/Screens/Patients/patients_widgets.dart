@@ -1,7 +1,6 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:flutter/material.dart';
 import '../../Constants/myWidgets.dart';
-import '../Doctors/new_doctor_form.dart';
 
 final patientWidget = PatientWidget();
 
@@ -145,6 +144,7 @@ class PatientWidget {
                   children: [
                     myWidgets.detailsText(title: "Patient Details"),
                     myWidgets.buttonIconColor(
+                        borderColor: myColors.lightBlueColor,
                         onPressed: editOnPressed,
                         icon: (Icons.file_copy_rounded),
                         iconColor: myColors.lightBlueColor,
