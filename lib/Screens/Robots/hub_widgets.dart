@@ -13,10 +13,13 @@ enum HubRobotContainer {
   editRobotDetails
 }
 
+//**************** Hub and Robot Widgets************************************/
 class RobotWidget {
   Widget field() {
     return Padding(
-        padding: EdgeInsets.only(right: 20, left: 10),
+        padding: EdgeInsets.only(
+          right: 20,
+        ),
         child: Container(
             height: 35,
             child: TextFormField(
@@ -35,7 +38,7 @@ class RobotWidget {
   }
 }
 
-Widget getHubRoboContainer({required selectContainer}) {
+Widget getHubRobotContainer({required selectContainer}) {
   switch (selectContainer) {
     case HubRobotContainer.newHub:
       return addNewHub();
@@ -238,141 +241,149 @@ Widget robotDetailsContainer() {
 
 //**********************************RobotDetails Edit*************************************/
 Widget robotDetailsEdit() {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: myColors.whiteContainerColor,
-          boxShadow: [
-            BoxShadow(
-              color: myColors.greyShadowColor.withOpacity(0.5),
-              spreadRadius: 1.5,
-              blurRadius: 4,
-              offset: const Offset(0, 3),
-            ),
-          ],
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  myWidgets.detailsText(title: "Robot Details"),
-                  const SizedBox(
-                    width: 40,
-                  ),
-                  myWidgets.buttonIconColor(
-                      borderColor: myColors.lightBlueColor,
-                      onPressed: () {},
-                      icon: (Icons.edit_document),
-                      iconColor: myColors.lightBlueColor,
-                      labelText: 'Cancel',
-                      labelColor: myColors.lightBlueColor,
-                      backGroundColor: myColors.whiteColor),
-                  myWidgets.buttonIconColor(
-                      borderColor: myColors.greenColor,
-                      onPressed: () {},
-                      icon: (Icons.edit_document),
-                      iconColor: myColors.greenColor,
-                      labelText: 'Save',
-                      labelColor: myColors.greenColor,
-                      backGroundColor: myColors.whiteColor),
-                ],
+  return Consumer<RobotProvider>(
+    builder: (context, snapshot, child) => Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: myColors.whiteContainerColor,
+            boxShadow: [
+              BoxShadow(
+                color: myColors.greyShadowColor.withOpacity(0.5),
+                spreadRadius: 1.5,
+                blurRadius: 4,
+                offset: const Offset(0, 3),
               ),
-              const SizedBox(
-                height: 17,
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          myWidgets.greyText(title: "Robot ID"),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          myWidgets.miniDetailsText(title: "Rob01033"),
-                          robotWidget.orangeText(
-                              text: "Robot ID cannot be changed"),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-01"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-03"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-05"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                        ],
-                      )),
-                  Expanded(
-                      flex: 1,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        //mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          myWidgets.greyText(title: "Robot Name"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-02"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-04"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          myWidgets.greyText(title: "Setting-06"),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          robotWidget.field(),
-                        ],
-                      ))
-                ],
-              )
             ],
           ),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    myWidgets.detailsText(title: "Robot Details"),
+                    const SizedBox(
+                      width: 40,
+                    ),
+                    myWidgets.buttonIconColor(
+                        borderColor: myColors.lightBlueColor,
+                        onPressed: () {
+                          snapshot.emptyShow();
+                        },
+                        icon: (Icons.edit_document),
+                        iconColor: myColors.lightBlueColor,
+                        labelText: 'Cancel',
+                        labelColor: myColors.lightBlueColor,
+                        backGroundColor: myColors.whiteColor),
+                    myWidgets.buttonIconColor(
+                        borderColor: myColors.greenColor,
+                        onPressed: () {
+                          snapshot.robotDetailsShow();
+                        },
+                        icon: (Icons.edit_document),
+                        iconColor: myColors.greenColor,
+                        labelText: 'Save',
+                        labelColor: myColors.greenColor,
+                        backGroundColor: myColors.whiteColor),
+                  ],
+                ),
+                const SizedBox(
+                  height: 17,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            myWidgets.greyText(title: "Robot ID"),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            myWidgets.miniDetailsText(title: "Rob01033"),
+                            robotWidget.orangeText(
+                                text: "Robot ID cannot be changed"),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-01"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-03"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-05"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                          ],
+                        )),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            myWidgets.greyText(title: "Robot Name"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-02"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-04"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Setting-06"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            robotWidget.field(),
+                          ],
+                        ))
+                  ],
+                )
+              ],
+            ),
+          ),
         ),
-      ),
-    ],
+      ],
+    ),
   );
 }

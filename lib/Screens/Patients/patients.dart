@@ -45,9 +45,9 @@ class _PatientPageState extends State<PatientPage> {
                           appBar: TabBar(
                             onTap: (value) {
                               if (value == 1) {
-                                snapshot.isPatientFalse();
+                                snapshot.emptyShow();
                               } else {
-                                snapshot.isPatientFalse();
+                                snapshot.emptyShow();
                               }
                             },
                             indicatorColor: myColors.greenColor,
@@ -68,11 +68,8 @@ class _PatientPageState extends State<PatientPage> {
             ),
           ),
           Expanded(
-            // child: snapshot.isPatientDetails == true
-            //     ? patientDetailsCard()
-            //     : Container()
-            child: patientDetailsCard(),
-          )
+              child: getPatientDetailsContainer(
+                  selectContainer: snapshot.selectedContainer))
         ],
       ),
     );

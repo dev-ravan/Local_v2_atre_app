@@ -73,6 +73,7 @@ class _HubState extends State<Hub> {
                                         snapshot.isHubCancelFalse();
                                         snapshot.isRobotDetailsFalse();
                                         snapshot.isRobotViewTrue();
+                                        snapshot.emptyShow();
                                       } else {
                                         snapshot.isTabBarFalse();
                                         snapshot.emptyShow();
@@ -98,7 +99,7 @@ class _HubState extends State<Hub> {
                   ),
                   //********************Hub Form******************************************//
                   Expanded(
-                      child: getHubRoboContainer(
+                      child: getHubRobotContainer(
                           selectContainer: snapshot.selectedContainer))
                 ],
               )

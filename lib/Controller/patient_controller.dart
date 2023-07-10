@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 
+import '../Screens/Patients/patient_details_card.dart';
+
 class PatientProvider extends ChangeNotifier {
-  bool _isEditClicked = false;
-  bool _isPatientDetails = false;
-  bool get isEditClicked => _isEditClicked;
-  bool get isPatientDetails => _isPatientDetails;
+  PatientDetailsContainer _selectedContainer =
+      PatientDetailsContainer.emptyContainer;
 
-  void isPatientTrue() {
-    _isPatientDetails = !_isPatientDetails;
+  PatientDetailsContainer get selectedContainer => _selectedContainer;
+
+  void patientDetails() {
+    _selectedContainer = PatientDetailsContainer.patientDetails;
     notifyListeners();
   }
 
-  void isPatientFalse() {
-    _isPatientDetails = false;
+  void emptyShow() {
+    _selectedContainer = PatientDetailsContainer.emptyContainer;
     notifyListeners();
   }
 
-  void isEditTrue() {
-    _isEditClicked = true;
+  void editPatientDetails() {
+    _selectedContainer = PatientDetailsContainer.editPatientDetails;
     notifyListeners();
   }
 

@@ -31,7 +31,6 @@ class _HubListState extends State<HubList> {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    // final _robotProvider = Provider.of<RobotProvider>(context);
     return Consumer(
       builder: (context, snapshot, child) => Scaffold(
         body: Column(
