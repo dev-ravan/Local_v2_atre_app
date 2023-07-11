@@ -1,5 +1,7 @@
 import 'package:atre_windows/Controller/patient_controller.dart';
+import 'package:atre_windows/Screens/Robots/hub_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
@@ -176,7 +178,8 @@ Widget editPatientDetails() {
             ],
           ),
           child: Padding(
-            padding: const EdgeInsets.all(30),
+            padding:
+                const EdgeInsets.only(top: 30, bottom: 30, right: 20, left: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -225,20 +228,22 @@ Widget editPatientDetails() {
                               height: 5,
                             ),
                             myWidgets.miniDetailsText(title: "AM-1013"),
-                            patientWidget.orangeText(
-                                text: "Patient ID cannot be changed"),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  "assets/images/warning.png",
+                                  height: 30,
+                                ),
+                                Expanded(
+                                  child: patientWidget.orangeText(
+                                      text: "Patient ID cannot be changed"),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
                               height: 15,
                             ),
                             myWidgets.greyText(title: "Name"),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            patientWidget.field(),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            myWidgets.greyText(title: "Address"),
                             const SizedBox(
                               height: 10,
                             ),
@@ -251,6 +256,14 @@ Widget editPatientDetails() {
                               height: 10,
                             ),
                             patientWidget.field(),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            myWidgets.greyText(title: "Address"),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            patientWidget.extendTextField(),
                           ],
                         )),
                     const SizedBox(

@@ -1,41 +1,15 @@
 import 'package:atre_windows/Constants/myColors.dart';
 import 'package:atre_windows/Controller/hub_robot_controller.dart';
+import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Constants/myWidgets.dart';
-
-final robotWidget = RobotWidget();
 
 enum HubRobotContainer {
   newHub,
   robotDetails,
   emptyContainer,
   editRobotDetails
-}
-
-//**************** Hub and Robot Widgets************************************/
-class RobotWidget {
-  Widget field() {
-    return Padding(
-        padding: EdgeInsets.only(
-          right: 20,
-        ),
-        child: Container(
-            height: 35,
-            child: TextFormField(
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: myColors.greenColor),
-                    borderRadius: BorderRadius.circular(5)),
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(5)),
-              ),
-            )));
-  }
-
-  Widget orangeText({required String text}) {
-    return Text(text, style: TextStyle(color: myColors.orangeTextColor));
-  }
 }
 
 Widget getHubRobotContainer({required selectContainer}) {
@@ -246,7 +220,7 @@ Widget robotDetailsEdit() {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10),
           width: double.infinity,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -310,16 +284,26 @@ Widget robotDetailsEdit() {
                               height: 5,
                             ),
                             myWidgets.miniDetailsText(title: "Rob01033"),
-                            robotWidget.orangeText(
-                                text: "Robot ID cannot be changed"),
+                            Row(
+                              children: [
+                                Image.asset(
+                                  "assets/images/warning.png",
+                                  height: 30,
+                                ),
+                                Expanded(
+                                  child: patientWidget.orangeText(
+                                      text: "Robot ID cannot be changed"),
+                                ),
+                              ],
+                            ),
                             const SizedBox(
-                              height: 15,
+                              height: 5,
                             ),
                             myWidgets.greyText(title: "Setting-01"),
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                             const SizedBox(
                               height: 15,
                             ),
@@ -327,7 +311,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                             const SizedBox(
                               height: 15,
                             ),
@@ -335,7 +319,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                           ],
                         )),
                     const SizedBox(
@@ -350,7 +334,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                             const SizedBox(
                               height: 15,
                             ),
@@ -358,7 +342,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                             const SizedBox(
                               height: 15,
                             ),
@@ -366,7 +350,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                             const SizedBox(
                               height: 15,
                             ),
@@ -374,7 +358,7 @@ Widget robotDetailsEdit() {
                             const SizedBox(
                               height: 10,
                             ),
-                            robotWidget.field(),
+                            patientWidget.field(),
                           ],
                         ))
                   ],

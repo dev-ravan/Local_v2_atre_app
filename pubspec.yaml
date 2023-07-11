@@ -65,7 +65,7 @@ flutter:
   assets:
   - assets/images/bg.svg
   - assets/Doctor1.json
-  - assets/images/avatar.jpg
+  - assets/images/
 
 
 
