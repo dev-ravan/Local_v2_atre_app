@@ -44,6 +44,7 @@ dependencies:
       path: plugins/window_size
   datetime_picker_formfield: ^2.0.1
   filter_list: ^1.0.2
+  internet_connectivity_checker: ^1.0.1
 
  
 

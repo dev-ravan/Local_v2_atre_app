@@ -8,6 +8,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sidebarx/sidebarx.dart';
 
 import '../Robots/hub.dart';
+import 'sideBarx_widgets.dart';
 
 class SideBar extends StatefulWidget {
   const SideBar({super.key});
@@ -130,30 +131,31 @@ class SideBarXExample extends StatelessWidget {
                 ),
                 SizedBox(height: 5),
                 Text('Admin-003'),
-                Padding(
-                  padding: EdgeInsets.only(left: 5),
-                  child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return Login();
-                      }));
-                    },
-                    icon: Icon(
-                      Icons.logout_outlined,
-                      color: myColors.greyIconColor,
-                    ),
-                  ),
+                SizedBox(height: 5),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 5.0),
+                    sidebarxWidget.internetChecker()
+                  ],
                 ),
               ],
             ));
       },
-      items: const [
+      items: [
         SidebarXItem(icon: Icons.calendar_view_day, label: 'Appointment'),
         SidebarXItem(icon: FontAwesomeIcons.squarePlus, label: 'Doctor'),
         SidebarXItem(icon: FontAwesomeIcons.file, label: 'Patient'),
         SidebarXItem(icon: Icons.device_hub, label: 'Hub'),
         SidebarXItem(icon: Icons.file_copy, label: 'Reports'),
+        SidebarXItem(
+          icon: Icons.logout,
+          label: 'Logout',
+          onTap: () =>
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return Login();
+          })),
+        )
       ],
     );
   }

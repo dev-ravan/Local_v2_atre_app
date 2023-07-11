@@ -9,9 +9,12 @@
         "Kamini",
         "localstorage",
         "manisha",
+        "Selam",
         "sidebarx",
         "spinkit",
-        "syncfusion"
+        "syncfusion",
+        "Thiruvarur"
     ],
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "disabled",
+    "cmake.sourceDirectory": "D:/poc/v2atreDesktopApplication/linux"
 }
