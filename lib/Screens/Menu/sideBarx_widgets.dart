@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:internet_connectivity_checker/internet_connectivity_checker.dart';
-
 import '../../Constants/myColors.dart';
 
 final sidebarxWidget = SidebarxWidget();

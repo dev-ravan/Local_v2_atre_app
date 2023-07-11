@@ -55,7 +55,7 @@ class AppoinmentApi extends ChangeNotifier {
       if (response.statusCode == 200) {
         _appointments = parseAppointments(response.body);
         appointmentsCount = parseAppointments(response.body).length;
-       print(_appointments);
+        print(_appointments);
         notifyListeners();
       } else {
         return null;
@@ -78,7 +78,6 @@ class AppoinmentApi extends ChangeNotifier {
         notifyListeners();
       } else {
         for (var i = 0; i < value.data.length; i++) {
-          patientNameList.clear();
           patientNameList.add(value.data[i].patientName);
         }
         patientList = [...value.data];

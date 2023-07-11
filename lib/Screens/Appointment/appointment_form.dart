@@ -2,6 +2,7 @@ import 'package:atre_windows/Constants/myWidgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../API Services/appointment_Service.dart';
+import '../../API Services/doctors_service.dart';
 import '../../Constants/myColors.dart';
 import '../../Controller/appointment_controller.dart';
 import 'appointment_widgets.dart';
@@ -21,6 +22,7 @@ class _AppointmentFormState extends State<AppointmentForm> {
   String? locationName;
   String? scanTypeName;
   String? refDocName;
+  String? docName;
   String? radiologistName;
 
   List<dynamic> location = ["Coimbatore", "Chennai", "Thiruvarur", 'Selam'];
@@ -38,6 +40,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
 
     Provider.of<AppointmentProvider>(context, listen: false);
     Provider.of<AppoinmentApi>(context, listen: false);
+    final _doctorApi = Provider.of<DoctorApi>(context, listen: false);
+    _doctorApi.listOfDoctors();
   }
 
   Widget build(BuildContext context) {
@@ -46,8 +50,8 @@ class _AppointmentFormState extends State<AppointmentForm> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40, top: 120),
-        child: Consumer2<AppointmentProvider, AppoinmentApi>(
-          builder: (context, snap, snapApi, child) => Column(
+        child: Consumer3<AppointmentProvider, AppoinmentApi, DoctorApi>(
+          builder: (context, snap, snapApi, docApi, child) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Row(
@@ -158,10 +162,12 @@ class _AppointmentFormState extends State<AppointmentForm> {
 
                                 appointmentWidgets.dropdownButton(
                                   onChange: (value) {
-                                    setState(() {});
+                                    setState(() {
+                                      docName = value;
+                                    });
                                   },
                                   labelText: "Doctor Name",
-                                  items: snapApi.patientNameList,
+                                  items: docApi.doctorNameList,
                                 ),
                                 // ********************************************* Appointment Time ***************************************************
                                 appointmentWidgets.dropdownButton(
@@ -229,7 +235,9 @@ class _AppointmentFormState extends State<AppointmentForm> {
                             child: appointmentWidgets.button(
                                 label: 'Cancel',
                                 color: myColors.blackColor,
-                                onPressed: () {},
+                                onPressed: () {
+                                  snap.isAppointmentTrue();
+                                },
                                 icon: Icon(
                                   Icons.cancel,
                                   color: myColors.blackColor,

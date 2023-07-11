@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:atre_windows/Constants/localStorage.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../Model/doctorModel/doctors_list_model.dart';
 import '../Model/doctorModel/list_all_doctor_service.dart';
 
 class DoctorApi extends ChangeNotifier {
+  // ******************************************************* Generated Doctor List *****************************************************************
   List<DoctorList> _doctors = [];
   List<DoctorList> get doctors => _doctors;
   int doctorsCounts = 0;
@@ -30,12 +32,11 @@ class DoctorApi extends ChangeNotifier {
   }
 
   void generatedDoctorList() async {
-    final http.Response response = await http.get(
-        Uri.parse("${baseUrl}list-all-doctor"),
-        headers: <String, String>{
-          'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': 'Bearer $globalAccessToken'
-        });
+    final http.Response response = await http
+        .get(Uri.parse("${baseUrl}list-all-doctor"), headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+      'Authorization': 'Bearer $globalAccessToken'
+    });
     try {
       if (response.statusCode == 200) {
         _doctors = parseDoctors(response.body);
@@ -48,5 +49,52 @@ class DoctorApi extends ChangeNotifier {
     } catch (e) {
       print("Error:-->$e");
     }
+  }
+
+  // ******************************************************* Doctor List *****************************************************************
+
+  List doctorNameList = [];
+
+  void listOfDoctors() {
+    doctorDetailsList().then((value) {
+      if (value!.data.isEmpty) {
+        doctorNameList = [];
+        notifyListeners();
+      } else {
+        for (var i = 0; i < value.data.length; i++) {
+          doctorNameList.add(value.data[i].doctorName);
+        }
+
+        print("doctorNameList: $doctorNameList");
+        notifyListeners();
+      }
+    });
+  }
+
+  Future<DoctorDetailsModel?> doctorDetailsList() async {
+    final http.Response response = await http.get(
+      Uri.parse("${baseUrl}list-all-doctor"),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'user-agent': version,
+        'Authorization': 'Bearer $globalAccessToken'
+      },
+    );
+
+    try {
+      if (response.statusCode == 200) {
+        final data = jsonDecode(response.body);
+
+        print(data);
+
+        notifyListeners();
+        return doctorDetailsModelFromJson(response.body);
+      } else {
+        return doctorDetailsModelFromJson(response.body);
+      }
+    } catch (e) {
+      print("Error:--> $e");
+    }
+    return null;
   }
 }

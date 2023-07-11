@@ -25,6 +25,11 @@ class AppointmentProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void isAppointmentTrue() {
+    _isAppointment = true;
+    notifyListeners();
+  }
+
   void isVisibleTrue() {
     _isVisible = true;
     notifyListeners();

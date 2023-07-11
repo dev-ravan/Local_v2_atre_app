@@ -134,7 +134,10 @@ class SideBarXExample extends StatelessWidget {
                 SizedBox(height: 5),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [SizedBox(width: 5.0), sidebarxWidget.internetChecker()],
+                  children: [
+                    SizedBox(width: 5.0),
+                    sidebarxWidget.internetChecker()
+                  ],
                 ),
               ],
             ));
