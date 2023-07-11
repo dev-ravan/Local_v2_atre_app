@@ -1,5 +1,7 @@
+import 'package:atre_windows/Controller/hub_robot_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import '../../Constants/myColors.dart';
 import '../../Constants/myWidgets.dart';
@@ -134,28 +136,31 @@ class RobotDataSource extends DataGridSource {
     return DataGridRowAdapter(
         color: getBackgroundColor(),
         cells: row.getCells().map<Widget>((e) {
-          return Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.all(8.0),
-              child: e.columnName == 'button'
-                  ? LayoutBuilder(builder:
-                      (BuildContext context, BoxConstraints constraints) {
-                      return Row(
-                        children: [
-                          Expanded(
-                              child: Padding(
-                                  padding: EdgeInsets.only(left: 70, right: 70),
-                                  child: myWidgets.buttonIconColor(
-                                      backGroundColor: myColors.whiteColor,
-                                      onPressed: () {},
-                                      icon: (FontAwesomeIcons.robot),
-                                      iconColor: myColors.lightBlueColor,
-                                      labelText: 'View details',
-                                      labelColor: myColors.lightBlueColor))),
-                        ],
-                      );
-                    })
-                  : Text(e.value.toString()));
+          return Consumer<RobotProvider>(
+            builder: (context, snapshot, child) => Container(
+                alignment: Alignment.center,
+                padding: const EdgeInsets.all(8.0),
+                child: e.columnName == 'button'
+                    ? LayoutBuilder(builder:
+                        (BuildContext context, BoxConstraints constraints) {
+                        return Row(
+                          children: [
+                            Expanded(
+                                child: myWidgets.buttonIconColor(
+                                    borderColor: myColors.lightBlueColor,
+                                    backGroundColor: myColors.whiteColor,
+                                    onPressed: () {
+                                      snapshot.robotDetailsShow();
+                                    },
+                                    icon: (FontAwesomeIcons.robot),
+                                    iconColor: myColors.lightBlueColor,
+                                    labelText: 'View details',
+                                    labelColor: myColors.lightBlueColor)),
+                          ],
+                        );
+                      })
+                    : Text(e.value.toString())),
+          );
         }).toList());
   }
 }

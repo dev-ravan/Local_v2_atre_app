@@ -1,9 +1,9 @@
 // ignore_for_file: unused_local_variable, no_leading_underscores_for_local_identifiers
 
 import 'package:atre_windows/Constants/myColors.dart';
+import 'package:atre_windows/Screens/Patients/patient_details_card.dart';
 import 'package:atre_windows/Screens/Patients/patient_form_Tab.dart';
 import 'package:atre_windows/Screens/Patients/patient_list_tab.dart';
-import 'package:atre_windows/Screens/Patients/patients_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../Constants/myWidgets.dart';
@@ -43,6 +43,13 @@ class _PatientPageState extends State<PatientPage> {
                         length: 2,
                         child: Scaffold(
                           appBar: TabBar(
+                            onTap: (value) {
+                              if (value == 1) {
+                                snapshot.emptyShow();
+                              } else {
+                                snapshot.emptyShow();
+                              }
+                            },
                             indicatorColor: myColors.greenColor,
                             labelColor: myColors.blackColor,
                             tabs: const [
@@ -61,22 +68,8 @@ class _PatientPageState extends State<PatientPage> {
             ),
           ),
           Expanded(
-              child: snapshot.isPatientDetails == true
-                  ? Container(
-                      height: 500,
-                      width: double.infinity,
-                      decoration: patientWidget.containerDecoration(),
-                      child: patientWidget.patientDetailsContainer(
-                          address:
-                              "Effica Automation ,Neelambur,Tamil Nadu,641062",
-                          dob: "12/08/1998",
-                          email: "kamini1310@gmail.com",
-                          emgContact: "Father \n+91 9303812901",
-                          gender: "femele",
-                          maritalStatus: "single",
-                          patientID: "AM-1013",
-                          name: "Kamini"))
-                  : Container())
+              child: getPatientDetailsContainer(
+                  selectContainer: snapshot.selectedContainer))
         ],
       ),
     );

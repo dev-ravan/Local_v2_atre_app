@@ -46,7 +46,7 @@ class _PatientListState extends State<PatientList> {
                   headerGridLinesVisibility: GridLinesVisibility.none,
                   source: patientDataSource!,
                   onCellTap: (details) {
-                    snapshot.isPatientTrue();
+                    snapshot.patientDetails();
                   },
                   columnWidthMode: ColumnWidthMode.fill,
                   columns: <GridColumn>[

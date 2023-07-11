@@ -93,7 +93,7 @@ class MyWidgets {
             Icon(
               icon,
               size: 20,
-              color: Colors.white,
+              color: myColors.whiteColor,
             ),
             const SizedBox(
               width: 5,
@@ -138,7 +138,41 @@ class MyWidgets {
     required Color iconColor,
     required Color labelColor,
     required Color backGroundColor,
+    required double iconSize,
   }) {
+    return Container(
+      height: 40,
+      width: 150,
+      decoration: BoxDecoration(
+          color: myColors.greyBg2Color,
+          borderRadius: BorderRadius.circular(5.0)),
+      child: ElevatedButton.icon(
+        onPressed: onPressed as void Function(),
+        icon: Icon(
+          icon,
+          color: iconColor,
+          size: iconSize,
+        ),
+        label: Text(
+          labelText,
+          style: TextStyle(color: labelColor),
+        ),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: backGroundColor,
+            shape: ContinuousRectangleBorder(
+                borderRadius: BorderRadius.circular(5))),
+      ),
+    );
+  }
+
+  Widget buttonIconColor(
+      {required Function onPressed,
+      required IconData icon,
+      required String labelText,
+      required Color iconColor,
+      required Color labelColor,
+      required Color backGroundColor,
+      required Color borderColor}) {
     return ElevatedButton.icon(
       onPressed: onPressed as void Function(),
       icon: Icon(
@@ -151,36 +185,54 @@ class MyWidgets {
         style: TextStyle(color: labelColor),
       ),
       style: ElevatedButton.styleFrom(
+          side: BorderSide(color: borderColor),
           backgroundColor: backGroundColor,
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(5))),
     );
   }
 
-  Widget buttonIconColor({
-    required Function onPressed,
-    required IconData icon,
-    required String labelText,
-    required Color iconColor,
-    required Color labelColor,
-    required Color backGroundColor,
-  }) {
-    return ElevatedButton.icon(
-      onPressed: onPressed as void Function(),
-      icon: Icon(
-        icon,
-        color: iconColor,
-        size: 15,
-      ),
-      label: Text(
-        labelText,
-        style: TextStyle(color: labelColor),
-      ),
-      style: ElevatedButton.styleFrom(
-          side: BorderSide(color: myColors.lightBlueColor),
-          backgroundColor: backGroundColor,
-          shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(5))),
+  containerDecoration() {
+    return BoxDecoration(
+      borderRadius: BorderRadius.circular(10),
+      color: myColors.whiteContainerColor,
+      boxShadow: [
+        BoxShadow(
+          color: myColors.greyShadowColor.withOpacity(0.5),
+          spreadRadius: 1.5,
+          blurRadius: 4,
+          offset: Offset(0, 3),
+        ),
+      ],
+    );
+  }
+
+  Widget formField(
+      {required String labelText,
+      required String hintText,
+      required TextEditingController controller,
+      TextInputType? type}) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30, left: 10, right: 40),
+      child: TextFormField(
+          controller: controller,
+          keyboardType: type,
+          decoration: InputDecoration(
+              fillColor: myColors.whiteColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5),
+                  borderSide: BorderSide(
+                    color: myColors.greenColor,
+                  )),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(5),
+                borderSide: BorderSide(
+                  color: myColors.greenColor,
+                ),
+              ),
+              labelText: labelText,
+              hintText: hintText,
+              labelStyle: TextStyle(color: myColors.greenColor))),
     );
   }
 }
